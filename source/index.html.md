@@ -3,13 +3,12 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
+  # - ruby
+  # - python
+  # - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://app.artsvp.co/join'>Get an API Key</a>
 
 includes:
   - errors
@@ -20,120 +19,112 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the BOOKSVP API
 ---
 
 # Introduction
 
-Welcome to the BOOKSVP API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the BOOKSVP API! 
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+If you require help getting started or would like to request specific endpoints that suit your needs, please contact us on [support@artsvp.com](mailto:support@artsvp.com)
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: svp_api_key"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
+<!-- 
 ```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+xxx
 ```
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
+xxx
+``` 
 
 ```javascript
-const kittn = require('kittn');
+xxx
+``` 
+-->
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+
+> Make sure to replace `svp_api_key` with your API key.
+
+To connect to our API, you must use the __Authorization Header__ to provide your Bearer token. This can be obtained from your dashboard, under _Settings_ -> _Developer_. 
+
+Your API key is used as your bearer token and has complete access to your account so please protect it 🙏🏼
+
+`Authorization: svp_api_key`
+
+<aside class="notice">
+You must replace <code>svp_api_key</code> with your personal API key.
+</aside>
+
+# Rate Limiting
+
+We limit API requests to __500 requests per 15 minutes__. In the future, we expect to offer "high volume" rate limit plans for businesses that need more throughput.
+
+Each request will return `x-rate-limit headers` so you can keep track of your queries.
+
+# Bookings
+
+## List Bookings
+
+```shell
+curl "https://app.artsvp.co/api/v1/bookings?user_id=123" \
+  -H "Authorization: svp_api_key"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "object": "list",
+  "url": "/v1/bookings",
+  "data": [
+    {
+      "user_id": "abc123",
+      "reference": "06gh7se2",
+      "event_id": "3g7k0w",
+      "event_name": "Example Event",
+      "event_reference": "Example Event",
+      "event_time_zone": "America/New York",
+      "name": "Mike Holford",
+      "email": "mike@artsvp.com",
+      "size": 2,
+      "meta_data": {},
+      "start_time_utc": "xxx",
+      "start_time_local": "xxx",
+      "url": "xxx",
+      "confirmed": "true",
+      "cancelled": "false",
+      "pending": "false",
+      "created_at": "false",
+      "updated_at": "false",
+    },
+    ...
+  ]
 ```
 
-This endpoint retrieves all kittens.
+Return a list of all bookings this API key owns, scoped by passed parameters.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://app.artsvp.co/api/v1/bookings`
 
 ### Query Parameters
 
-Parameter | Default | Description
+Parameter | Required | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+user_id | false | Unique ID of the user making the booking. 
+email | false | Email used to create the booking
+tags | false | Tags associated to the booking
+
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
@@ -144,26 +135,26 @@ Remember — a happy kitten is an authenticated kitten!
 ```ruby
 require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Kittn::APIClient.authorize!('svp_api_key')
 api.kittens.get(2)
 ```
 
 ```python
 import kittn
 
-api = kittn.authorize('meowmeowmeow')
+api = kittn.authorize('svp_api_key')
 api.kittens.get(2)
 ```
 
 ```shell
 curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: svp_api_key"
 ```
 
 ```javascript
 const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = kittn.authorize('svp_api_key');
 let max = api.kittens.get(2);
 ```
 
@@ -198,27 +189,27 @@ ID | The ID of the kitten to retrieve
 ```ruby
 require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Kittn::APIClient.authorize!('svp_api_key')
 api.kittens.delete(2)
 ```
 
 ```python
 import kittn
 
-api = kittn.authorize('meowmeowmeow')
+api = kittn.authorize('svp_api_key')
 api.kittens.delete(2)
 ```
 
 ```shell
 curl "http://example.com/api/kittens/2" \
   -X DELETE \
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: svp_api_key"
 ```
 
 ```javascript
 const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = kittn.authorize('svp_api_key');
 let max = api.kittens.delete(2);
 ```
 
