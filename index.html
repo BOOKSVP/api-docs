@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the BOOKSVP API"
+            content="Documentation for the ARTSVP API"
         >
     <title>API Reference</title>
 
@@ -325,13 +325,24 @@
             <a href="#bookings" class="toc-h1 toc-link" data-title="Bookings">Bookings</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#list-bookings" class="toc-h2 toc-link" data-title="List Bookings">List Bookings</a>
+                    <a href="#the-booking-object" class="toc-h2 toc-link" data-title="The booking object">The booking object</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#list-all-bookings" class="toc-h2 toc-link" data-title="List all bookings">List all bookings</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#invites" class="toc-h1 toc-link" data-title="Invites">Invites</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-invite-object" class="toc-h2 toc-link" data-title="The invite object">The invite object</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#create-an-invite" class="toc-h2 toc-link" data-title="Create an invite">Create an invite</a>
+                  </li>
+                  <li>
+                    <a href="#list-all-invites" class="toc-h2 toc-link" data-title="List all invites">List all invites</a>
                   </li>
               </ul>
           </li>
@@ -347,7 +358,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the BOOKSVP API! </p>
+<p>Welcome to the <strong>ARTSVP API</strong></p>
 
 <p>If you require help getting started or would like to request specific endpoints that suit your needs, please contact us on <a href="mailto:support@artsvp.com">support@artsvp.com</a></p>
 <h1 id='authentication'>Authentication</h1>
@@ -356,7 +367,7 @@
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: svp_api_key"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <!-- 
 ```ruby
@@ -373,24 +384,170 @@ xxx
 -->
 
 <blockquote>
-<p>Make sure to replace <code>svp_api_key</code> with your API key.</p>
+<p>Make sure to replace <code>my_api_key</code> with your API key.</p>
 </blockquote>
 
 <p>To connect to our API, you must use the <strong>Authorization Header</strong> to provide your Bearer token. This can be obtained from your dashboard, under <em>Settings</em> -&gt; <em>Developer</em>. </p>
 
 <p>Your API key is used as your bearer token and has complete access to your account so please protect it 🙏🏼</p>
 
-<p><code>Authorization: svp_api_key</code></p>
+<p><code>Authorization: my_api_key</code></p>
 
 <aside class="notice">
-You must replace <code>svp_api_key</code> with your personal API key.
+You must replace <code>my_api_key</code> with your personal API key.
 </aside>
 <h1 id='rate-limiting'>Rate Limiting</h1>
-<p>We limit API requests to <strong>500 requests per 15 minutes</strong>. In the future, we expect to offer &quot;high volume&quot; rate limit plans for businesses that need more throughput.</p>
+<p>We limit API requests to <strong>1,000 requests every 15 minutes</strong>. In the future, we expect to offer &quot;high volume&quot; rate limit plans for businesses that need more throughput.</p>
 
 <p>Each request will return <code>x-rate-limit headers</code> so you can keep track of your queries.</p>
-<h1 id='bookings'>Bookings</h1><h2 id='list-bookings'>List Bookings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.co/api/v1/bookings?user_id=123"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: svp_api_key"</span>
+<h1 id='bookings'>Bookings</h1>
+<p>Bookings are unique records that belong to an <code>Event</code>. They hold important information such as the <code>name</code> and <code>email</code> of the person making the booking and and other specifics needed for the events such as the booking <code>size</code>, <code>start_time</code> etc. </p>
+
+<p>Each booking has a <code>status</code> field which denotes where the booking is within the booking process.</p>
+<h2 id='the-booking-object'>The booking object</h2>
+<blockquote>
+<p>The booking object</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bo_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"836d76"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair - VIP 1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"invite_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db8e29"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"new_user"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='attributes'>Attributes</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Unique identifier for the object.</td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td>string</td>
+<td>String representing the object’s type</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>string</td>
+<td>A unique reference for the booking</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>The booking status. Prefixed with <code>is_</code> (e.g. <code>is_confirmed</code>)</td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td>string</td>
+<td>External ID associated with the booking</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Name of the primary guest</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>Email of the primary guest</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>integer</td>
+<td>Number of guests attatched to the booking</td>
+</tr>
+<tr>
+<td><code>start_time_utc</code></td>
+<td>timestamp</td>
+<td>Start time in UTC</td>
+</tr>
+<tr>
+<td><code>start_time_local</code></td>
+<td>timestamp</td>
+<td>Start time in Event&#39;s Time Zone</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>string</td>
+<td>URL to manage the booking</td>
+</tr>
+<tr>
+<td><code>event_id</code></td>
+<td>string</td>
+<td>ID of the Event</td>
+</tr>
+<tr>
+<td><code>event_name</code></td>
+<td>string</td>
+<td>Name of the Event</td>
+</tr>
+<tr>
+<td><code>event_reference</code></td>
+<td>string</td>
+<td>Internal Reference for the Event</td>
+</tr>
+<tr>
+<td><code>event_time_zone</code></td>
+<td>timestamp</td>
+<td>Time Zone of the Event</td>
+</tr>
+<tr>
+<td><code>invite_id</code></td>
+<td>string</td>
+<td>The ID of the Booking&#39;s Invite (if present)</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>array</td>
+<td>Tags assigned to the booking</td>
+</tr>
+<tr>
+<td><code>resource_tags</code></td>
+<td>array</td>
+<td>Tags assigned to the <code>Booking Resource</code></td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td>hash</td>
+<td>Meta Data assigned to the booking</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>timestamp</td>
+<td>Timestamp when the Booking was Created</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>timestamp</td>
+<td>Timestamp when the Booking was Updated</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-bookings'>List all bookings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.co/api/v1/bookings"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+  <span class="nt">-d</span> <span class="nv">external_id</span><span class="o">=</span><span class="s2">"abc123"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -399,33 +556,36 @@ You must replace <code>svp_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/bookings"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06gh7se2"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3g7k0w"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Event"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"event_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Event"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"event_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/New York"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Holford"</span><span class="p">,</span><span class="w">
+    </span><span class="p">{</span><span class="w"> 
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boo_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"836d76"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"event_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair - VIP 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"event_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"invite_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db8e29"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"new_user"</span><span class="p">],</span><span class="w">
       </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-      </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"confirmed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pending"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="err">...</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>Return a list of all bookings this API key owns, scoped by passed parameters.</p>
+<p>Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.co/api/v1/bookings</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -434,107 +594,356 @@ You must replace <code>svp_api_key</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>user_id</td>
-<td>false</td>
-<td>Unique ID of the user making the booking.</td>
+<td><code>external_id</code></td>
+<td><code>false</code></td>
+<td>External ID associated with the booking</td>
 </tr>
 <tr>
-<td>email</td>
-<td>false</td>
+<td><code>email</code></td>
+<td><code>false</code></td>
 <td>Email used to create the booking</td>
 </tr>
 <tr>
-<td>tags</td>
-<td>false</td>
+<td><code>tags</code></td>
+<td><code>false</code></td>
 <td>Tags associated to the booking</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — Authenticate your request with an Authorization Header
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='invites'>Invites</h1>
+<p>Invites exist as a vehicle for a user to create a <code>booking</code>. They can be used simply as a unique booking link or be pre-configured with information to define the booking flow or lock the booking to a particular user (name and email). You also have control over the number of times an Invite can be used (number of bookings created). </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'svp_api_key'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'svp_api_key'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: svp_api_key"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">svp_api_key</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
+<aside>
+Matching booking data (name, email, meta_data etc..) will absorbed by the booking once the booking has been created.
+</aside>
+<h2 id='the-invite-object'>The invite object</h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The invite object</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invite"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6u9F2a"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount_used"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0/1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"single_entry"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vip_1"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"new_user"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+</span></code></pre></div><h3 id='attributes-2'>Attributes</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Attribute</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td><code>id</code></td>
+<td>string</td>
+<td>Unique identifier for the object.</td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td>string</td>
+<td>String representing the object’s type</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>string</td>
+<td>A unique reference for the invite</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Name assigned to the invite</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>Email assigned to the invite</td>
+</tr>
+<tr>
+<td><code>resource</code></td>
+<td>string</td>
+<td>Type of the <code>Resource</code></td>
+</tr>
+<tr>
+<td><code>resource_id</code></td>
+<td>string</td>
+<td>ID of the <code>Resource</code></td>
+</tr>
+<tr>
+<td><code>golden</code></td>
+<td>boolean</td>
+<td>If the invite is marked as Golden</td>
+</tr>
+<tr>
+<td><code>register_interest</code></td>
+<td>boolean</td>
+<td>If the invite is marked as Register Interest</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>string</td>
+<td>URL of the invite</td>
+</tr>
+<tr>
+<td><code>used</code></td>
+<td>boolean</td>
+<td>If the invite has been used at least once</td>
+</tr>
+<tr>
+<td><code>amount_used</code></td>
+<td>string</td>
+<td>Number of times the invite has been used</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>array</td>
+<td>Tags assigned to the invite</td>
+</tr>
+<tr>
+<td><code>resource_tags</code></td>
+<td>array</td>
+<td>Tags assigned to the <code>Resource</code></td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td>hash</td>
+<td>Meta Data assigned to the invite</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>timestamp</td>
+<td>Timestamp when the invte was Created</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>timestamp</td>
+<td>Timestamp when the invte was Updated</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='create-an-invite'>Create an invite</h2>
+<p>Creates an invite for a specific resource (collections or invites). </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'svp_api_key'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'svp_api_key'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: svp_api_key"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">svp_api_key</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p>Use a <strong>filter</strong> to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is <code>email@example.com</code>, a new invite will only be created if an invite does not exist with that email.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.co/api/v1/invites"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+  <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"Lucy Green"</span>
+  <span class="nt">-d</span> <span class="nv">email</span><span class="o">=</span><span class="s2">"lucy@example.com"</span>
+  <span class="nt">-d</span> <span class="nv">resource_id</span><span class="o">=</span><span class="s2">"3f10ed"</span>
+  <span class="nt">-d</span> <span class="nv">golen</span><span class="o">=</span><span class="nb">true</span>
+  <span class="nt">-d</span> <span class="nv">tags</span><span class="o">=[</span><span class="s2">"artsvp"</span>, <span class="s2">"vip"</span><span class="o">]</span>
+  <span class="nt">-d</span> <span class="nv">filter</span><span class="o">=</span><span class="s2">"external_id"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invite"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"468d2w"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucy Green"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucy@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f10ed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/468d2w"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount_used"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0/1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"artsvp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vip"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://app.artsvp.co/api/v1/invites</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>name</code></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>email</code></td>
+</tr>
+<tr>
+<td><code>resource_id</code></td>
+<td><code>false</code></td>
+<td>Type of the <code>Resource</code></td>
+</tr>
+<tr>
+<td><code>resource_type</code></td>
+<td><code>false</code></td>
+<td>ID of the <code>Resource</code></td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>external_id</code></td>
+</tr>
+<tr>
+<td><code>golden</code></td>
+<td>boolean</td>
+<td>If the invite should be Golden</td>
+</tr>
+<tr>
+<td><code>register_interest</code></td>
+<td>boolean</td>
+<td>If the invite should be Register Interest</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>false</code></td>
+<td>The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>false</code></td>
+<td>Any tags you want to assign to the invite</td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td><code>false</code></td>
+<td>Meta Data assigned to the invite</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>false</code></td>
+<td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-invites'>List all invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.co/api/v1/invites?user_id=123"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+  <span class="nt">-d</span> <span class="nv">resource_id</span><span class="o">=</span><span class="s2">"3f10ed"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
+  </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/invites"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> 
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invite"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6u9F2a"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount_used"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0/1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"single_entry"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vip_1"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"new_user"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
+<p>Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p><code>GET https://app.artsvp.co/api/v1/invites</code></p>
+<h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td><code>resource_id</code></td>
+<td><code>false</code></td>
+<td>The ID of a resource. Usually matches an Event ID. Click ‘Share’ on an event to view.</td>
+</tr>
+<tr>
+<td><code>resource_type</code></td>
+<td><code>false</code></td>
+<td>The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the <code>resource_id</code>. Default is <code>Event</code></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>false</code></td>
+<td>Returns all invites with any matching tags</td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>external_id</code></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>name</code></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>email</code></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>false</code></td>
+<td>A limit on the number of objects to be returned, between 1 and 100. Default is 50.</td>
+</tr>
+<tr>
+<td><code>starting_after</code></td>
+<td><code>false</code></td>
+<td>A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with <code>obj_foo</code>, your subsequent call can include <code>starting_after=obj_foo</code> in order to fetch the next page of the list.</td>
+</tr>
+<tr>
+<td><code>ending_before</code></td>
+<td><code>false</code></td>
+<td>A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with <code>obj_bar</code>, your subsequent call can include <code>ending_before=obj_bar</code> in order to fetch the previous page of the list.</td>
 </tr>
 </tbody></table>
+
+<aside class="success">
+Remember — Authenticate your request with an Authorization Header
+</aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
