@@ -286,7 +286,7 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-ac0b4abe.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-5635a05a.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-b12a2749.js"></script>
 
@@ -303,7 +303,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-e37baa3a.png" class="logo" alt="" />
+      <img src="images/logo-9d7c80cc.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -342,6 +342,9 @@
                     <a href="#create-an-invite" class="toc-h2 toc-link" data-title="Create an invite">Create an invite</a>
                   </li>
                   <li>
+                    <a href="#batch-create-invites" class="toc-h2 toc-link" data-title="Batch create invites">Batch create invites</a>
+                  </li>
+                  <li>
                     <a href="#list-all-invites" class="toc-h2 toc-link" data-title="List all invites">List all invites</a>
                   </li>
               </ul>
@@ -351,7 +354,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://app.artsvp.co/join'>Get an API Key</a></li>
+            <li><a href='https://app.artsvp.com/join'>Get an API Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -413,7 +416,6 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
@@ -428,6 +430,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"new_user"</span><span class="p">],</span><span class="w">
   </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -458,11 +461,6 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td><code>status</code></td>
 <td>string</td>
 <td>The booking status. Prefixed with <code>is_</code> (e.g. <code>is_confirmed</code>)</td>
-</tr>
-<tr>
-<td><code>external_id</code></td>
-<td>string</td>
-<td>External ID associated with the booking</td>
 </tr>
 <tr>
 <td><code>name</code></td>
@@ -517,7 +515,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <tr>
 <td><code>invite_id</code></td>
 <td>string</td>
-<td>The ID of the Booking&#39;s Invite (if present)</td>
+<td>The ID of the booking&#39;s Invite (if present)</td>
 </tr>
 <tr>
 <td><code>tags</code></td>
@@ -535,17 +533,22 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>Meta Data assigned to the booking</td>
 </tr>
 <tr>
+<td><code>external_id</code></td>
+<td>string</td>
+<td>External ID assigned to the booking</td>
+</tr>
+<tr>
 <td><code>created_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the Booking was Created</td>
+<td>Timestamp when the booking was Created</td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the Booking was Updated</td>
+<td>Timestamp when the booking was Updated</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-bookings'>List all bookings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.co/api/v1/bookings"</span> <span class="se">\</span>
+<h2 id='list-all-bookings'>List all bookings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v2/bookings"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">external_id</span><span class="o">=</span><span class="s2">"abc123"</span>
 </code></pre></div>
@@ -554,14 +557,13 @@ You must replace <code>my_api_key</code> with your personal API key.
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/bookings"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/bookings"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w"> 
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boo_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
@@ -576,6 +578,7 @@ You must replace <code>my_api_key</code> with your personal API key.
       </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"new_user"</span><span class="p">],</span><span class="w">
       </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -584,7 +587,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </span></code></pre></div>
 <p>Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.co/api/v1/bookings</code></p>
+<p><code>GET https://app.artsvp.com/api/v2/bookings</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -644,6 +647,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
     </span><span class="s2">"new_user"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -731,6 +735,11 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <td>Meta Data assigned to the invite</td>
 </tr>
 <tr>
+<td><code>external_id</code></td>
+<td>string</td>
+<td>External ID assigned to the invite</td>
+</tr>
+<tr>
 <td><code>created_at</code></td>
 <td>timestamp</td>
 <td>Timestamp when the invte was Created</td>
@@ -745,7 +754,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <p>Creates an invite for a specific resource (collections or invites). </p>
 
 <p>Use a <strong>filter</strong> to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is <code>email@example.com</code>, a new invite will only be created if an invite does not exist with that email.</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.co/api/v1/invites"</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"Lucy Green"</span>
   <span class="nt">-d</span> <span class="nv">email</span><span class="o">=</span><span class="s2">"lucy@example.com"</span>
@@ -780,7 +789,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://app.artsvp.co/api/v1/invites</code></p>
+<p><code>POST https://app.artsvp.com/api/v2/invites</code></p>
 <h3 id='parameters-2'>Parameters</h3>
 <table><thead>
 <tr>
@@ -845,7 +854,123 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-invites'>List all invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.co/api/v1/invites?user_id=123"</span> <span class="se">\</span>
+<h2 id='batch-create-invites'>Batch create invites</h2>
+<p>Create multiple invites with one single API call</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites/batch"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+  <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"Lucy Green"</span>
+  <span class="nt">-d</span> <span class="nv">email</span><span class="o">=</span><span class="s2">"lucy@example.com"</span>
+  <span class="nt">-d</span> <span class="nv">resource_tags</span><span class="o">=[</span><span class="s2">"vip"</span><span class="o">]</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"batch"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/invites/batch"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> 
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invite"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6u9F2a"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount_used"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0/1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"single_entry"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vip_1"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"vip"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"total_events"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_collection"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_resources"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_invites_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span></code></pre></div><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://app.artsvp.com/api/v2/invites/batch</code></p>
+<h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>resource_tags</code></td>
+<td><code>true</code></td>
+<td>Invites will be creates for all resources with matching tags</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>name</code></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>email</code></td>
+</tr>
+<tr>
+<td><code>resource_id</code></td>
+<td><code>false</code></td>
+<td>Type of the <code>Resource</code></td>
+</tr>
+<tr>
+<td><code>resource_type</code></td>
+<td><code>false</code></td>
+<td>ID of the <code>Resource</code></td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td><code>false</code></td>
+<td>Only return invites matching this <code>external_id</code></td>
+</tr>
+<tr>
+<td><code>golden</code></td>
+<td>boolean</td>
+<td>If the invite should be Golden</td>
+</tr>
+<tr>
+<td><code>register_interest</code></td>
+<td>boolean</td>
+<td>If the invite should be Register Interest</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>false</code></td>
+<td>The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>false</code></td>
+<td>Any tags you want to assign to the invite</td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td><code>false</code></td>
+<td>Meta Data assigned to the invite</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>false</code></td>
+<td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]</td>
+</tr>
+</tbody></table>
+<h2 id='list-all-invites'>List all invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v2/invites?user_id=123"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">resource_id</span><span class="o">=</span><span class="s2">"3f10ed"</span>
 </code></pre></div>
@@ -854,7 +979,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v1/invites"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/invites"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w"> 
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv_jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
@@ -884,9 +1009,9 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.co/api/v1/invites</code></p>
-<h3 id='parameters-3'>Parameters</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://app.artsvp.com/api/v2/invites</code></p>
+<h3 id='parameters-4'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
