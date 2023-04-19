@@ -351,7 +351,7 @@
                     <a href="#delete-an-invite" class="toc-h2 toc-link" data-title="Delete an invite">Delete an invite</a>
                   </li>
                   <li>
-                    <a href="#batch-invites" class="toc-h2 toc-link" data-title="Batch invites">Batch invites</a>
+                    <a href="#batch-create-invites" class="toc-h2 toc-link" data-title="Batch create invites">Batch create invites</a>
                   </li>
                   <li>
                     <a href="#list-all-invites" class="toc-h2 toc-link" data-title="List all invites">List all invites</a>
@@ -806,12 +806,12 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <tr>
 <td><code>name</code></td>
 <td><code>false</code></td>
-<td>Only return invites matching this <code>name</code></td>
+<td>The <code>name</code> of the invite</td>
 </tr>
 <tr>
 <td><code>email</code></td>
 <td><code>false</code></td>
-<td>Only return invites matching this <code>email</code></td>
+<td>The <code>email</code> of the invite</td>
 </tr>
 <tr>
 <td><code>resource_id</code></td>
@@ -826,7 +826,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <tr>
 <td><code>external_id</code></td>
 <td><code>false</code></td>
-<td>Only return invites matching this <code>external_id</code></td>
+<td>The <code>external_id</code> to assign to the invite</td>
 </tr>
 <tr>
 <td><code>golden</code></td>
@@ -984,7 +984,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <p>Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE https://app.artsvp.com/api/v2/invites/:code</code></p>
-<h2 id='batch-invites'>Batch invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites/batch"</span> <span class="se">\</span>
+<h2 id='batch-create-invites'>Batch create invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites/batch"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"Lucy Green"</span>
   <span class="nt">-d</span> <span class="nv">email</span><span class="o">=</span><span class="s2">"lucy@example.com"</span>
@@ -1047,17 +1047,17 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <tr>
 <td><code>name</code></td>
 <td><code>false</code></td>
-<td>Only return invites matching this <code>name</code></td>
+<td>The <code>name</code> of the invite</td>
 </tr>
 <tr>
 <td><code>email</code></td>
 <td><code>false</code></td>
-<td>Only return invites matching this <code>email</code></td>
+<td>The <code>email</code> of the invite</td>
 </tr>
 <tr>
 <td><code>external_id</code></td>
 <td><code>false</code></td>
-<td>Only return invites matching this <code>external_id</code></td>
+<td>The <code>external_id</code> to assign to the invite</td>
 </tr>
 <tr>
 <td><code>golden</code></td>
