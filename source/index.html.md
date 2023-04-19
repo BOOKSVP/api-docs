@@ -192,10 +192,6 @@ Parameter | Required | Description
 `tags` | `false` | Tags associated to the booking
 
 
-<aside class="success">
-Remember — Authenticate your request with an Authorization Header
-</aside>
-
 # Invites
 
 Invites exist as a vehicle for a user to create a `booking`. They can be used simply as a unique booking link or be pre-configured with information to define the booking flow or lock the booking to a particular user (name and email). You also have control over the number of times an Invite can be used (number of bookings created). 
@@ -263,10 +259,6 @@ Attribute | Type | Description
 
 ## Create an invite
 
-Creates an invite for a specific resource (collections or invites). 
-
-Use a **filter** to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is `email@example.com`, a new invite will only be created if an invite does not exist with that email.
-
 ```shell
 curl -X POST "https://app.artsvp.com/api/v2/invites" \
   -H "Authorization: my_api_key"
@@ -305,6 +297,10 @@ curl -X POST "https://app.artsvp.com/api/v2/invites" \
 }
 ```
 
+Creates an invite for a specific resource (collections or invites). 
+
+Use a **filter** to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is `email@example.com`, a new invite will only be created if an invite does not exist with that email.
+
 ### HTTP Request
 
 `POST https://app.artsvp.com/api/v2/invites`
@@ -325,11 +321,129 @@ Parameter | Required | Description
 `meta_data` | `false` | Meta Data assigned to the invite
 `filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]
 
+## Retrieve an invite
 
-## Batch create invites
+```shell
+curl -X GET "https://app.artsvp.com/api/v2/invites/468d2w" \
+  -H "Authorization: my_api_key"
+  -d code="468d2w"
+```
 
-Create multiple invites with one single API call
+> The above command returns JSON structured like this:
 
+```json
+{ 
+  "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+  "object": "invite",
+  "code": "468d2w",
+  "name": "Lucy Green",
+  "email": "lucy@example.com",
+  "resource": "Event",
+  "resource_id": "3f10ed",
+  "golden": true,
+  "register_interest": false,
+  "url": "https://invite.artsvp.com/468d2w",
+  "used": false,
+  "amount_used": "0/1",
+  "tags": [
+    "artsvp",
+    "vip"
+  ],
+  "resource_tags": [],
+  "meta_data": {},
+  "created_at": "2021-10-21T15:22:35.758Z",
+  "updated_at": "2021-10-21T15:33:13.889Z",
+  "bookings": {
+    "id": "boo_123456789",
+    "object": "booking"
+    ...
+  }
+}
+```
+
+Retrieves the details of an invite that has previously been created. Supply invite code from either an invite creation request or the invite list. This endpoint provides a more detail than the list view by including the associated bookings.
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v2/invites/:code`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+`code` | **`true`** | The code of the invite to retrieve
+
+
+## Update an invite
+
+```shell
+curl -X PATCH "https://app.artsvp.com/api/v2/invites/468d2w" \
+  -H "Authorization: my_api_key"
+  -d total_count=10
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ 
+  "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+  "object": "invite",
+  "code": "468d2w",
+  "name": "Lucy Green",
+  "email": "lucy@example.com",
+  "resource": "Event",
+  "resource_id": "3f10ed",
+  "golden": true,
+  "register_interest": false,
+  "url": "https://invite.artsvp.com/468d2w",
+  "used": false,
+  "amount_used": "0/10",
+  "tags": [
+    "artsvp",
+    "vip"
+  ],
+  "resource_tags": [],
+  "meta_data": {},
+  "created_at": "2021-10-21T15:22:35.758Z",
+  "updated_at": "2021-10-21T15:33:13.889Z"
+}
+```
+
+Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.
+
+### HTTP Request
+
+`PATCH https://app.artsvp.com/api/v2/invites/:code`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+`tags` | `false` | Any tags passed here will overwrite the existing tags
+`total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
+`golden` | `false` | If set as true, the invite will be created as a golden invite, if set to false, the golden functionality will be removed for the invite
+`register_interest` | `false` | If set as true, the invite will mark users as register interest waitlist for an event, if set to false, the functionality will be removed for the invite
+
+## Delete an invite
+
+```shell
+curl -X DELETE "https://app.artsvp.com/api/v2/invites/468d2w" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns the following status code:
+
+```text
+204 No Content
+```
+
+Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.
+
+### HTTP Request
+
+`DELETE https://app.artsvp.com/api/v2/invites/:code`
+
+## Batch invites
 
 ```shell
 curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
@@ -378,6 +492,8 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
   "total_invites_created": 2
 ```
 
+Create multiple invites with a single API call
+
 ### HTTP Request
 
 `POST https://app.artsvp.com/api/v2/invites/batch`
@@ -386,18 +502,20 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
 
 Parameter | Required | Description
 --------- | ------- | -----------
-`resource_tags` | `true` | Invites will be creates for all resources with matching tags
+`resource_tags` | **`true`** | Invites will be creates for all resources with matching tags
 `name` | `false` | Only return invites matching this `name`
 `email` | `false` | Only return invites matching this `email`
-`resource_id` | `false` | Type of the `Resource`
-`resource_type` | `false` | ID of the `Resource`
 `external_id` | `false` | Only return invites matching this `external_id`
-`golden` | boolean | If the invite should be Golden
-`register_interest` | boolean | If the invite should be Register Interest
+`golden` | `false` | If the invite should be Golden
+`register_interest` | `false` | If the invite should be Register Interest
 `total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
 `tags` | `false` | Any tags you want to assign to the invite
 `meta_data` | `false` | Meta Data assigned to the invite
 `filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]
+
+<aside class="notice">
+The resource is determined by the resource_tags. If `resource_type` or `resource_id` parameters are passed the batch will fail. 
+</aside>
 
 
 ## List all invites
@@ -462,11 +580,4 @@ Parameter | Required | Description
 `limit` | `false` | A limit on the number of objects to be returned, between 1 and 100. Default is 50.
 `starting_after` | `false` | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.
 `ending_before` | `false` | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list.
-
-
-<aside class="success">
-Remember — Authenticate your request with an Authorization Header
-</aside>
-
-
 
