@@ -309,11 +309,11 @@ Use a **filter** to prevent duplicate invites from being created. If you attempt
 
 Parameter | Required | Description
 --------- | ------- | -----------
-`name` | `false` | Only return invites matching this `name`
-`email` | `false` | Only return invites matching this `email`
+`name` | `false` | The `name` of the invite
+`email` | `false` | The `email` of the invite
 `resource_id` | `false` | Type of the `Resource`
 `resource_type` | `false` | ID of the `Resource`
-`external_id` | `false` | Only return invites matching this `external_id`
+`external_id` | `false` | The `external_id` to assign to the invite
 `golden` | boolean | If the invite should be Golden
 `register_interest` | boolean | If the invite should be Register Interest
 `total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
@@ -443,7 +443,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 
 `DELETE https://app.artsvp.com/api/v2/invites/:code`
 
-## Batch invites
+## Batch create invites
 
 ```shell
 curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
@@ -503,9 +503,9 @@ Create multiple invites with a single API call
 Parameter | Required | Description
 --------- | ------- | -----------
 `resource_tags` | **`true`** | Invites will be creates for all resources with matching tags
-`name` | `false` | Only return invites matching this `name`
-`email` | `false` | Only return invites matching this `email`
-`external_id` | `false` | Only return invites matching this `external_id`
+`name` | `false` | The `name` of the invite
+`email` | `false` | The `email` of the invite
+`external_id` | `false` | The `external_id` to assign to the invite
 `golden` | `false` | If the invite should be Golden
 `register_interest` | `false` | If the invite should be Register Interest
 `total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
