@@ -8,7 +8,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   # - javascript
 
 toc_footers:
-  - <a href='https://app.artsvp.co/join'>Get an API Key</a>
+  - <a href='https://app.artsvp.com/join'>Get an API Key</a>
 
 includes:
   - errors
@@ -87,7 +87,6 @@ Each booking has a `status` field which denotes where the booking is within the 
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
-  "external_id": "abc123",
   "name": "Mike",
   "email": "mike@artsvp.com",
   "size": 5,
@@ -102,6 +101,7 @@ Each booking has a `status` field which denotes where the booking is within the 
   "tags": [],
   "resource_tags": ["vip", "new_user"],
   "meta_data": {},
+  "external_id": "abc123",
   "created_at": "2021-10-21T15:22:35.758Z",
   "updated_at": "2021-10-21T15:33:13.889Z"
 }
@@ -115,7 +115,6 @@ Attribute | Type | Description
 `object` | string | String representing the object’s type
 `reference` | string | A unique reference for the booking 
 `status` | string | The booking status. Prefixed with `is_` (e.g. `is_confirmed`)
-`external_id` | string | External ID associated with the booking
 `name` | string | Name of the primary guest
 `email` | string | Email of the primary guest
 `size` | integer | Number of guests attatched to the booking
@@ -126,19 +125,20 @@ Attribute | Type | Description
 `event_name` | string | Name of the Event
 `event_reference` | string | Internal Reference for the Event
 `event_time_zone` | timestamp | Time Zone of the Event
-`invite_id` | string | The ID of the Booking's Invite (if present)
+`invite_id` | string | The ID of the booking's Invite (if present)
 `tags` | array | Tags assigned to the booking
 `resource_tags` | array | Tags assigned to the `Booking Resource`
 `meta_data` | hash | Meta Data assigned to the booking
-`created_at` | timestamp | Timestamp when the Booking was Created
-`updated_at` | timestamp | Timestamp when the Booking was Updated
+`external_id` | string | External ID assigned to the booking
+`created_at` | timestamp | Timestamp when the booking was Created
+`updated_at` | timestamp | Timestamp when the booking was Updated
 
 
 
 ## List all bookings
 
 ```shell
-curl "https://app.artsvp.co/api/v1/bookings" \
+curl "https://app.artsvp.com/api/v2/bookings" \
   -H "Authorization: my_api_key"
   -d external_id="abc123"
 ```
@@ -148,14 +148,13 @@ curl "https://app.artsvp.co/api/v1/bookings" \
 ```json
 {
   "object": "list",
-  "url": "/v1/bookings",
+  "url": "/v2/bookings",
   "data": [
     { 
       "id": "boo_jwhfoiwhef9w8f9we79w8f79we87wef",
       "object": "booking",
       "reference": "C922-4EBA-1F8C",
       "status": "is_confirmed",
-      "external_id": "abc123",
       "name": "Mike",
       "email": "mike@artsvp.com",
       "size": 5,
@@ -170,6 +169,7 @@ curl "https://app.artsvp.co/api/v1/bookings" \
       "tags": [],
       "resource_tags": ["vip", "new_user"],
       "meta_data": {},
+      "external_id": "abc123",
       "created_at": "2021-10-21T15:22:35.758Z",
       "updated_at": "2021-10-21T15:33:13.889Z"
     },
@@ -181,7 +181,7 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 ### HTTP Request
 
-`GET https://app.artsvp.co/api/v1/bookings`
+`GET https://app.artsvp.com/api/v2/bookings`
 
 ### Parameters
 
@@ -231,6 +231,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
     "new_user"
   ],
   "meta_data": {},
+  "external_id": "",
   "created_at": "2021-10-21T15:22:35.758Z",
   "updated_at": "2021-10-21T15:33:13.889Z"
 }
@@ -255,6 +256,7 @@ Attribute | Type | Description
 `tags` | array | Tags assigned to the invite 
 `resource_tags` | array | Tags assigned to the `Resource`
 `meta_data` | hash | Meta Data assigned to the invite
+`external_id` | string | External ID assigned to the invite
 `created_at` | timestamp | Timestamp when the invte was Created
 `updated_at` | timestamp | Timestamp when the invte was Updated
 
@@ -266,7 +268,7 @@ Creates an invite for a specific resource (collections or invites).
 Use a **filter** to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is `email@example.com`, a new invite will only be created if an invite does not exist with that email.
 
 ```shell
-curl -X POST "https://app.artsvp.co/api/v1/invites" \
+curl -X POST "https://app.artsvp.com/api/v2/invites" \
   -H "Authorization: my_api_key"
   -d name="Lucy Green"
   -d email="lucy@example.com"
@@ -305,7 +307,7 @@ curl -X POST "https://app.artsvp.co/api/v1/invites" \
 
 ### HTTP Request
 
-`POST https://app.artsvp.co/api/v1/invites`
+`POST https://app.artsvp.com/api/v2/invites`
 
 ### Parameters
 
@@ -324,10 +326,84 @@ Parameter | Required | Description
 `filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]
 
 
+## Batch create invites
+
+Create multiple invites with one single API call
+
+
+```shell
+curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
+  -H "Authorization: my_api_key"
+  -d name="Lucy Green"
+  -d email="lucy@example.com"
+  -d resource_tags=["vip"]
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "object": "batch",
+  "url": "/v2/invites/batch",
+  "data": [
+    { 
+      "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+      "object": "invite",
+      "code": "372abb",
+      "name": "Mike",
+      "email": "mike@artsvp.com",
+      "resource": "Event",
+      "resource_id": "6u9F2a",
+      "golden": false,
+      "register_interest": false,
+      "url": "https://invite.artsvp.com/372abb",
+      "used": false,
+      "amount_used": "0/1",
+      "tags": [
+        "single_entry",
+        "vip_1"
+      ],
+      "resource_tags": [
+        "vip"
+      ],
+      "meta_data": {},
+      "created_at": "2021-10-21T15:22:35.758Z",
+      "updated_at": "2021-10-21T15:33:13.889Z"
+    },
+    ...
+  ],
+  "total_events": 1,
+  "total_collection": 1,
+  "total_resources": 2,
+  "total_invites_created": 2
+```
+
+### HTTP Request
+
+`POST https://app.artsvp.com/api/v2/invites/batch`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+`resource_tags` | `true` | Invites will be creates for all resources with matching tags
+`name` | `false` | Only return invites matching this `name`
+`email` | `false` | Only return invites matching this `email`
+`resource_id` | `false` | Type of the `Resource`
+`resource_type` | `false` | ID of the `Resource`
+`external_id` | `false` | Only return invites matching this `external_id`
+`golden` | boolean | If the invite should be Golden
+`register_interest` | boolean | If the invite should be Register Interest
+`total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
+`tags` | `false` | Any tags you want to assign to the invite
+`meta_data` | `false` | Meta Data assigned to the invite
+`filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]
+
+
 ## List all invites
 
 ```shell
-curl "https://app.artsvp.co/api/v1/invites?user_id=123" \
+curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
   -H "Authorization: my_api_key"
   -d resource_id="3f10ed"
 ```
@@ -337,7 +413,7 @@ curl "https://app.artsvp.co/api/v1/invites?user_id=123" \
 ```json
 {
   "object": "list",
-  "url": "/v1/invites",
+  "url": "/v2/invites",
   "data": [
     { 
       "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
@@ -371,7 +447,7 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 ### HTTP Request
 
-`GET https://app.artsvp.co/api/v1/invites`
+`GET https://app.artsvp.com/api/v2/invites`
 
 ### Parameters
 
