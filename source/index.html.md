@@ -71,6 +71,251 @@ We limit API requests to __1,000 requests every 15 minutes__. In the future, we 
 
 Each request will return `x-rate-limit headers` so you can keep track of your queries.
 
+# Events
+
+Events are typically represent a single event that you are hosting and can be used to create bookings, send invites and manage your guest list. They have their own dedicated availability / capacity settings and can be configured to suit your needs.
+
+## The event object
+
+> The event object
+
+```json
+{ 
+  "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+  "object": "event",
+  "code": "efa400",
+  "name": "Summer Party",
+  "reference": "",
+  "time_zone": "Europe/London",
+  "start_date": "2023-05-18",
+  "start_time": "2023-05-18T10:00:00.000+01:00",
+  "end_date": "2023-05-18",
+  "end_time": "2023-05-18T17:00:00.000+01:00",
+  "public_url": "http://artsvp.com/efa400",
+  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
+  "resource_tags": [
+      "vip",
+      "art_fair",
+  ],
+  "created_at": "2023-04-06T15:12:08.671Z",
+  "updated_at": "2023-05-15T11:34:48.746Z"
+}
+```
+
+### Attributes
+
+Attribute | Type | Description
+--------- | ----------- | -----------
+`id` | string | Unique identifier for the object.
+`object` | string | String representing the object’s type
+`code` | string | A unique reference for the event used in the URL
+`name` | string | Public facing event name
+`reference` | string | Internal event reference
+`timezone` | string | The time zone the event is taking place in
+`start_date` | string | The date the event starts
+`start_time` | string | The time the event starts
+`end_date` | string | The date the event ends
+`end_time` | string | The time the event ends
+`public_url` | string | The public URL for the event
+`banner_image` | string | The banner image for the event
+`resource_tags` | array | Internal tags assigned to the Event
+`created_at` | timestamp | Timestamp when the booking was Created
+`updated_at` | timestamp | Timestamp when the booking was Updated
+
+## Retrieve an event
+
+```shell
+curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ 
+  "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+  "object": "event",
+  "code": "efa400",
+  "name": "Summer Party",
+  "reference": "",
+  "time_zone": "Europe/London",
+  "start_date": "2023-05-18",
+  "start_time": "2023-05-18T10:00:00.000+01:00",
+  "end_date": "2023-05-18",
+  "end_time": "2023-05-18T17:00:00.000+01:00",
+  "public_url": "http://artsvp.com/efa400",
+  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
+  "resource_tags": [
+      "vip",
+      "art_fair",
+  ],
+  "created_at": "2023-04-06T15:12:08.671Z",
+  "updated_at": "2023-05-15T11:34:48.746Z"
+}
+```
+
+Retrieves the details of an event that has previously been created.
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v2/events/:id`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+`id` | **`true`** | The id of the event to retrieve
+
+## List all events
+
+```shell
+curl "https://app.artsvp.com/api/v2/events" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "object": "list",
+  "url": "/v2/events",
+  "data": [
+    { 
+      "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+      "object": "event",
+      "code": "efa400",
+      "name": "Summer Party",
+      ...
+    },
+    { 
+      "id": "eve-c60d5868-c4cf-4b55-83f2-6578a8263751",
+      "object": "event",
+      "code": "gh7823",
+      "name": "Winter Party",
+      ...
+    },
+    ...
+  ]
+}
+```
+
+Return a list of all events your Organisation owns. 
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v2/events`
+
+
+# Collections
+
+Collections are a way to group events together. For example, you may want to group all events for a particular Art Fair together.
+
+## The collection object
+
+> The collection object
+
+```json
+{
+    "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
+    "object": "collection",
+    "code": "433ca2",
+    "name": "VIP program",
+    "public_url": "http://localhost:3000/433ca2",
+    "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
+    "resource_tags": [],
+    "created_at": "2023-04-21T09:21:51.167Z",
+    "updated_at": "2023-04-21T09:22:49.868Z"
+}
+```
+
+### Attributes
+
+Attribute | Type | Description
+--------- | ----------- | -----------
+`id` | string | Unique identifier for the object.
+`object` | string | String representing the object’s type
+`code` | string | A unique reference for the event used in the URL
+`name` | string | Public facing event name
+`public_url` | string | The public URL for the event
+`banner_image` | string | The banner image for the event
+`resource_tags` | array | Internal tags assigned to the Event
+`created_at` | timestamp | Timestamp when the booking was Created
+`updated_at` | timestamp | Timestamp when the booking was Updated
+
+## Retrieve a collection
+
+```shell
+curl -X GET "https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
+    "object": "collection",
+    "code": "433ca2",
+    "name": "VIP program",
+    "public_url": "http://localhost:3000/433ca2",
+    "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
+    "resource_tags": [],
+    "created_at": "2023-04-21T09:21:51.167Z",
+    "updated_at": "2023-04-21T09:22:49.868Z"
+}
+```
+
+Retrieves the details of a collection that has previously been created.
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v2/collections/:id`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+`id` | **`true`** | The id of the collection to retrieve
+
+## List all collections
+
+```shell
+curl "https://app.artsvp.com/api/v2/collections" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "object": "list",
+  "url": "/v2/collections",
+  "data": [
+    {
+        "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
+        "object": "collection",
+        "code": "433ca2",
+        "name": "VIP program",
+        ...
+    },
+    {
+        "id": "col-89kl2ghq-c85e-4ecb-952c-b17f62hy73ds",
+        "object": "collection",
+        "code": "78hgwq",
+        "name": "Front of House",
+        ...
+    },
+    ...
+  ]
+}
+```
+
+Return a list of all events your Organisation owns. 
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v2/collections`
+
 # Bookings
 
 Bookings are unique records that belong to an `Event`. They hold important information such as the `name` and `email` of the person making the booking and and other specifics needed for the events such as the booking `size`, `start_time` etc. 
@@ -83,7 +328,7 @@ Each booking has a `status` field which denotes where the booking is within the 
 
 ```json
 { 
-  "id": "bo_jwhfoiwhef9w8f9we79w8f79we87wef",
+  "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
@@ -98,6 +343,13 @@ Each booking has a `status` field which denotes where the booking is within the 
   "event_reference": "Summer Fair - VIP 1",
   "event_time_zone": "Europe/London",
   "invite_id": "db8e29",
+  "event": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
   "tags": [],
   "resource_tags": ["vip", "new_user"],
   "meta_data": {},
@@ -126,6 +378,7 @@ Attribute | Type | Description
 `event_reference` | string | Internal Reference for the Event
 `event_time_zone` | timestamp | Time Zone of the Event
 `invite_id` | string | The ID of the booking's Invite (if present)
+`event` | hash | The event object assigned to the booking
 `tags` | array | Tags assigned to the booking
 `resource_tags` | array | Tags assigned to the `Booking Resource`
 `meta_data` | hash | Meta Data assigned to the booking
@@ -151,7 +404,7 @@ curl "https://app.artsvp.com/api/v2/bookings" \
   "url": "/v2/bookings",
   "data": [
     { 
-      "id": "boo_jwhfoiwhef9w8f9we79w8f79we87wef",
+      "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
       "object": "booking",
       "reference": "C922-4EBA-1F8C",
       "status": "is_confirmed",
@@ -166,6 +419,13 @@ curl "https://app.artsvp.com/api/v2/bookings" \
       "event_reference": "Summer Fair - VIP 1",
       "event_time_zone": "Europe/London",
       "invite_id": "db8e29",
+      "event": {
+        "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+        "object": "event",
+        "code": "efa400",
+        "name": "Summer Party",
+        ...
+      },
       "tags": [],
       "resource_tags": ["vip", "new_user"],
       "meta_data": {},
@@ -207,7 +467,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 
 ```json
 { 
-  "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+  "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "372abb",
   "name": "Mike",
@@ -219,6 +479,13 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   "url": "https://invite.artsvp.com/372abb",
   "used": false,
   "amount_used": "0/1",
+  "resource": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
   "tags": [
     "single_entry",
     "vip_1"
@@ -249,6 +516,7 @@ Attribute | Type | Description
 `url` | string | URL of the invite
 `used` | boolean | If the invite has been used at least once
 `amount_used` | string | Number of times the invite has been used
+`resource` | hash | The assigned `Resource` (`Event` or `Collection`) to the invite
 `tags` | array | Tags assigned to the invite 
 `resource_tags` | array | Tags assigned to the `Resource`
 `meta_data` | hash | Meta Data assigned to the invite
@@ -274,7 +542,7 @@ curl -X POST "https://app.artsvp.com/api/v2/invites" \
 
 ```json
 { 
-  "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+  "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "468d2w",
   "name": "Lucy Green",
@@ -286,6 +554,13 @@ curl -X POST "https://app.artsvp.com/api/v2/invites" \
   "url": "https://invite.artsvp.com/468d2w",
   "used": false,
   "amount_used": "0/1",
+  "resource": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
   "tags": [
     "artsvp",
     "vip"
@@ -324,16 +599,15 @@ Parameter | Required | Description
 ## Retrieve an invite
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/invites/468d2w" \
+curl -X GET "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
-  -d code="468d2w"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 { 
-  "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+  "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "468d2w",
   "name": "Lucy Green",
@@ -345,6 +619,13 @@ curl -X GET "https://app.artsvp.com/api/v2/invites/468d2w" \
   "url": "https://invite.artsvp.com/468d2w",
   "used": false,
   "amount_used": "0/1",
+  "resource": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
   "tags": [
     "artsvp",
     "vip"
@@ -365,19 +646,19 @@ Retrieves the details of an invite that has previously been created. Supply invi
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/invites/:code`
+`GET https://app.artsvp.com/api/v2/invites/:id`
 
 ### Parameters
 
 Parameter | Required | Description
 --------- | ------- | -----------
-`code` | **`true`** | The code of the invite to retrieve
+`id` | **`true`** | The code of the invite to retrieve
 
 
 ## Update an invite
 
 ```shell
-curl -X PATCH "https://app.artsvp.com/api/v2/invites/468d2w" \
+curl -X PATCH "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
   -d total_count=10
 ```
@@ -386,7 +667,7 @@ curl -X PATCH "https://app.artsvp.com/api/v2/invites/468d2w" \
 
 ```json
 { 
-  "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+  "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "468d2w",
   "name": "Lucy Green",
@@ -398,6 +679,13 @@ curl -X PATCH "https://app.artsvp.com/api/v2/invites/468d2w" \
   "url": "https://invite.artsvp.com/468d2w",
   "used": false,
   "amount_used": "0/10",
+  "resource": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
   "tags": [
     "artsvp",
     "vip"
@@ -413,7 +701,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 
 ### HTTP Request
 
-`PATCH https://app.artsvp.com/api/v2/invites/:code`
+`PATCH https://app.artsvp.com/api/v2/invites/:id`
 
 ### Parameters
 
@@ -427,7 +715,7 @@ Parameter | Required | Description
 ## Delete an invite
 
 ```shell
-curl -X DELETE "https://app.artsvp.com/api/v2/invites/468d2w" \
+curl -X DELETE "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
 ```
 
@@ -441,7 +729,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 
 ### HTTP Request
 
-`DELETE https://app.artsvp.com/api/v2/invites/:code`
+`DELETE https://app.artsvp.com/api/v2/invites/:id`
 
 ## Batch create invites
 
@@ -461,7 +749,7 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
   "url": "/v2/invites/batch",
   "data": [
     { 
-      "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+      "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
       "name": "Mike",
@@ -473,6 +761,13 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
       "url": "https://invite.artsvp.com/372abb",
       "used": false,
       "amount_used": "0/1",
+      "resource": {
+        "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+        "object": "event",
+        "code": "efa400",
+        "name": "Summer Party",
+        ...
+      },
       "tags": [
         "single_entry",
         "vip_1"
@@ -534,7 +829,7 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
   "url": "/v2/invites",
   "data": [
     { 
-      "id": "inv_jwhfoiwhef9w8f9we79w8f79we87wef",
+      "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
       "name": "Mike",
@@ -546,6 +841,13 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
       "url": "https://invite.artsvp.com/372abb",
       "used": false,
       "amount_used": "0/1",
+      "resource": {
+        "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+        "object": "event",
+        "code": "efa400",
+        "name": "Summer Party",
+        ...
+      },
       "tags": [
         "single_entry",
         "vip_1"
