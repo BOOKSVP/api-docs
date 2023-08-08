@@ -356,6 +356,12 @@
                     <a href="#the-booking-object" class="toc-h2 toc-link" data-title="The booking object">The booking object</a>
                   </li>
                   <li>
+                    <a href="#retrieve-a-booking" class="toc-h2 toc-link" data-title="Retrieve a booking">Retrieve a booking</a>
+                  </li>
+                  <li>
+                    <a href="#update-an-invite" class="toc-h2 toc-link" data-title="Update an invite">Update an invite</a>
+                  </li>
+                  <li>
                     <a href="#list-all-bookings" class="toc-h2 toc-link" data-title="List all bookings">List all bookings</a>
                   </li>
               </ul>
@@ -373,7 +379,7 @@
                     <a href="#retrieve-an-invite" class="toc-h2 toc-link" data-title="Retrieve an invite">Retrieve an invite</a>
                   </li>
                   <li>
-                    <a href="#update-an-invite" class="toc-h2 toc-link" data-title="Update an invite">Update an invite</a>
+                    <a href="#update-an-invite-2" class="toc-h2 toc-link" data-title="Update an invite">Update an invite</a>
                   </li>
                   <li>
                     <a href="#delete-an-invite" class="toc-h2 toc-link" data-title="Delete an invite">Delete an invite</a>
@@ -452,6 +458,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa400"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A summer meet and greet for our VIP guests"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18T10:00:00.000+01:00"</span><span class="p">,</span><span class="w">
@@ -498,6 +505,11 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td><code>reference</code></td>
 <td>string</td>
 <td>Internal event reference</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Internal event description (Developer use only)</td>
 </tr>
 <tr>
 <td><code>timezone</code></td>
@@ -562,6 +574,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa400"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A summer meet and greet for our VIP guests"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18T10:00:00.000+01:00"</span><span class="p">,</span><span class="w">
@@ -919,6 +932,125 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>Timestamp when the booking was Updated</td>
 </tr>
 </tbody></table>
+<h2 id='retrieve-a-booking'>Retrieve a booking</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"836d76"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair - VIP 1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"invite_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db8e29"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eve-c60d5868-c4cf-4b55-83f2-6578a5173767"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa400"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"new_user"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Retrieves the details of a booking that has previously been created. Simply supply the booking ID. </p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://app.artsvp.com/api/v2/bookings/:id</code></p>
+<h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><strong><code>true</code></strong></td>
+<td>The ID of the booking to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-an-invite'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+  <span class="nt">-d</span> <span class="nv">external_id</span><span class="o">=</span>test123
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"836d76"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Fair - VIP 1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"invite_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db8e29"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eve-c60d5868-c4cf-4b55-83f2-6578a5173767"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa400"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"new_user"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:22:35.758Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Updates a booking for certain whitelisted attributes.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PATCH https://app.artsvp.com/api/v2/bookings/:id</code></p>
+<h3 id='parameters-4'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>false</code></td>
+<td>Name of the primary guest</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>false</code></td>
+<td>Email of the primary guest</td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td><code>false</code></td>
+<td>External ID assigned to the booking</td>
+</tr>
+</tbody></table>
 <h2 id='list-all-bookings'>List all bookings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v2/bookings"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">external_id</span><span class="o">=</span><span class="s2">"abc123"</span>
@@ -964,9 +1096,9 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.com/api/v2/bookings</code></p>
-<h3 id='parameters-3'>Parameters</h3>
+<h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1181,9 +1313,9 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <p>Creates an invite for a specific resource (collections or invites). </p>
 
 <p>Use a <strong>filter</strong> to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is <code>email@example.com</code>, a new invite will only be created if an invite does not exist with that email.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST https://app.artsvp.com/api/v2/invites</code></p>
-<h3 id='parameters-4'>Parameters</h3>
+<h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1289,9 +1421,9 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Retrieves the details of an invite that has previously been created. Supply invite code from either an invite creation request or the invite list. This endpoint provides a more detail than the list view by including the associated bookings.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.com/api/v2/invites/:id</code></p>
-<h3 id='parameters-5'>Parameters</h3>
+<h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1305,7 +1437,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <td>The code of the invite to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-an-invite'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
+<h2 id='update-an-invite-2'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">total_count</span><span class="o">=</span>10
 </code></pre></div>
@@ -1343,9 +1475,9 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>PATCH https://app.artsvp.com/api/v2/invites/:id</code></p>
-<h3 id='parameters-6'>Parameters</h3>
+<h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1383,7 +1515,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <div class="highlight"><pre class="highlight plaintext"><code>204 No Content
 </code></pre></div>
 <p>Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>DELETE https://app.artsvp.com/api/v2/invites/:id</code></p>
 <h2 id='batch-create-invites'>Batch create invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites/batch"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
@@ -1437,9 +1569,9 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   </span><span class="nl">"total_invites_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span></code></pre></div>
 <p>Create multiple invites with a single API call</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST https://app.artsvp.com/api/v2/invites/batch</code></p>
-<h3 id='parameters-7'>Parameters</h3>
+<h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1548,9 +1680,9 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
   </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.com/api/v2/invites</code></p>
-<h3 id='parameters-8'>Parameters</h3>
+<h3 id='parameters-10'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
