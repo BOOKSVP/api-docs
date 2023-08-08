@@ -71,6 +71,10 @@ We limit API requests to __1,000 requests every 15 minutes__. In the future, we 
 
 Each request will return `x-rate-limit headers` so you can keep track of your queries.
 
+# Resources
+
+**Resource** is the collective term for _Event_ and _Collection_ objects. Some functionality, such as creating invites can apply to both _Events_ and _Collections_ - so for simplicity, we refer to them as a _Resources_ in the documentation.
+
 # Events
 
 Events are typically represent a single event that you are hosting and can be used to create bookings, send invites and manage your guest list. They have their own dedicated availability / capacity settings and can be configured to suit your needs.
@@ -591,8 +595,6 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   "code": "372abb",
   "name": "Mike",
   "email": "mike@artsvp.com",
-  "resource": "Event",
-  "resource_id": "6u9F2a",
   "golden": false,
   "register_interest": false,
   "url": "https://invite.artsvp.com/372abb",
@@ -628,8 +630,6 @@ Attribute | Type | Description
 `code` | string | A unique reference for the invite 
 `name` | string | Name assigned to the invite
 `email` | string | Email assigned to the invite
-`resource` | string | Type of the `Resource`
-`resource_id` | string | ID of the `Resource`
 `golden` | boolean | If the invite is marked as Golden
 `register_interest` | boolean | If the invite is marked as Register Interest
 `url` | string | URL of the invite
@@ -666,8 +666,6 @@ curl -X POST "https://app.artsvp.com/api/v2/invites" \
   "code": "468d2w",
   "name": "Lucy Green",
   "email": "lucy@example.com",
-  "resource": "Event",
-  "resource_id": "3f10ed",
   "golden": true,
   "register_interest": false,
   "url": "https://invite.artsvp.com/468d2w",
@@ -707,13 +705,14 @@ Parameter | Required | Description
 `email` | `false` | The `email` of the invite
 `resource_id` | `false` | Type of the `Resource`
 `resource_type` | `false` | ID of the `Resource`
+`resource` | `false` | Instead of defining _resource_id_ & _resource_type_. The ID of the `Resource`
 `external_id` | `false` | The `external_id` to assign to the invite
 `golden` | boolean | If the invite should be Golden
 `register_interest` | boolean | If the invite should be Register Interest
 `total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
 `tags` | `false` | Any tags you want to assign to the invite
 `meta_data` | `false` | Meta Data assigned to the invite
-`filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]
+`filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`
 
 ## Retrieve an invite
 
@@ -731,8 +730,6 @@ curl -X GET "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-9
   "code": "468d2w",
   "name": "Lucy Green",
   "email": "lucy@example.com",
-  "resource": "Event",
-  "resource_id": "3f10ed",
   "golden": true,
   "register_interest": false,
   "url": "https://invite.artsvp.com/468d2w",
@@ -791,8 +788,6 @@ curl -X PATCH "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0
   "code": "468d2w",
   "name": "Lucy Green",
   "email": "lucy@example.com",
-  "resource": "Event",
-  "resource_id": "3f10ed",
   "golden": true,
   "register_interest": false,
   "url": "https://invite.artsvp.com/468d2w",
@@ -873,8 +868,6 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
       "code": "372abb",
       "name": "Mike",
       "email": "mike@artsvp.com",
-      "resource": "Event",
-      "resource_id": "6u9F2a",
       "golden": false,
       "register_interest": false,
       "url": "https://invite.artsvp.com/372abb",
@@ -925,7 +918,7 @@ Parameter | Required | Description
 `total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
 `tags` | `false` | Any tags you want to assign to the invite
 `meta_data` | `false` | Meta Data assigned to the invite
-`filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]
+`filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`
 
 <aside class="notice">
 The resource is determined by the resource_tags. If `resource_type` or `resource_id` parameters are passed the batch will fail. 
@@ -953,8 +946,6 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
       "code": "372abb",
       "name": "Mike",
       "email": "mike@artsvp.com",
-      "resource": "Event",
-      "resource_id": "6u9F2a",
       "golden": false,
       "register_interest": false,
       "url": "https://invite.artsvp.com/372abb",
