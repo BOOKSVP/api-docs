@@ -86,6 +86,7 @@ Events are typically represent a single event that you are hosting and can be us
   "code": "efa400",
   "name": "Summer Party",
   "reference": "",
+  "description": "A summer meet and greet for our VIP guests",
   "time_zone": "Europe/London",
   "start_date": "2023-05-18",
   "start_time": "2023-05-18T10:00:00.000+01:00",
@@ -111,6 +112,7 @@ Attribute | Type | Description
 `code` | string | A unique reference for the event used in the URL
 `name` | string | Public facing event name
 `reference` | string | Internal event reference
+`description` | string | Internal event description (Developer use only)
 `timezone` | string | The time zone the event is taking place in
 `start_date` | string | The date the event starts
 `start_time` | string | The time the event starts
@@ -138,6 +140,7 @@ curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-65
   "code": "efa400",
   "name": "Summer Party",
   "reference": "",
+  "description": "A summer meet and greet for our VIP guests",
   "time_zone": "Europe/London",
   "start_date": "2023-05-18",
   "start_time": "2023-05-18T10:00:00.000+01:00",
@@ -386,6 +389,122 @@ Attribute | Type | Description
 `created_at` | timestamp | Timestamp when the booking was Created
 `updated_at` | timestamp | Timestamp when the booking was Updated
 
+
+
+
+
+
+
+
+## Retrieve a booking
+```shell
+curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ 
+  "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
+  "object": "booking",
+  "reference": "C922-4EBA-1F8C",
+  "status": "is_confirmed",
+  "name": "Mike",
+  "email": "mike@artsvp.com",
+  "size": 5,
+  "start_time_utc": "2022-01-01T13:00:00.000Z",
+  "start_time_local": "2022-01-01T13:00:00.000+00:00",
+  "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
+  "event_id": "836d76",
+  "event_name": "Summer Fair",
+  "event_reference": "Summer Fair - VIP 1",
+  "event_time_zone": "Europe/London",
+  "invite_id": "db8e29",
+  "event": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
+  "tags": [],
+  "resource_tags": ["vip", "new_user"],
+  "meta_data": {},
+  "external_id": "abc123",
+  "created_at": "2021-10-21T15:22:35.758Z",
+  "updated_at": "2021-10-21T15:33:13.889Z"
+}
+```
+
+Retrieves the details of a booking that has previously been created. Simply supply the booking ID. 
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v2/bookings/:id`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+`id` | **`true`** | The ID of the booking to retrieve
+
+## Update an invite
+
+```shell
+curl -X PATCH "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
+  -H "Authorization: my_api_key"
+  -d external_id=test123
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ 
+  "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
+  "object": "booking",
+  "reference": "C922-4EBA-1F8C",
+  "status": "is_confirmed",
+  "name": "Mike",
+  "email": "mike@artsvp.com",
+  "size": 5,
+  "start_time_utc": "2022-01-01T13:00:00.000Z",
+  "start_time_local": "2022-01-01T13:00:00.000+00:00",
+  "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
+  "event_id": "836d76",
+  "event_name": "Summer Fair",
+  "event_reference": "Summer Fair - VIP 1",
+  "event_time_zone": "Europe/London",
+  "invite_id": "db8e29",
+  "event": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
+  "tags": [],
+  "resource_tags": ["vip", "new_user"],
+  "meta_data": {},
+  "external_id": "test123",
+  "created_at": "2021-10-21T15:22:35.758Z",
+  "updated_at": "2021-10-21T15:33:13.889Z"
+}
+```
+
+Updates a booking for certain whitelisted attributes.
+
+### HTTP Request
+
+`PATCH https://app.artsvp.com/api/v2/bookings/:id`
+
+### Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+`name` | `false` | Name of the primary guest
+`email` | `false` | Email of the primary guest
+`external_id` | `false` | External ID assigned to the booking
 
 
 ## List all bookings
