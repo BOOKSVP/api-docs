@@ -322,6 +322,9 @@
             <a href="#rate-limiting" class="toc-h1 toc-link" data-title="Rate Limiting">Rate Limiting</a>
           </li>
           <li>
+            <a href="#resources" class="toc-h1 toc-link" data-title="Resources">Resources</a>
+          </li>
+          <li>
             <a href="#events" class="toc-h1 toc-link" data-title="Events">Events</a>
               <ul class="toc-list-h2">
                   <li>
@@ -446,6 +449,8 @@ You must replace <code>my_api_key</code> with your personal API key.
 <p>We limit API requests to <strong>1,000 requests every 15 minutes</strong>. In the future, we expect to offer &quot;high volume&quot; rate limit plans for businesses that need more throughput.</p>
 
 <p>Each request will return <code>x-rate-limit headers</code> so you can keep track of your queries.</p>
+<h1 id='resources'>Resources</h1>
+<p><strong>Resource</strong> is the collective term for <em>Event</em> and <em>Collection</em> objects. Some functionality, such as creating invites can apply to both <em>Events</em> and <em>Collections</em> - so for simplicity, we refer to them as a <em>Resources</em> in the documentation.</p>
 <h1 id='events'>Events</h1>
 <p>Events are typically represent a single event that you are hosting and can be used to create bookings, send invites and manage your guest list. They have their own dedicated availability / capacity settings and can be configured to suit your needs.</p>
 <h2 id='the-event-object'>The event object</h2>
@@ -1138,8 +1143,6 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6u9F2a"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
@@ -1196,16 +1199,6 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <td><code>email</code></td>
 <td>string</td>
 <td>Email assigned to the invite</td>
-</tr>
-<tr>
-<td><code>resource</code></td>
-<td>string</td>
-<td>Type of the <code>Resource</code></td>
-</tr>
-<tr>
-<td><code>resource_id</code></td>
-<td>string</td>
-<td>ID of the <code>Resource</code></td>
 </tr>
 <tr>
 <td><code>golden</code></td>
@@ -1286,8 +1279,6 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"468d2w"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucy Green"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucy@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f10ed"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/468d2w"</span><span class="p">,</span><span class="w">
@@ -1344,6 +1335,11 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <td>ID of the <code>Resource</code></td>
 </tr>
 <tr>
+<td><code>resource</code></td>
+<td><code>false</code></td>
+<td>Instead of defining <em>resource_id</em> &amp; <em>resource_type</em>. The ID of the <code>Resource</code></td>
+</tr>
+<tr>
 <td><code>external_id</code></td>
 <td><code>false</code></td>
 <td>The <code>external_id</code> to assign to the invite</td>
@@ -1376,7 +1372,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <tr>
 <td><code>filter</code></td>
 <td><code>false</code></td>
-<td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]</td>
+<td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: <code>name</code>, <code>email</code>, <code>external_id</code></td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-an-invite'>Retrieve an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
@@ -1391,8 +1387,6 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"468d2w"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucy Green"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucy@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f10ed"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/468d2w"</span><span class="p">,</span><span class="w">
@@ -1450,8 +1444,6 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"468d2w"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucy Green"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lucy@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f10ed"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/468d2w"</span><span class="p">,</span><span class="w">
@@ -1536,8 +1528,6 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
       </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6u9F2a"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
@@ -1627,7 +1617,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <tr>
 <td><code>filter</code></td>
 <td><code>false</code></td>
-<td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: [‘name’, ‘email’, ‘user_id’]</td>
+<td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: <code>name</code>, <code>email</code>, <code>external_id</code></td>
 </tr>
 </tbody></table>
 
@@ -1651,8 +1641,6 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
       </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"resource_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6u9F2a"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
