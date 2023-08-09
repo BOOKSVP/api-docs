@@ -453,7 +453,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 `id` | **`true`** | The ID of the booking to retrieve
 
-## Update an invite
+## Update a booking
 
 ```shell
 curl -X PATCH "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
@@ -508,6 +508,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 `name` | `false` | Name of the primary guest
 `email` | `false` | Email of the primary guest
+`meta_data` | `false` | Meta Data assigned to the booking
 `external_id` | `false` | External ID assigned to the booking
 
 
@@ -825,6 +826,8 @@ Parameter | Required | Description
 `total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
 `golden` | `false` | If set as true, the invite will be created as a golden invite, if set to false, the golden functionality will be removed for the invite
 `register_interest` | `false` | If set as true, the invite will mark users as register interest waitlist for an event, if set to false, the functionality will be removed for the invite
+`external_id` | `false` | The `external_id` to assign to the invite
+`meta_data` | `false` | Meta Data assigned to the booking
 
 ## Delete an invite
 
