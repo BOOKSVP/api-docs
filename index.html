@@ -362,7 +362,7 @@
                     <a href="#retrieve-a-booking" class="toc-h2 toc-link" data-title="Retrieve a booking">Retrieve a booking</a>
                   </li>
                   <li>
-                    <a href="#update-an-invite" class="toc-h2 toc-link" data-title="Update an invite">Update an invite</a>
+                    <a href="#update-a-booking" class="toc-h2 toc-link" data-title="Update a booking">Update a booking</a>
                   </li>
                   <li>
                     <a href="#list-all-bookings" class="toc-h2 toc-link" data-title="List all bookings">List all bookings</a>
@@ -382,7 +382,7 @@
                     <a href="#retrieve-an-invite" class="toc-h2 toc-link" data-title="Retrieve an invite">Retrieve an invite</a>
                   </li>
                   <li>
-                    <a href="#update-an-invite-2" class="toc-h2 toc-link" data-title="Update an invite">Update an invite</a>
+                    <a href="#update-an-invite" class="toc-h2 toc-link" data-title="Update an invite">Update an invite</a>
                   </li>
                   <li>
                     <a href="#delete-an-invite" class="toc-h2 toc-link" data-title="Delete an invite">Delete an invite</a>
@@ -991,7 +991,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>The ID of the booking to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-an-invite'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
+<h2 id='update-a-booking'>Update a booking</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">external_id</span><span class="o">=</span>test123
 </code></pre></div>
@@ -1049,6 +1049,11 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td><code>email</code></td>
 <td><code>false</code></td>
 <td>Email of the primary guest</td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td><code>false</code></td>
+<td>Meta Data assigned to the booking</td>
 </tr>
 <tr>
 <td><code>external_id</code></td>
@@ -1431,7 +1436,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <td>The code of the invite to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-an-invite-2'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
+<h2 id='update-an-invite'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">total_count</span><span class="o">=</span>10
 </code></pre></div>
@@ -1496,6 +1501,16 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 <td><code>register_interest</code></td>
 <td><code>false</code></td>
 <td>If set as true, the invite will mark users as register interest waitlist for an event, if set to false, the functionality will be removed for the invite</td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td><code>false</code></td>
+<td>The <code>external_id</code> to assign to the invite</td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td><code>false</code></td>
+<td>Meta Data assigned to the booking</td>
 </tr>
 </tbody></table>
 <h2 id='delete-an-invite'>Delete an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
