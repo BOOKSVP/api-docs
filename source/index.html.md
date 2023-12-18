@@ -38,24 +38,23 @@ curl "api_endpoint_here" \
   -H "Authorization: my_api_key"
 ```
 
-<!-- 
+<!--
 ```ruby
 xxx
 ```
 
 ```python
 xxx
-``` 
+```
 
 ```javascript
 xxx
-``` 
+```
 -->
-
 
 > Make sure to replace `my_api_key` with your API key.
 
-To connect to our API, you must use the __Authorization Header__ to provide your Bearer token. This can be obtained from your dashboard, under _Settings_ -> _Developer_. 
+To connect to our API, you must use the **Authorization Header** to provide your Bearer token. This can be obtained from your dashboard, under _Settings_ -> _Developer_.
 
 Your API key is used as your bearer token and has complete access to your account so please protect it 🙏🏼
 
@@ -67,7 +66,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 
 # Rate Limiting
 
-We limit API requests to __1,000 requests every 15 minutes__. In the future, we expect to offer "high volume" rate limit plans for businesses that need more throughput.
+We limit API requests to **1,000 requests every 15 minutes**. In the future, we expect to offer "high volume" rate limit plans for businesses that need more throughput.
 
 Each request will return `x-rate-limit headers` so you can keep track of your queries.
 
@@ -77,14 +76,14 @@ Each request will return `x-rate-limit headers` so you can keep track of your qu
 
 # Events
 
-Events are typically represent a single event that you are hosting and can be used to create bookings, send invites and manage your guest list. They have their own dedicated availability / capacity settings and can be configured to suit your needs.
+Events typically represent a single event that you are hosting and can be used to create bookings, send invites, and manage your guest list. They have their own dedicated availability / capacity settings and can be configured to suit your needs.
 
 ## The event object
 
 > The event object
 
 ```json
-{ 
+{
   "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
   "object": "event",
   "code": "efa400",
@@ -98,10 +97,7 @@ Events are typically represent a single event that you are hosting and can be us
   "end_time": "2023-05-18T17:00:00.000+01:00",
   "public_url": "http://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
-  "resource_tags": [
-      "vip",
-      "art_fair",
-  ],
+  "resource_tags": ["vip", "art_fair"],
   "created_at": "2023-04-06T15:12:08.671Z",
   "updated_at": "2023-05-15T11:34:48.746Z"
 }
@@ -109,24 +105,24 @@ Events are typically represent a single event that you are hosting and can be us
 
 ### Attributes
 
-Attribute | Type | Description
---------- | ----------- | -----------
-`id` | string | Unique identifier for the object.
-`object` | string | String representing the object’s type
-`code` | string | A unique reference for the event used in the URL
-`name` | string | Public facing event name
-`reference` | string | Internal event reference
-`description` | string | Internal event description (Developer use only)
-`timezone` | string | The time zone the event is taking place in
-`start_date` | string | The date the event starts
-`start_time` | string | The time the event starts
-`end_date` | string | The date the event ends
-`end_time` | string | The time the event ends
-`public_url` | string | The public URL for the event
-`banner_image` | string | The banner image for the event
-`resource_tags` | array | Internal tags assigned to the Event
-`created_at` | timestamp | Timestamp when the booking was Created
-`updated_at` | timestamp | Timestamp when the booking was Updated
+| Attribute       | Type      | Description                                      |
+| --------------- | --------- | ------------------------------------------------ |
+| `id`            | string    | Unique identifier for the object.                |
+| `object`        | string    | String representing the object’s type            |
+| `code`          | string    | A unique reference for the event used in the URL |
+| `name`          | string    | Public facing event name                         |
+| `reference`     | string    | Internal event reference                         |
+| `description`   | string    | Internal event description (Developer use only)  |
+| `timezone`      | string    | The time zone the event is taking place in       |
+| `start_date`    | string    | The date the event starts                        |
+| `start_time`    | string    | The time the event starts                        |
+| `end_date`      | string    | The date the event ends                          |
+| `end_time`      | string    | The time the event ends                          |
+| `public_url`    | string    | The public URL for the event                     |
+| `banner_image`  | string    | The banner image for the event                   |
+| `resource_tags` | array     | Internal tags assigned to the Event              |
+| `created_at`    | timestamp | Timestamp when the booking was Created           |
+| `updated_at`    | timestamp | Timestamp when the booking was Updated           |
 
 ## Retrieve an event
 
@@ -138,7 +134,7 @@ curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-65
 > The above command returns JSON structured like this:
 
 ```json
-{ 
+{
   "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
   "object": "event",
   "code": "efa400",
@@ -152,10 +148,7 @@ curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-65
   "end_time": "2023-05-18T17:00:00.000+01:00",
   "public_url": "http://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
-  "resource_tags": [
-      "vip",
-      "art_fair",
-  ],
+  "resource_tags": ["vip", "art_fair"],
   "created_at": "2023-04-06T15:12:08.671Z",
   "updated_at": "2023-05-15T11:34:48.746Z"
 }
@@ -169,9 +162,9 @@ Retrieves the details of an event that has previously been created.
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | **`true`** | The id of the event to retrieve
+| Parameter | Required   | Description                     |
+| --------- | ---------- | ------------------------------- |
+| `id`      | **`true`** | The id of the event to retrieve |
 
 ## List all events
 
@@ -187,14 +180,14 @@ curl "https://app.artsvp.com/api/v2/events" \
   "object": "list",
   "url": "/v2/events",
   "data": [
-    { 
+    {
       "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
       "object": "event",
       "code": "efa400",
       "name": "Summer Party",
       ...
     },
-    { 
+    {
       "id": "eve-c60d5868-c4cf-4b55-83f2-6578a8263751",
       "object": "event",
       "code": "gh7823",
@@ -206,12 +199,11 @@ curl "https://app.artsvp.com/api/v2/events" \
 }
 ```
 
-Return a list of all events your Organisation owns. 
+Return a list of all events your Organisation owns.
 
 ### HTTP Request
 
 `GET https://app.artsvp.com/api/v2/events`
-
 
 # Collections
 
@@ -223,31 +215,31 @@ Collections are a way to group events together. For example, you may want to gro
 
 ```json
 {
-    "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
-    "object": "collection",
-    "code": "433ca2",
-    "name": "VIP program",
-    "public_url": "http://localhost:3000/433ca2",
-    "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
-    "resource_tags": [],
-    "created_at": "2023-04-21T09:21:51.167Z",
-    "updated_at": "2023-04-21T09:22:49.868Z"
+  "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
+  "object": "collection",
+  "code": "433ca2",
+  "name": "VIP program",
+  "public_url": "http://localhost:3000/433ca2",
+  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
+  "resource_tags": [],
+  "created_at": "2023-04-21T09:21:51.167Z",
+  "updated_at": "2023-04-21T09:22:49.868Z"
 }
 ```
 
 ### Attributes
 
-Attribute | Type | Description
---------- | ----------- | -----------
-`id` | string | Unique identifier for the object.
-`object` | string | String representing the object’s type
-`code` | string | A unique reference for the event used in the URL
-`name` | string | Public facing event name
-`public_url` | string | The public URL for the event
-`banner_image` | string | The banner image for the event
-`resource_tags` | array | Internal tags assigned to the Event
-`created_at` | timestamp | Timestamp when the booking was Created
-`updated_at` | timestamp | Timestamp when the booking was Updated
+| Attribute       | Type      | Description                                      |
+| --------------- | --------- | ------------------------------------------------ |
+| `id`            | string    | Unique identifier for the object.                |
+| `object`        | string    | String representing the object’s type            |
+| `code`          | string    | A unique reference for the event used in the URL |
+| `name`          | string    | Public facing event name                         |
+| `public_url`    | string    | The public URL for the event                     |
+| `banner_image`  | string    | The banner image for the event                   |
+| `resource_tags` | array     | Internal tags assigned to the Event              |
+| `created_at`    | timestamp | Timestamp when the booking was Created           |
+| `updated_at`    | timestamp | Timestamp when the booking was Updated           |
 
 ## Retrieve a collection
 
@@ -260,15 +252,15 @@ curl -X GET "https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952
 
 ```json
 {
-    "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
-    "object": "collection",
-    "code": "433ca2",
-    "name": "VIP program",
-    "public_url": "http://localhost:3000/433ca2",
-    "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
-    "resource_tags": [],
-    "created_at": "2023-04-21T09:21:51.167Z",
-    "updated_at": "2023-04-21T09:22:49.868Z"
+  "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
+  "object": "collection",
+  "code": "433ca2",
+  "name": "VIP program",
+  "public_url": "http://localhost:3000/433ca2",
+  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
+  "resource_tags": [],
+  "created_at": "2023-04-21T09:21:51.167Z",
+  "updated_at": "2023-04-21T09:22:49.868Z"
 }
 ```
 
@@ -280,9 +272,9 @@ Retrieves the details of a collection that has previously been created.
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | **`true`** | The id of the collection to retrieve
+| Parameter | Required   | Description                          |
+| --------- | ---------- | ------------------------------------ |
+| `id`      | **`true`** | The id of the collection to retrieve |
 
 ## List all collections
 
@@ -317,7 +309,7 @@ curl "https://app.artsvp.com/api/v2/collections" \
 }
 ```
 
-Return a list of all events your Organisation owns. 
+Return a list of all collections your Organisation owns.
 
 ### HTTP Request
 
@@ -325,7 +317,7 @@ Return a list of all events your Organisation owns.
 
 # Bookings
 
-Bookings are unique records that belong to an `Event`. They hold important information such as the `name` and `email` of the person making the booking and and other specifics needed for the events such as the booking `size`, `start_time` etc. 
+Bookings are unique records that belong to an `Event`. They hold important information such as the `name` and `email` of the person making the booking and and other specifics needed for the events such as the booking `size`, `start_time` etc.
 
 Each booking has a `status` field which denotes where the booking is within the booking process.
 
@@ -334,7 +326,7 @@ Each booking has a `status` field which denotes where the booking is within the 
 > The booking object
 
 ```json
-{ 
+{
   "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
@@ -368,39 +360,33 @@ Each booking has a `status` field which denotes where the booking is within the 
 
 ### Attributes
 
-Attribute | Type | Description
---------- | ----------- | -----------
-`id` | string | Unique identifier for the object.
-`object` | string | String representing the object’s type
-`reference` | string | A unique reference for the booking 
-`status` | string | The booking status. Prefixed with `is_` (e.g. `is_confirmed`)
-`name` | string | Name of the primary guest
-`email` | string | Email of the primary guest
-`size` | integer | Number of guests attatched to the booking
-`start_time_utc` | timestamp | Start time in UTC
-`start_time_local` | timestamp | Start time in Event's Time Zone
-`url` | string | URL to manage the booking
-`event_id` | string | ID of the Event
-`event_name` | string | Name of the Event
-`event_reference` | string | Internal Reference for the Event
-`event_time_zone` | timestamp | Time Zone of the Event
-`invite_id` | string | The ID of the booking's Invite (if present)
-`event` | hash | The event object assigned to the booking
-`tags` | array | Tags assigned to the booking
-`resource_tags` | array | Tags assigned to the `Booking Resource`
-`meta_data` | hash | Meta Data assigned to the booking
-`external_id` | string | External ID assigned to the booking
-`created_at` | timestamp | Timestamp when the booking was Created
-`updated_at` | timestamp | Timestamp when the booking was Updated
-
-
-
-
-
-
-
+| Attribute          | Type      | Description                                                   |
+| ------------------ | --------- | ------------------------------------------------------------- |
+| `id`               | string    | Unique identifier for the object.                             |
+| `object`           | string    | String representing the object’s type                         |
+| `reference`        | string    | A unique reference for the booking                            |
+| `status`           | string    | The booking status. Prefixed with `is_` (e.g. `is_confirmed`) |
+| `name`             | string    | Name of the primary guest                                     |
+| `email`            | string    | Email of the primary guest                                    |
+| `size`             | integer   | Number of guests attatched to the booking                     |
+| `start_time_utc`   | timestamp | Start time in UTC                                             |
+| `start_time_local` | timestamp | Start time in Event's Time Zone                               |
+| `url`              | string    | URL to manage the booking                                     |
+| `event_id`         | string    | ID of the Event                                               |
+| `event_name`       | string    | Name of the Event                                             |
+| `event_reference`  | string    | Internal Reference for the Event                              |
+| `event_time_zone`  | timestamp | Time Zone of the Event                                        |
+| `invite_id`        | string    | The ID of the booking's Invite (if present)                   |
+| `event`            | hash      | The event object assigned to the booking                      |
+| `tags`             | array     | Tags assigned to the booking                                  |
+| `resource_tags`    | array     | Tags assigned to the `Booking Resource`                       |
+| `meta_data`        | hash      | Meta Data assigned to the booking                             |
+| `external_id`      | string    | External ID assigned to the booking                           |
+| `created_at`       | timestamp | Timestamp when the booking was Created                        |
+| `updated_at`       | timestamp | Timestamp when the booking was Updated                        |
 
 ## Retrieve a booking
+
 ```shell
 curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
   -H "Authorization: my_api_key"
@@ -409,7 +395,7 @@ curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
 > The above command returns JSON structured like this:
 
 ```json
-{ 
+{
   "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
@@ -441,7 +427,7 @@ curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
 }
 ```
 
-Retrieves the details of a booking that has previously been created. Simply supply the booking ID. 
+Retrieves the details of a booking that has previously been created. Simply supply the booking ID.
 
 ### HTTP Request
 
@@ -449,9 +435,9 @@ Retrieves the details of a booking that has previously been created. Simply supp
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | **`true`** | The ID of the booking to retrieve
+| Parameter | Required   | Description                       |
+| --------- | ---------- | --------------------------------- |
+| `id`      | **`true`** | The ID of the booking to retrieve |
 
 ## Update a booking
 
@@ -464,7 +450,7 @@ curl -X PATCH "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e
 > The above command returns JSON structured like this:
 
 ```json
-{ 
+{
   "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
@@ -504,13 +490,12 @@ Updates a booking for certain whitelisted attributes.
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`name` | `false` | Name of the primary guest
-`email` | `false` | Email of the primary guest
-`meta_data` | `false` | Meta Data assigned to the booking
-`external_id` | `false` | External ID assigned to the booking
-
+| Parameter     | Required | Description                         |
+| ------------- | -------- | ----------------------------------- |
+| `name`        | `false`  | Name of the primary guest           |
+| `email`       | `false`  | Email of the primary guest          |
+| `meta_data`   | `false`  | Meta Data assigned to the booking   |
+| `external_id` | `false`  | External ID assigned to the booking |
 
 ## List all bookings
 
@@ -527,7 +512,7 @@ curl "https://app.artsvp.com/api/v2/bookings" \
   "object": "list",
   "url": "/v2/bookings",
   "data": [
-    { 
+    {
       "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
       "object": "booking",
       "reference": "C922-4EBA-1F8C",
@@ -569,20 +554,20 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`external_id` | `false` | External ID associated with the booking
-`email` | `false` | Email used to create the booking
-`tags` | `false` | Tags associated to the booking
-
+| Parameter        | Required | Description                                                                                                                                                                                                                                                                                             |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `external_id`    | `false`  | External ID associated with the booking                                                                                                                                                                                                                                                                 |
+| `email`          | `false`  | Email used to create the booking                                                                                                                                                                                                                                                                        |
+| `tags`           | `false`  | Tags associated to the booking                                                                                                                                                                                                                                                                          |
+| `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
+| `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 
 # Invites
 
-Invites exist as a vehicle for a user to create a `booking`. They can be used simply as a unique booking link or be pre-configured with information to define the booking flow or lock the booking to a particular user (name and email). You also have control over the number of times an Invite can be used (number of bookings created). 
-
+Invites exist as a vehicle for a user to create a `booking`. They can be used simply as a unique booking link or be pre-configured with information to define the booking flow or lock the booking to a particular user (name and email). You also have control over the number of times an Invite can be used (number of bookings created).
 
 <aside>
-Matching booking data (name, email, meta_data etc..) will absorbed by the booking once the booking has been created.
+Matching booking data (name, email, meta_data etc..) will be absorbed by the booking once the booking has been created.
 </aside>
 
 ## The invite object
@@ -590,7 +575,7 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 > The invite object
 
 ```json
-{ 
+{
   "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "372abb",
@@ -624,26 +609,25 @@ Matching booking data (name, email, meta_data etc..) will absorbed by the bookin
 
 ### Attributes
 
-Attribute | Type | Description
---------- | ----------- | -----------
-`id` | string | Unique identifier for the object.
-`object` | string | String representing the object’s type
-`code` | string | A unique reference for the invite 
-`name` | string | Name assigned to the invite
-`email` | string | Email assigned to the invite
-`golden` | boolean | If the invite is marked as Golden
-`register_interest` | boolean | If the invite is marked as Register Interest
-`url` | string | URL of the invite
-`used` | boolean | If the invite has been used at least once
-`amount_used` | string | Number of times the invite has been used
-`resource` | hash | The assigned `Resource` (`Event` or `Collection`) to the invite
-`tags` | array | Tags assigned to the invite 
-`resource_tags` | array | Tags assigned to the `Resource`
-`meta_data` | hash | Meta Data assigned to the invite
-`external_id` | string | External ID assigned to the invite
-`created_at` | timestamp | Timestamp when the invte was Created
-`updated_at` | timestamp | Timestamp when the invte was Updated
-
+| Attribute           | Type      | Description                                                     |
+| ------------------- | --------- | --------------------------------------------------------------- |
+| `id`                | string    | Unique identifier for the object.                               |
+| `object`            | string    | String representing the object’s type                           |
+| `code`              | string    | A unique reference for the invite                               |
+| `name`              | string    | Name assigned to the invite                                     |
+| `email`             | string    | Email assigned to the invite                                    |
+| `golden`            | boolean   | If the invite is marked as Golden                               |
+| `register_interest` | boolean   | If the invite is marked as Register Interest                    |
+| `url`               | string    | URL of the invite                                               |
+| `used`              | boolean   | If the invite has been used at least once                       |
+| `amount_used`       | string    | Number of times the invite has been used                        |
+| `resource`          | hash      | The assigned `Resource` (`Event` or `Collection`) to the invite |
+| `tags`              | array     | Tags assigned to the invite                                     |
+| `resource_tags`     | array     | Tags assigned to the `Resource`                                 |
+| `meta_data`         | hash      | Meta Data assigned to the invite                                |
+| `external_id`       | string    | External ID assigned to the invite                              |
+| `created_at`        | timestamp | Timestamp when the invte was Created                            |
+| `updated_at`        | timestamp | Timestamp when the invte was Updated                            |
 
 ## Create an invite
 
@@ -661,7 +645,7 @@ curl -X POST "https://app.artsvp.com/api/v2/invites" \
 > The above command returns JSON structured like this:
 
 ```json
-{ 
+{
   "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "468d2w",
@@ -690,7 +674,7 @@ curl -X POST "https://app.artsvp.com/api/v2/invites" \
 }
 ```
 
-Creates an invite for a specific resource (collections or invites). 
+Creates an invite for a specific resource (collections or events).
 
 Use a **filter** to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is `email@example.com`, a new invite will only be created if an invite does not exist with that email.
 
@@ -700,20 +684,20 @@ Use a **filter** to prevent duplicate invites from being created. If you attempt
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`name` | `false` | The `name` of the invite
-`email` | `false` | The `email` of the invite
-`resource_id` | `false` | Type of the `Resource`
-`resource_type` | `false` | ID of the `Resource`
-`resource` | `false` | Instead of defining _resource_id_ & _resource_type_. The ID of the `Resource`
-`external_id` | `false` | The `external_id` to assign to the invite
-`golden` | boolean | If the invite should be Golden
-`register_interest` | boolean | If the invite should be Register Interest
-`total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
-`tags` | `false` | Any tags you want to assign to the invite
-`meta_data` | `false` | Meta Data assigned to the invite
-`filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`
+| Parameter           | Required | Description                                                                                                                                  |
+| ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`              | `false`  | The `name` of the invite                                                                                                                     |
+| `email`             | `false`  | The `email` of the invite                                                                                                                    |
+| `resource_id`       | `false`  | Type of the `Resource`                                                                                                                       |
+| `resource_type`     | `false`  | ID of the `Resource`                                                                                                                         |
+| `resource`          | `false`  | Instead of defining _resource_id_ & _resource_type_. The ID of the `Resource`                                                                |
+| `external_id`       | `false`  | The `external_id` to assign to the invite                                                                                                    |
+| `golden`            | boolean  | If the invite should be Golden                                                                                                               |
+| `register_interest` | boolean  | If the invite should be Register Interest                                                                                                    |
+| `total_count`       | `false`  | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1. |
+| `tags`              | `false`  | Any tags you want to assign to the invite                                                                                                    |
+| `meta_data`         | `false`  | Meta Data assigned to the invite                                                                                                             |
+| `filter`            | `false`  | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`                |
 
 ## Retrieve an invite
 
@@ -725,7 +709,7 @@ curl -X GET "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-9
 > The above command returns JSON structured like this:
 
 ```json
-{ 
+{
   "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "468d2w",
@@ -767,10 +751,9 @@ Retrieves the details of an invite that has previously been created. Supply invi
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | **`true`** | The code of the invite to retrieve
-
+| Parameter | Required   | Description                        |
+| --------- | ---------- | ---------------------------------- |
+| `id`      | **`true`** | The code of the invite to retrieve |
 
 ## Update an invite
 
@@ -783,7 +766,7 @@ curl -X PATCH "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0
 > The above command returns JSON structured like this:
 
 ```json
-{ 
+{
   "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "468d2w",
@@ -820,14 +803,14 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`tags` | `false` | Any tags passed here will overwrite the existing tags
-`total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
-`golden` | `false` | If set as true, the invite will be created as a golden invite, if set to false, the golden functionality will be removed for the invite
-`register_interest` | `false` | If set as true, the invite will mark users as register interest waitlist for an event, if set to false, the functionality will be removed for the invite
-`external_id` | `false` | The `external_id` to assign to the invite
-`meta_data` | `false` | Meta Data assigned to the booking
+| Parameter           | Required | Description                                                                                                                                              |
+| ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tags`              | `false`  | Any tags passed here will overwrite the existing tags                                                                                                    |
+| `total_count`       | `false`  | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.             |
+| `golden`            | `false`  | If set as true, the invite will be created as a golden invite, if set to false, the golden functionality will be removed for the invite                  |
+| `register_interest` | `false`  | If set as true, the invite will mark users as register interest waitlist for an event, if set to false, the functionality will be removed for the invite |
+| `external_id`       | `false`  | The `external_id` to assign to the invite                                                                                                                |
+| `meta_data`         | `false`  | Meta Data assigned to the booking                                                                                                                        |
 
 ## Delete an invite
 
@@ -865,7 +848,7 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
   "object": "batch",
   "url": "/v2/invites/batch",
   "data": [
-    { 
+    {
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
@@ -910,23 +893,22 @@ Create multiple invites with a single API call
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`resource_tags` | **`true`** | Invites will be creates for all resources with matching tags
-`name` | `false` | The `name` of the invite
-`email` | `false` | The `email` of the invite
-`external_id` | `false` | The `external_id` to assign to the invite
-`golden` | `false` | If the invite should be Golden
-`register_interest` | `false` | If the invite should be Register Interest
-`total_count` | `false` | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.
-`tags` | `false` | Any tags you want to assign to the invite
-`meta_data` | `false` | Meta Data assigned to the invite
-`filter` | `false` | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`
+| Parameter           | Required   | Description                                                                                                                                  |
+| ------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resource_tags`     | **`true`** | Invites will be creates for all resources with matching tags                                                                                 |
+| `name`              | `false`    | The `name` of the invite                                                                                                                     |
+| `email`             | `false`    | The `email` of the invite                                                                                                                    |
+| `external_id`       | `false`    | The `external_id` to assign to the invite                                                                                                    |
+| `golden`            | `false`    | If the invite should be Golden                                                                                                               |
+| `register_interest` | `false`    | If the invite should be Register Interest                                                                                                    |
+| `total_count`       | `false`    | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1. |
+| `tags`              | `false`    | Any tags you want to assign to the invite                                                                                                    |
+| `meta_data`         | `false`    | Meta Data assigned to the invite                                                                                                             |
+| `filter`            | `false`    | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`                |
 
 <aside class="notice">
-The resource is determined by the resource_tags. If `resource_type` or `resource_id` parameters are passed the batch will fail. 
+The resource is determined by the resource_tags. If `resource_type` or `resource_id` parameters are passed the batch will fail.
 </aside>
-
 
 ## List all invites
 
@@ -943,7 +925,7 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
   "object": "list",
   "url": "/v2/invites",
   "data": [
-    { 
+    {
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
@@ -976,7 +958,7 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
   ]
 ```
 
-Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.
+Return a list of all invites your Organisation owns. You can optionally scope your request with parameters.
 
 ### HTTP Request
 
@@ -984,15 +966,14 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 ### Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`resource_id` | `false` | The ID of a resource. Usually matches an Event ID. Click ‘Share’ on an event to view.
-`resource_type` | `false` | The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the `resource_id`. Default is `Event`
-`tags` | `false` | Returns all invites with any matching tags
-`external_id` | `false` | Only return invites matching this `external_id`
-`name` | `false` | Only return invites matching this `name`
-`email` | `false` | Only return invites matching this `email`
-`limit` | `false` | A limit on the number of objects to be returned, between 1 and 100. Default is 50.
-`starting_after` | `false` | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.
-`ending_before` | `false` | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list.
-
+| Parameter        | Required | Description                                                                                                                                                                                                                                                                                             |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resource_id`    | `false`  | The ID of a resource. Usually matches an Event ID. Click ‘Share’ on an event to view.                                                                                                                                                                                                                   |
+| `resource_type`  | `false`  | The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the `resource_id`. Default is `Event`                                                                                                                                                                       |
+| `tags`           | `false`  | Returns all invites with any matching tags                                                                                                                                                                                                                                                              |
+| `external_id`    | `false`  | Only return invites matching this `external_id`                                                                                                                                                                                                                                                         |
+| `name`           | `false`  | Only return invites matching this `name`                                                                                                                                                                                                                                                                |
+| `email`          | `false`  | Only return invites matching this `email`                                                                                                                                                                                                                                                               |
+| `limit`          | `false`  | A limit on the number of objects to be returned, between 1 and 100. Default is 50.                                                                                                                                                                                                                      |
+| `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
+| `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
