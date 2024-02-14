@@ -370,22 +370,18 @@ Each booking has a `status` field which denotes where the booking is within the 
 | `status`           | string    | The booking status. Prefixed with `is_` (e.g. `is_confirmed`) |
 | `name`             | string    | Name of the primary guest                                     |
 | `email`            | string    | Email of the primary guest                                    |
-| `size`             | integer   | Number of guests attatched to the booking                     |
+| `size`             | integer   | Number of guests attatched to the booking (includes primary guest)                    |
 | `start_time_utc`   | timestamp | Start time in UTC                                             |
 | `start_time_local` | timestamp | Start time in Event's Time Zone                               |
 | `url`              | string    | URL to manage the booking                                     |
-| `event_id`         | string    | ID of the Event                                               |
-| `event_name`       | string    | Name of the Event                                             |
-| `event_reference`  | string    | Internal Reference for the Event                              |
-| `event_time_zone`  | timestamp | Time Zone of the Event                                        |
-| `invite_id`        | string    | The ID of the booking's Invite (if present)                   |
-| `event`            | hash      | The event object assigned to the booking                      |
+| `invite_id`        | string    | Booking's invite reference (if present)          |
+| `event`            | hash      | The event object the booking is made for                   |
 | `tags`             | array     | Tags assigned to the booking                                  |
 | `resource_tags`    | array     | Tags assigned to the `Booking Resource`                       |
 | `meta_data`        | hash      | Meta Data assigned to the booking                             |
 | `external_id`      | string    | External ID assigned to the booking                           |
-| `created_at`       | timestamp | Timestamp when the booking was Created                        |
-| `updated_at`       | timestamp | Timestamp when the booking was Updated                        |
+| `created_at`       | timestamp | Timestamp when the booking was created                        |
+| `updated_at`       | timestamp | Timestamp when the booking was updated                        |
 
 ## Retrieve a booking
 
