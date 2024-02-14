@@ -70,6 +70,8 @@ We limit API requests to **1,000 requests every 15 minutes**. In the future, we 
 
 Each request will return `x-rate-limit headers` so you can keep track of your queries.
 
+If the rate limit is exceeded we will return a 429 (Too Many Requests) response status code, please make sure to handle this response code, as we do not queue requests that have been made after the limit has been exceeded.
+
 # Resources
 
 **Resource** is the collective term for _Event_ and _Collection_ objects. Some functionality, such as creating invites can apply to both _Events_ and _Collections_ - so for simplicity, we refer to them as a _Resources_ in the documentation.
