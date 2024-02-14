@@ -623,8 +623,8 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 | `resource_tags`     | array     | Tags assigned to the `Resource`                                 |
 | `meta_data`         | hash      | Meta Data assigned to the invite                                |
 | `external_id`       | string    | External ID assigned to the invite                              |
-| `created_at`        | timestamp | Timestamp when the invte was Created                            |
-| `updated_at`        | timestamp | Timestamp when the invte was Updated                            |
+| `created_at`        | timestamp | Timestamp when the invte was created                            |
+| `updated_at`        | timestamp | Timestamp when the invte was updated                            |
 
 ## Create an invite
 
@@ -671,7 +671,7 @@ curl -X POST "https://app.artsvp.com/api/v2/invites" \
 }
 ```
 
-Creates an invite for a specific resource (collections or events).
+Creates an invite for a specific resource (collection or event).
 
 Use a **filter** to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is `email@example.com`, a new invite will only be created if an invite does not exist with that email.
 
@@ -685,13 +685,13 @@ Use a **filter** to prevent duplicate invites from being created. If you attempt
 | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`              | `false`  | The `name` of the invite                                                                                                                     |
 | `email`             | `false`  | The `email` of the invite                                                                                                                    |
-| `resource_id`       | `false`  | Type of the `Resource`                                                                                                                       |
-| `resource_type`     | `false`  | ID of the `Resource`                                                                                                                         |
+| `resource_id`       | `false`  | Code of the `Resource`                                                                                                                       |
+| `resource_type`     | `false`  | Type of the `Resource`                                                                                                                         |
 | `resource`          | `false`  | Instead of defining _resource_id_ & _resource_type_. The ID of the `Resource`                                                                |
 | `external_id`       | `false`  | The `external_id` to assign to the invite                                                                                                    |
-| `golden`            | boolean  | If the invite should be Golden                                                                                                               |
-| `register_interest` | boolean  | If the invite should be Register Interest                                                                                                    |
-| `total_count`       | `false`  | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1. |
+| `golden`            | `false`  | If the invite should be Golden                                                                                                               |
+| `register_interest` | `false`  | If the invite should be Register Interest                                                                                                    |
+| `max_bookings`       | `false`  | The max number of times the invite can be used to make a booking, if provided 0, the invite becomes limitless. If no value is provided, max_booking defaults to 1. |
 | `tags`              | `false`  | Any tags you want to assign to the invite                                                                                                    |
 | `meta_data`         | `false`  | Meta Data assigned to the invite                                                                                                             |
 | `filter`            | `false`  | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`                |
@@ -740,7 +740,7 @@ curl -X GET "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-9
 }
 ```
 
-Retrieves the details of an invite that has previously been created. Supply invite code from either an invite creation request or the invite list. This endpoint provides a more detail than the list view by including the associated bookings.
+Retrieves the details of an invite that has previously been created. Supply invite id from either an invite creation request or the invite list. This endpoint provides more detail than the list view by including the associated bookings.
 
 ### HTTP Request
 
@@ -803,7 +803,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 | Parameter           | Required | Description                                                                                                                                              |
 | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `tags`              | `false`  | Any tags passed here will overwrite the existing tags                                                                                                    |
-| `total_count`       | `false`  | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.             |
+| `max_bookings`       | `false`  | The max number of times the invite can be used to make a booking, if provided 0, the invite becomes limitless. If no value is provided, max_booking defaults to 1. |
 | `golden`            | `false`  | If set as true, the invite will be created as a golden invite, if set to false, the golden functionality will be removed for the invite                  |
 | `register_interest` | `false`  | If set as true, the invite will mark users as register interest waitlist for an event, if set to false, the functionality will be removed for the invite |
 | `external_id`       | `false`  | The `external_id` to assign to the invite                                                                                                                |
@@ -971,6 +971,6 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | `external_id`    | `false`  | Only return invites matching this `external_id`                                                                                                                                                                                                                                                         |
 | `name`           | `false`  | Only return invites matching this `name`                                                                                                                                                                                                                                                                |
 | `email`          | `false`  | Only return invites matching this `email`                                                                                                                                                                                                                                                               |
-| `limit`          | `false`  | A limit on the number of objects to be returned, between 1 and 100. Default is 50.                                                                                                                                                                                                                      |
+| `limit`  | `false`  | An integer value between 1 and 99 that will modify the page size returned |
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
