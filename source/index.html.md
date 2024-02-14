@@ -38,20 +38,6 @@ curl "api_endpoint_here" \
   -H "Authorization: my_api_key"
 ```
 
-<!--
-```ruby
-xxx
-```
-
-```python
-xxx
-```
-
-```javascript
-xxx
-```
--->
-
 > Make sure to replace `my_api_key` with your API key.
 
 To connect to our API, you must use the **Authorization Header** to provide your Bearer token. This can be obtained from your dashboard, under _Settings_ -> _Developer_.
@@ -74,7 +60,11 @@ If the rate limit is exceeded we will return a 429 (Too Many Requests) response 
 
 # Pagination
 
-For certain endpoints that return large quantities of data we implement pagination to reduce request times. The structure f
+For endpoints that return large quantities of data, pagination is implemented to reduce request times. When an endpoint implements pagination, a special key value pair in the response will include `has_more` with either `true` or `false`.
+
+If this is returned, then a secondary key value pair will be available labeled `last_element_id`, where `element` will be replaced with whatever is being queried, for example, `last_booking_id` for the bookings endpoint.
+
+This will be used as a cursor for use in pagination, where providing the param `starting_after` with the `last_element_id` in your subsequent call will return the next page of results, and providing the param `ending_before` with the `last_element_id` will return the previous page of results.
 
 # Resources
 
