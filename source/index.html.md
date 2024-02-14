@@ -74,7 +74,7 @@ If the rate limit is exceeded we will return a 429 (Too Many Requests) response 
 
 # Resources
 
-**Resource** is the collective term for _Event_ and _Collection_ objects. Some functionality, such as creating invites can apply to both _Events_ and _Collections_ - so for simplicity, we refer to them as a _Resources_ in the documentation.
+**Resource** is the collective term for _Event_ and _Collection_ objects. Some functionality, such as creating invites can apply to either _Event_ or _Collection_ objects- so for simplicity, we refer to them as a _Resource_ in the documentation.
 
 # Events
 
@@ -90,7 +90,7 @@ Events typically represent a single event that you are hosting and can be used t
   "object": "event",
   "code": "efa400",
   "name": "Summer Party",
-  "reference": "",
+  "reference": "Summer Party (VIP 1)",
   "description": "A summer meet and greet for our VIP guests",
   "time_zone": "Europe/London",
   "start_date": "2023-05-18",
