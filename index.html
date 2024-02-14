@@ -322,6 +322,9 @@
             <a href="#rate-limiting" class="toc-h1 toc-link" data-title="Rate Limiting">Rate Limiting</a>
           </li>
           <li>
+            <a href="#pagination" class="toc-h1 toc-link" data-title="Pagination">Pagination</a>
+          </li>
+          <li>
             <a href="#resources" class="toc-h1 toc-link" data-title="Resources">Resources</a>
           </li>
           <li>
@@ -418,20 +421,6 @@
 curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
-<!--
-```ruby
-xxx
-```
-
-```python
-xxx
-```
-
-```javascript
-xxx
-```
--->
-
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> with your API key.</p>
 </blockquote>
@@ -449,8 +438,18 @@ You must replace <code>my_api_key</code> with your personal API key.
 <p>We limit API requests to <strong>1,000 requests every 15 minutes</strong>. In the future, we expect to offer &quot;high volume&quot; rate limit plans for businesses that need more throughput.</p>
 
 <p>Each request will return <code>x-rate-limit headers</code> so you can keep track of your queries.</p>
+
+<p>If the rate limit is exceeded we will return a 429 (Too Many Requests) response status code, please make sure to handle this response code, as we do not queue requests that have been made after the limit has been exceeded.</p>
+<h1 id='pagination'>Pagination</h1>
+<p>For endpoints that return large quantities of data, pagination is implemented to reduce request times. When an endpoint implements pagination, a special key value pair in the response will include <code>has_more</code> with either <code>true</code> or <code>false</code>.</p>
+
+<p>If this is returned, then a secondary key value pair will be available labeled <code>last_element_id</code>, where <code>element</code> will be replaced with whatever is being queried, for example, <code>last_booking_id</code> for the bookings endpoint.</p>
+
+<p>This will be used as a cursor for use in pagination, where providing the param <code>starting_after</code> with the <code>last_element_id</code> in your subsequent call will return the next page of results, and providing the param <code>ending_before</code> with the <code>last_element_id</code> will return the previous page of results.</p>
+
+<p>By default, results are returned in pages with a size of 50 elements. By providing <code>limit</code> and a value between 1 and 99 in the API call, the page size can be increased or decreased.</p>
 <h1 id='resources'>Resources</h1>
-<p><strong>Resource</strong> is the collective term for <em>Event</em> and <em>Collection</em> objects. Some functionality, such as creating invites can apply to both <em>Events</em> and <em>Collections</em> - so for simplicity, we refer to them as a <em>Resources</em> in the documentation.</p>
+<p><strong>Resource</strong> is the collective term for <em>Event</em> and <em>Collection</em> objects. Some functionality, such as creating invites can apply to either <em>Event</em> or <em>Collection</em> objects- so for simplicity, we refer to them as a <em>Resource</em> in the documentation.</p>
 <h1 id='events'>Events</h1>
 <p>Events typically represent a single event that you are hosting and can be used to create bookings, send invites, and manage your guest list. They have their own dedicated availability / capacity settings and can be configured to suit your needs.</p>
 <h2 id='the-event-object'>The event object</h2>
@@ -462,7 +461,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa400"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party (VIP 1)"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A summer meet and greet for our VIP guests"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18"</span><span class="p">,</span><span class="w">
@@ -551,17 +550,17 @@ You must replace <code>my_api_key</code> with your personal API key.
 <tr>
 <td><code>resource_tags</code></td>
 <td>array</td>
-<td>Internal tags assigned to the Event</td>
+<td>Internal tags assigned to the event</td>
 </tr>
 <tr>
 <td><code>created_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the booking was Created</td>
+<td>Timestamp when the event was created</td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the booking was Updated</td>
+<td>Timestamp when the event was updated</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-an-event'>Retrieve an event</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767"</span> <span class="se">\</span>
@@ -575,7 +574,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa400"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Summer Party (VIP 1)"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A summer meet and greet for our VIP guests"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/London"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18"</span><span class="p">,</span><span class="w">
@@ -589,7 +588,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-15T11:34:48.746Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Retrieves the details of an event that has previously been created.</p>
+<p>Retrieves the details of an event.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.com/api/v2/events/:id</code></p>
 <h3 id='parameters'>Parameters</h3>
@@ -675,37 +674,37 @@ You must replace <code>my_api_key</code> with your personal API key.
 <tr>
 <td><code>code</code></td>
 <td>string</td>
-<td>A unique reference for the event used in the URL</td>
+<td>A unique reference for the collection used in the URL</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td>string</td>
-<td>Public facing event name</td>
+<td>Public facing collection name</td>
 </tr>
 <tr>
 <td><code>public_url</code></td>
 <td>string</td>
-<td>The public URL for the event</td>
+<td>The public URL for the collection</td>
 </tr>
 <tr>
 <td><code>banner_image</code></td>
 <td>string</td>
-<td>The banner image for the event</td>
+<td>The banner image for the collection</td>
 </tr>
 <tr>
 <td><code>resource_tags</code></td>
 <td>array</td>
-<td>Internal tags assigned to the Event</td>
+<td>Internal tags assigned to the collection</td>
 </tr>
 <tr>
 <td><code>created_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the booking was Created</td>
+<td>Timestamp when the collection was created</td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the booking was Updated</td>
+<td>Timestamp when the collection was updated</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-a-collection'>Retrieve a collection</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826"</span> <span class="se">\</span>
@@ -726,7 +725,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-04-21T09:22:49.868Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Retrieves the details of a collection that has previously been created.</p>
+<p>Retrieves the details of a collection.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.com/api/v2/collections/:id</code></p>
 <h3 id='parameters-2'>Parameters</h3>
@@ -853,7 +852,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <tr>
 <td><code>size</code></td>
 <td>integer</td>
-<td>Number of guests attatched to the booking</td>
+<td>Number of guests attatched to the booking (includes primary guest)</td>
 </tr>
 <tr>
 <td><code>start_time_utc</code></td>
@@ -871,34 +870,14 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>URL to manage the booking</td>
 </tr>
 <tr>
-<td><code>event_id</code></td>
-<td>string</td>
-<td>ID of the Event</td>
-</tr>
-<tr>
-<td><code>event_name</code></td>
-<td>string</td>
-<td>Name of the Event</td>
-</tr>
-<tr>
-<td><code>event_reference</code></td>
-<td>string</td>
-<td>Internal Reference for the Event</td>
-</tr>
-<tr>
-<td><code>event_time_zone</code></td>
-<td>timestamp</td>
-<td>Time Zone of the Event</td>
-</tr>
-<tr>
 <td><code>invite_id</code></td>
 <td>string</td>
-<td>The ID of the booking&#39;s Invite (if present)</td>
+<td>Booking&#39;s invite reference (if present)</td>
 </tr>
 <tr>
 <td><code>event</code></td>
 <td>hash</td>
-<td>The event object assigned to the booking</td>
+<td>The event object the booking is made for</td>
 </tr>
 <tr>
 <td><code>tags</code></td>
@@ -923,12 +902,12 @@ You must replace <code>my_api_key</code> with your personal API key.
 <tr>
 <td><code>created_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the booking was Created</td>
+<td>Timestamp when the booking was created</td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the booking was Updated</td>
+<td>Timestamp when the booking was updated</td>
 </tr>
 </tbody></table>
 <h2 id='retrieve-a-booking'>Retrieve a booking</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
@@ -968,7 +947,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Retrieves the details of a booking that has previously been created. Simply supply the booking ID.</p>
+<p>Retrieves the details of a booking.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.com/api/v2/bookings/:id</code></p>
 <h3 id='parameters-3'>Parameters</h3>
@@ -1065,6 +1044,8 @@ You must replace <code>my_api_key</code> with your personal API key.
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/bookings"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_booking_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boo-833995e0-f3a0-4112-be05-8a240d33aeda"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span><span class="p">,</span><span class="w">
@@ -1134,6 +1115,11 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td><code>ending_before</code></td>
 <td><code>false</code></td>
 <td>A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with <code>obj_bar</code>, your subsequent call can include <code>ending_before=obj_bar</code> in order to fetch the previous page of the list.</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>false</code></td>
+<td>An integer value between 1 and 99 that will modify the page size returned</td>
 </tr>
 </tbody></table>
 <h1 id='invites'>Invites</h1>
@@ -1262,12 +1248,12 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <tr>
 <td><code>created_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the invte was Created</td>
+<td>Timestamp when the invte was created</td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
 <td>timestamp</td>
-<td>Timestamp when the invte was Updated</td>
+<td>Timestamp when the invte was updated</td>
 </tr>
 </tbody></table>
 <h2 id='create-an-invite'>Create an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites"</span> <span class="se">\</span>
@@ -1310,7 +1296,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-21T15:33:13.889Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Creates an invite for a specific resource (collections or events).</p>
+<p>Creates an invite for a specific resource (collection or event).</p>
 
 <p>Use a <strong>filter</strong> to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is <code>email@example.com</code>, a new invite will only be created if an invite does not exist with that email.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
@@ -1336,12 +1322,12 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <tr>
 <td><code>resource_id</code></td>
 <td><code>false</code></td>
-<td>Type of the <code>Resource</code></td>
+<td>Code of the <code>Resource</code></td>
 </tr>
 <tr>
 <td><code>resource_type</code></td>
 <td><code>false</code></td>
-<td>ID of the <code>Resource</code></td>
+<td>Type of the <code>Resource</code></td>
 </tr>
 <tr>
 <td><code>resource</code></td>
@@ -1355,18 +1341,18 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 </tr>
 <tr>
 <td><code>golden</code></td>
-<td>boolean</td>
+<td><code>false</code></td>
 <td>If the invite should be Golden</td>
 </tr>
 <tr>
 <td><code>register_interest</code></td>
-<td>boolean</td>
+<td><code>false</code></td>
 <td>If the invite should be Register Interest</td>
 </tr>
 <tr>
-<td><code>total_count</code></td>
+<td><code>max_bookings</code></td>
 <td><code>false</code></td>
-<td>The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.</td>
+<td>The max number of times the invite can be used to make a booking, if provided 0, the invite becomes limitless. If no value is provided, max_booking defaults to 1.</td>
 </tr>
 <tr>
 <td><code>tags</code></td>
@@ -1423,7 +1409,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Retrieves the details of an invite that has previously been created. Supply invite code from either an invite creation request or the invite list. This endpoint provides a more detail than the list view by including the associated bookings.</p>
+<p>Retrieves the details of an invite. Supply invite id from either an invite creation request or the invite list. This endpoint provides more detail than the list view by including the associated bookings.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://app.artsvp.com/api/v2/invites/:id</code></p>
 <h3 id='parameters-7'>Parameters</h3>
@@ -1492,9 +1478,9 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <td>Any tags passed here will overwrite the existing tags</td>
 </tr>
 <tr>
-<td><code>total_count</code></td>
+<td><code>max_bookings</code></td>
 <td><code>false</code></td>
-<td>The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.</td>
+<td>The max number of times the invite can be used to make a booking, if provided 0, the invite becomes limitless. If no value is provided, max_booking defaults to 1.</td>
 </tr>
 <tr>
 <td><code>golden</code></td>
@@ -1525,7 +1511,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 </blockquote>
 <div class="highlight"><pre class="highlight plaintext"><code>204 No Content
 </code></pre></div>
-<p>Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.</p>
+<p>Deletes the invite.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
 <p><code>DELETE https://app.artsvp.com/api/v2/invites/:id</code></p>
 <h2 id='batch-create-invites'>Batch create invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites/batch"</span> <span class="se">\</span>
@@ -1619,9 +1605,9 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <td>If the invite should be Register Interest</td>
 </tr>
 <tr>
-<td><code>total_count</code></td>
+<td><code>max_bookings</code></td>
 <td><code>false</code></td>
-<td>The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1.</td>
+<td>The max number of times the invite can be used to make a booking, if provided 0, the invite becomes limitless. If no value is provided, max_booking defaults to 1.</td>
 </tr>
 <tr>
 <td><code>tags</code></td>
@@ -1653,6 +1639,8 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/invites"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_invite_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv-833995e0-f3a0-4112-be05-8a240d33aeda"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span><span class="p">,</span><span class="w">
@@ -1700,12 +1688,12 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <tr>
 <td><code>resource_id</code></td>
 <td><code>false</code></td>
-<td>The ID of a resource. Usually matches an Event ID. Click ‘Share’ on an event to view.</td>
+<td>The code of a resource.</td>
 </tr>
 <tr>
 <td><code>resource_type</code></td>
 <td><code>false</code></td>
-<td>The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the <code>resource_id</code>. Default is <code>Event</code></td>
+<td>The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the <code>resource_id</code>. Default is <code>event</code></td>
 </tr>
 <tr>
 <td><code>tags</code></td>
@@ -1730,7 +1718,7 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <tr>
 <td><code>limit</code></td>
 <td><code>false</code></td>
-<td>A limit on the number of objects to be returned, between 1 and 100. Default is 50.</td>
+<td>An integer value between 1 and 99 that will modify the page size returned</td>
 </tr>
 <tr>
 <td><code>starting_after</code></td>
@@ -1754,11 +1742,11 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad Request -- The request is invalid.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>Unauthorized -- The API key provided is invalid.</td>
 </tr>
 <tr>
 <td>403</td>
@@ -1767,6 +1755,10 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <tr>
 <td>404</td>
 <td>Not Found -- Data could not be found.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- Rate limit has been exceeded.</td>
 </tr>
 <tr>
 <td>500</td>
