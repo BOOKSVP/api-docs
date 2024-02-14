@@ -72,6 +72,10 @@ Each request will return `x-rate-limit headers` so you can keep track of your qu
 
 If the rate limit is exceeded we will return a 429 (Too Many Requests) response status code, please make sure to handle this response code, as we do not queue requests that have been made after the limit has been exceeded.
 
+# Pagination
+
+For certain endpoints that return large quantities of data we implement pagination to reduce request times. The structure f
+
 # Resources
 
 **Resource** is the collective term for _Event_ and _Collection_ objects. Some functionality, such as creating invites can apply to either _Event_ or _Collection_ objects- so for simplicity, we refer to them as a _Resource_ in the documentation.
@@ -425,7 +429,7 @@ curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
 }
 ```
 
-Retrieves the details of a booking that has previously been created. Simply supply the booking ID.
+Retrieves the details of a booking.
 
 ### HTTP Request
 
