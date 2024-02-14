@@ -740,7 +740,7 @@ curl -X GET "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-9
 }
 ```
 
-Retrieves the details of an invite that has previously been created. Supply invite id from either an invite creation request or the invite list. This endpoint provides more detail than the list view by including the associated bookings.
+Retrieves the details of an invite. Supply invite id from either an invite creation request or the invite list. This endpoint provides more detail than the list view by including the associated bookings.
 
 ### HTTP Request
 
@@ -822,7 +822,7 @@ curl -X DELETE "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a
 204 No Content
 ```
 
-Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.
+Deletes the invite.
 
 ### HTTP Request
 
@@ -898,7 +898,7 @@ Create multiple invites with a single API call
 | `external_id`       | `false`    | The `external_id` to assign to the invite                                                                                                    |
 | `golden`            | `false`    | If the invite should be Golden                                                                                                               |
 | `register_interest` | `false`    | If the invite should be Register Interest                                                                                                    |
-| `total_count`       | `false`    | The number of times the invite can be used, if provided 0, the invite becomes limitless. If no value is provided, total_count defaults to 1. |
+| `max_bookings`       | `false`  | The max number of times the invite can be used to make a booking, if provided 0, the invite becomes limitless. If no value is provided, max_booking defaults to 1. |
 | `tags`              | `false`    | Any tags you want to assign to the invite                                                                                                    |
 | `meta_data`         | `false`    | Meta Data assigned to the invite                                                                                                             |
 | `filter`            | `false`    | Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: `name`, `email`, `external_id`                |
@@ -921,6 +921,8 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
 {
   "object": "list",
   "url": "/v2/invites",
+  "has_more": true,
+  "last_invite_id": "inv-833995e0-f3a0-4112-be05-8a240d33aeda",
   "data": [
     {
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
@@ -965,8 +967,8 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 
 | Parameter        | Required | Description                                                                                                                                                                                                                                                                                             |
 | ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `resource_id`    | `false`  | The ID of a resource. Usually matches an Event ID. Click ‘Share’ on an event to view.                                                                                                                                                                                                                   |
-| `resource_type`  | `false`  | The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the `resource_id`. Default is `Event`                                                                                                                                                                       |
+| `resource_id`    | `false`  | The code of a resource.          |
+| `resource_type`  | `false`  | The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the `resource_id`. Default is `event`                              |
 | `tags`           | `false`  | Returns all invites with any matching tags                                                                                                                                                                                                                                                              |
 | `external_id`    | `false`  | Only return invites matching this `external_id`                                                                                                                                                                                                                                                         |
 | `name`           | `false`  | Only return invites matching this `name`                                                                                                                                                                                                                                                                |
