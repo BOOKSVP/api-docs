@@ -122,9 +122,9 @@ Events typically represent a single event that you are hosting and can be used t
 | `end_time`      | string    | The time the event ends                          |
 | `public_url`    | string    | The public URL for the event                     |
 | `banner_image`  | string    | The banner image for the event                   |
-| `resource_tags` | array     | Internal tags assigned to the Event              |
-| `created_at`    | timestamp | Timestamp when the booking was Created           |
-| `updated_at`    | timestamp | Timestamp when the booking was Updated           |
+| `resource_tags` | array     | Internal tags assigned to the event              |
+| `created_at`    | timestamp | Timestamp when the event was created           |
+| `updated_at`    | timestamp | Timestamp when the event was updated           |
 
 ## Retrieve an event
 
@@ -141,7 +141,7 @@ curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-65
   "object": "event",
   "code": "efa400",
   "name": "Summer Party",
-  "reference": "",
+  "reference": "Summer Party (VIP 1)",
   "description": "A summer meet and greet for our VIP guests",
   "time_zone": "Europe/London",
   "start_date": "2023-05-18",
@@ -156,7 +156,7 @@ curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-65
 }
 ```
 
-Retrieves the details of an event that has previously been created.
+Retrieves the details of an event.
 
 ### HTTP Request
 
@@ -235,13 +235,13 @@ Collections are a way to group events together. For example, you may want to gro
 | --------------- | --------- | ------------------------------------------------ |
 | `id`            | string    | Unique identifier for the object.                |
 | `object`        | string    | String representing the object’s type            |
-| `code`          | string    | A unique reference for the event used in the URL |
-| `name`          | string    | Public facing event name                         |
-| `public_url`    | string    | The public URL for the event                     |
-| `banner_image`  | string    | The banner image for the event                   |
-| `resource_tags` | array     | Internal tags assigned to the Event              |
-| `created_at`    | timestamp | Timestamp when the booking was Created           |
-| `updated_at`    | timestamp | Timestamp when the booking was Updated           |
+| `code`          | string    | A unique reference for the collection used in the URL |
+| `name`          | string    | Public facing collection name                         |
+| `public_url`    | string    | The public URL for the collection                     |
+| `banner_image`  | string    | The banner image for the collection                   |
+| `resource_tags` | array     | Internal tags assigned to the collection              |
+| `created_at`    | timestamp | Timestamp when the collection was created           |
+| `updated_at`    | timestamp | Timestamp when the collection was updated           |
 
 ## Retrieve a collection
 
@@ -266,7 +266,7 @@ curl -X GET "https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952
 }
 ```
 
-Retrieves the details of a collection that has previously been created.
+Retrieves the details of a collection.
 
 ### HTTP Request
 
