@@ -66,6 +66,8 @@ If this is returned, then a secondary key value pair will be available labeled `
 
 This will be used as a cursor for use in pagination, where providing the param `starting_after` with the `last_element_id` in your subsequent call will return the next page of results, and providing the param `ending_before` with the `last_element_id` will return the previous page of results.
 
+By default, results are returned in pages with a size of 50 elements. By providing `limit` and a value between 1 and 99 in the API call, the page size can be increased or decreased.
+
 # Resources
 
 **Resource** is the collective term for _Event_ and _Collection_ objects. Some functionality, such as creating invites can apply to either _Event_ or _Collection_ objects- so for simplicity, we refer to them as a _Resource_ in the documentation.
@@ -503,6 +505,8 @@ curl "https://app.artsvp.com/api/v2/bookings" \
 {
   "object": "list",
   "url": "/v2/bookings",
+  "has_more": true,
+  "last_booking_id": "boo-833995e0-f3a0-4112-be05-8a240d33aeda",
   "data": [
     {
       "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
