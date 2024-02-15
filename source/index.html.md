@@ -561,7 +561,7 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 # Invites
 
-Invites exist as a vehicle for a user to create a `booking`. They can be used simply as a unique booking link or be pre-configured with information to define the booking flow or lock the booking to a particular user (name and email). You also have control over the number of times an Invite can be used (number of bookings created).
+Invites exist as a vehicle for a user to create a `booking`. They can be used simply as a unique invite link or be pre-configured with information to define the booking flow or lock the booking to a particular user (name and email). You also have control over the number of times an Invite can be used (number of bookings created).
 
 <aside>
 Matching booking data (name, email, meta_data etc..) will be absorbed by the booking once the booking has been created.
