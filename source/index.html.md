@@ -552,9 +552,11 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 | Parameter        | Required | Description                                                                                                                                                                                                                                                                                             |
 | ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `external_id`    | `false`  | External ID associated with the booking                                                                                                                                                                                                                                                                 |
-| `email`          | `false`  | Email used to create the booking                                                                                                                                                                                                                                                                        |
-| `tags`           | `false`  | Tags associated to the booking                                                                                                                                                                                                                                                                          |
+| `external_id`    | `false`  | External ID associated with the booking  |
+| `email`          | `false`  | Email used to create the booking  |
+| `reference`           | `false`  | Reference associated to the booking  |
+| `tags`           | `false`  | Tags associated to the booking  |
+| `event_resource_tags`      | `false`  | Tags associated to the event the booking belongs to |
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 | `limit`  | `false`  | An integer value between 1 and 99 that will modify the page size returned |
@@ -892,7 +894,7 @@ Create multiple invites with a single API call
 
 | Parameter           | Required   | Description                                                                                                                                  |
 | ------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `resource_tags`     | **`true`** | Invites will be creates for all resources with matching tags                                                                                 |
+| `resource_tags`     | **`true`** | Invites will be created for all resources with matching tags                                                                                 |
 | `name`              | `false`    | The `name` of the invite                                                                                                                     |
 | `email`             | `false`    | The `email` of the invite                                                                                                                    |
 | `external_id`       | `false`    | The `external_id` to assign to the invite                                                                                                    |
@@ -969,7 +971,8 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `resource_id`    | `false`  | The code of a resource.          |
 | `resource_type`  | `false`  | The type of the resource. Pass either ‘collection’ or ‘event’ to dictate what resource type the `resource_id`. Default is `event`                              |
-| `tags`           | `false`  | Returns all invites with any matching tags                                                                                                                                                                                                                                                              |
+| `tags`           | `false`  | Returns all invites with any matching tags  |
+| `resource_tags`  | `false`  | Returns all invites with any matching resource tags |
 | `external_id`    | `false`  | Only return invites matching this `external_id`                                                                                                                                                                                                                                                         |
 | `name`           | `false`  | Only return invites matching this `name`                                                                                                                                                                                                                                                                |
 | `email`          | `false`  | Only return invites matching this `email`                                                                                                                                                                                                                                                               |
