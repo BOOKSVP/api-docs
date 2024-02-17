@@ -1102,9 +1102,19 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>Email used to create the booking</td>
 </tr>
 <tr>
+<td><code>reference</code></td>
+<td><code>false</code></td>
+<td>Reference associated to the booking</td>
+</tr>
+<tr>
 <td><code>tags</code></td>
 <td><code>false</code></td>
 <td>Tags associated to the booking</td>
+</tr>
+<tr>
+<td><code>event_resource_tags</code></td>
+<td><code>false</code></td>
+<td>Tags associated to the event the booking belongs to</td>
 </tr>
 <tr>
 <td><code>starting_after</code></td>
@@ -1577,7 +1587,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <tr>
 <td><code>resource_tags</code></td>
 <td><strong><code>true</code></strong></td>
-<td>Invites will be creates for all resources with matching tags</td>
+<td>Invites will be created for all resources with matching tags</td>
 </tr>
 <tr>
 <td><code>name</code></td>
@@ -1699,6 +1709,11 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <td><code>tags</code></td>
 <td><code>false</code></td>
 <td>Returns all invites with any matching tags</td>
+</tr>
+<tr>
+<td><code>resource_tags</code></td>
+<td><code>false</code></td>
+<td>Returns all invites with any matching resource tags</td>
 </tr>
 <tr>
 <td><code>external_id</code></td>
