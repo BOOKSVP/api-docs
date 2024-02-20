@@ -148,6 +148,8 @@ curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-65
   "start_time": "2023-05-18T10:00:00.000+01:00",
   "end_date": "2023-05-18",
   "end_time": "2023-05-18T17:00:00.000+01:00",
+  "location_name": "Gallery ABC",
+  "location_address": "123 Artists Way",
   "public_url": "http://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
   "resource_tags": ["vip", "art_fair"],
