@@ -93,6 +93,8 @@ Events typically represent a single event that you are hosting and can be used t
   "start_time": "2023-05-18T10:00:00.000+01:00",
   "end_date": "2023-05-18",
   "end_time": "2023-05-18T17:00:00.000+01:00",
+  "location_name": "Gallery ABC",
+  "location_address": "123 Artists Way",
   "public_url": "http://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
   "resource_tags": ["vip", "art_fair"],
@@ -116,6 +118,8 @@ Events typically represent a single event that you are hosting and can be used t
 | `start_time`    | string    | The time the event starts                        |
 | `end_date`      | string    | The date the event ends                          |
 | `end_time`      | string    | The time the event ends                          |
+| `location_name`      | string    | The name of the location the event is being held at   |
+| `location_address`      | string    | The address of the location the event is being held at          |
 | `public_url`    | string    | The public URL for the event                     |
 | `banner_image`  | string    | The banner image for the event                   |
 | `resource_tags` | array     | Internal tags assigned to the event              |
