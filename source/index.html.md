@@ -355,6 +355,7 @@ Each booking has a `status` field which denotes where the booking is within the 
   },
   "tags": [],
   "resource_tags": ["vip", "new_user"],
+  "agree_to_mailing_list": true,
   "meta_data": {},
   "external_id": "abc123",
   "created_at": "2021-10-21T15:22:35.758Z",
@@ -380,6 +381,7 @@ Each booking has a `status` field which denotes where the booking is within the 
 | `event`            | hash      | The event object the booking is made for                   |
 | `tags`             | array     | Tags assigned to the booking                                  |
 | `resource_tags`    | array     | Tags assigned to the `Booking Resource`                       |
+| `agree_to_mailing_list`    | boolean     | Agreement to join mailing list by primary guest     |
 | `meta_data`        | hash      | Meta Data assigned to the booking                             |
 | `external_id`      | string    | External ID assigned to the booking                           |
 | `created_at`       | timestamp | Timestamp when the booking was created                        |
