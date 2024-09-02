@@ -129,7 +129,7 @@ Events typically represent a single event that you are hosting and can be used t
 ## Retrieve an event
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767" \
+curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767" \
   -H "Authorization: my_api_key"
 ```
 
@@ -162,7 +162,7 @@ Retrieves the details of an event.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/events/:id`
+`GET https://app.artsvp.com/api/v3/events/:id`
 
 ### Parameters
 
@@ -173,7 +173,7 @@ Retrieves the details of an event.
 ## List all events
 
 ```shell
-curl "https://app.artsvp.com/api/v2/events" \
+curl "https://app.artsvp.com/api/v3/events" \
   -H "Authorization: my_api_key"
 ```
 
@@ -182,7 +182,7 @@ curl "https://app.artsvp.com/api/v2/events" \
 ```json
 {
   "object": "list",
-  "url": "/v2/events",
+  "url": "/v3/events",
   "data": [
     {
       "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
@@ -207,7 +207,7 @@ Return a list of all events your Organisation owns.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/events`
+`GET https://app.artsvp.com/api/v3/events`
 
 # Collections
 
@@ -248,7 +248,7 @@ Collections are a way to group events together. For example, you may want to gro
 ## Retrieve a collection
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826" \
+curl -X GET "https://app.artsvp.com/api/v3/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826" \
   -H "Authorization: my_api_key"
 ```
 
@@ -272,7 +272,7 @@ Retrieves the details of a collection.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/collections/:id`
+`GET https://app.artsvp.com/api/v3/collections/:id`
 
 ### Parameters
 
@@ -283,7 +283,7 @@ Retrieves the details of a collection.
 ## List all collections
 
 ```shell
-curl "https://app.artsvp.com/api/v2/collections" \
+curl "https://app.artsvp.com/api/v3/collections" \
   -H "Authorization: my_api_key"
 ```
 
@@ -292,7 +292,7 @@ curl "https://app.artsvp.com/api/v2/collections" \
 ```json
 {
   "object": "list",
-  "url": "/v2/collections",
+  "url": "/v3/collections",
   "data": [
     {
         "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
@@ -317,7 +317,7 @@ Return a list of all collections your Organisation owns.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/collections`
+`GET https://app.artsvp.com/api/v3/collections`
 
 # Bookings
 
@@ -390,7 +390,7 @@ Each booking has a `status` field which denotes where the booking is within the 
 ## Retrieve a booking
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
+curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
   -H "Authorization: my_api_key"
 ```
 
@@ -433,7 +433,7 @@ Retrieves the details of a booking.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/bookings/:id`
+`GET https://app.artsvp.com/api/v3/bookings/:id`
 
 ### Parameters
 
@@ -444,7 +444,7 @@ Retrieves the details of a booking.
 ## Update a booking
 
 ```shell
-curl -X PATCH "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
+curl -X PATCH "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
   -H "Authorization: my_api_key"
   -d external_id=test123
 ```
@@ -488,7 +488,7 @@ Updates a booking for certain whitelisted attributes.
 
 ### HTTP Request
 
-`PATCH https://app.artsvp.com/api/v2/bookings/:id`
+`PATCH https://app.artsvp.com/api/v3/bookings/:id`
 
 ### Parameters
 
@@ -502,7 +502,7 @@ Updates a booking for certain whitelisted attributes.
 ## List all bookings
 
 ```shell
-curl "https://app.artsvp.com/api/v2/bookings" \
+curl "https://app.artsvp.com/api/v3/bookings" \
   -H "Authorization: my_api_key"
   -d external_id="abc123"
 ```
@@ -512,7 +512,7 @@ curl "https://app.artsvp.com/api/v2/bookings" \
 ```json
 {
   "object": "list",
-  "url": "/v2/bookings",
+  "url": "/v3/bookings",
   "has_more": true,
   "last_booking_id": "boo-833995e0-f3a0-4112-be05-8a240d33aeda",
   "data": [
@@ -554,7 +554,7 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/bookings`
+`GET https://app.artsvp.com/api/v3/bookings`
 
 ### Parameters
 
@@ -639,7 +639,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 ## Create an invite
 
 ```shell
-curl -X POST "https://app.artsvp.com/api/v2/invites" \
+curl -X POST "https://app.artsvp.com/api/v3/invites" \
   -H "Authorization: my_api_key"
   -d name="Lucy Green"
   -d email="lucy@example.com"
@@ -687,7 +687,7 @@ Use a **filter** to prevent duplicate invites from being created. If you attempt
 
 ### HTTP Request
 
-`POST https://app.artsvp.com/api/v2/invites`
+`POST https://app.artsvp.com/api/v3/invites`
 
 ### Parameters
 
@@ -709,7 +709,7 @@ Use a **filter** to prevent duplicate invites from being created. If you attempt
 ## Retrieve an invite
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
+curl -X GET "https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
 ```
 
@@ -754,7 +754,7 @@ Retrieves the details of an invite. Supply invite id from either an invite creat
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/invites/:id`
+`GET https://app.artsvp.com/api/v3/invites/:id`
 
 ### Parameters
 
@@ -765,7 +765,7 @@ Retrieves the details of an invite. Supply invite id from either an invite creat
 ## Update an invite
 
 ```shell
-curl -X PATCH "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
+curl -X PATCH "https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
   -d total_count=10
 ```
@@ -806,7 +806,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 
 ### HTTP Request
 
-`PATCH https://app.artsvp.com/api/v2/invites/:id`
+`PATCH https://app.artsvp.com/api/v3/invites/:id`
 
 ### Parameters
 
@@ -822,7 +822,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 ## Delete an invite
 
 ```shell
-curl -X DELETE "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
+curl -X DELETE "https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
 ```
 
@@ -836,12 +836,12 @@ Deletes the invite.
 
 ### HTTP Request
 
-`DELETE https://app.artsvp.com/api/v2/invites/:id`
+`DELETE https://app.artsvp.com/api/v3/invites/:id`
 
 ## Batch create invites
 
 ```shell
-curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
+curl -X POST "https://app.artsvp.com/api/v3/invites/batch" \
   -H "Authorization: my_api_key"
   -d name="Lucy Green"
   -d email="lucy@example.com"
@@ -853,7 +853,7 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
 ```json
 {
   "object": "batch",
-  "url": "/v2/invites/batch",
+  "url": "/v3/invites/batch",
   "data": [
     {
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
@@ -896,7 +896,7 @@ Create multiple invites with a single API call
 
 ### HTTP Request
 
-`POST https://app.artsvp.com/api/v2/invites/batch`
+`POST https://app.artsvp.com/api/v3/invites/batch`
 
 ### Parameters
 
@@ -920,7 +920,7 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 ## List all invites
 
 ```shell
-curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
+curl "https://app.artsvp.com/api/v3/invites?user_id=123" \
   -H "Authorization: my_api_key"
   -d resource_id="3f10ed"
 ```
@@ -930,7 +930,7 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
 ```json
 {
   "object": "list",
-  "url": "/v2/invites",
+  "url": "/v3/invites",
   "has_more": true,
   "last_invite_id": "inv-833995e0-f3a0-4112-be05-8a240d33aeda",
   "data": [
@@ -971,7 +971,7 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/invites`
+`GET https://app.artsvp.com/api/v3/invites`
 
 ### Parameters
 
