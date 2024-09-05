@@ -556,6 +556,29 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 
 `GET https://app.artsvp.com/api/v3/bookings`
 
+Filter by status:
+
+```shell
+  curl "http://app.www.localhost:3000/api/v3/bookings?status=is_confirmed" \
+  -H "Authorization: my-api_key"
+```
+
+Filter by event_ids:
+
+```shell
+curl "http://app.www.localhost:3000/api/v3/bookings?event_ids[]=eve-73bb9047-18e1-4290-b2fa-43ee1abc10af&event_ids[]=eve-0701ddd0-2e2b-446a-b6f1-1c9dcfa71092" \
+  -H "Authorization: my_api_key"
+```
+
+Filter by meta_data:
+
+Encoding json: meta_data='{"art":"fair"}'
+
+```shell
+  curl "http://app.www.localhost:3000/api/v3/bookings?meta_data=%7B%22art%22%3A%22fair%22%7D" \
+  -H "Authorization: my_api_key"
+```
+
 ### Parameters
 
 | Parameter        | Required | Description                                                                                                                                                                                                                                                                                             |
@@ -569,8 +592,8 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 | `limit`  | `false`  | An integer value between 1 and 99 that will modify the page size returned |
 | `status`   | `false` | The booking status. Prefixed with `is_`, can be `pending`, `waitlist`, `confirmed`, `cancelled`, `rejected`, `expired`, `interested` |
-| `event_ids`| `false` | An array of public_ids of events to filter bookings on |
-| `meta_data`| `false` | An object (hash) of key value pairs to filter bookings containing matching metadata |
+| `event_ids`| `false` | An array of public_ids of events to filter bookings on. IDs begin with `eve-` |
+| `meta_data`| `false` | An object (hash) of key value pairs to filter bookings containing matching metadata. Url encoded. |
 
 # Invites
 
