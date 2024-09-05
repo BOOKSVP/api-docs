@@ -1031,4 +1031,4 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 | `status`   | `false` | The invite status. Can be `active` or `declined` |
-| `meta_data`| `false` | An object (hash) of key value pairs to filter invites containing matching metadata. Url encoded. |
+
