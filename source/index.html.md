@@ -335,8 +335,8 @@ Each booking has a `status` field which denotes where the booking is within the 
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "size": 5,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -402,8 +402,8 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "size": 5,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -437,9 +437,9 @@ Retrieves the details of a booking.
 
 ### Parameters
 
-| Parameter | Required   | Description                       |
-| --------- | ---------- | --------------------------------- |
-| `id`      | **`true`** | The ID of the booking to retrieve |
+| Parameter  | Required    | Description                       |
+| ---------- | ----------- | --------------------------------- |
+| `id`       | **`true`**  | The ID of the booking to retrieve |
 
 ## Update a booking
 
@@ -457,8 +457,8 @@ curl -X PATCH "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "size": 5,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -521,8 +521,8 @@ curl "https://app.artsvp.com/api/v3/bookings" \
       "object": "booking",
       "reference": "C922-4EBA-1F8C",
       "status": "is_confirmed",
-      "name": "Mike",
-      "email": "mike@artsvp.com",
+      "name": "Guest",
+      "email": "guest@artsvp.com",
       "size": 5,
       "start_time_utc": "2022-01-01T13:00:00.000Z",
       "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -568,6 +568,9 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 | `limit`  | `false`  | An integer value between 1 and 99 that will modify the page size returned |
+| `status`   | `false` | The booking status. Prefixed with `is_`, can be `pending`, `waitlist`, `confirmed`, `cancelled`, `rejected`, `expired`, `interested` |
+| `event_ids`| `false` | An array of public_ids of events to filter bookings on |
+| `meta_data`| `false` | An object (hash) of key value pairs to filter bookings containing matching metadata |
 
 # Invites
 
@@ -586,8 +589,8 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
   "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "372abb",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "golden": false,
   "register_interest": false,
   "url": "https://invite.artsvp.com/372abb",
@@ -859,8 +862,8 @@ curl -X POST "https://app.artsvp.com/api/v3/invites/batch" \
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
-      "name": "Mike",
-      "email": "mike@artsvp.com",
+      "name": "Guest",
+      "email": "guest@artsvp.com",
       "golden": false,
       "register_interest": false,
       "url": "https://invite.artsvp.com/372abb",
@@ -938,8 +941,8 @@ curl "https://app.artsvp.com/api/v3/invites?user_id=123" \
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
-      "name": "Mike",
-      "email": "mike@artsvp.com",
+      "name": "Guest",
+      "email": "guest@artsvp.com",
       "golden": false,
       "register_interest": false,
       "url": "https://invite.artsvp.com/372abb",
@@ -985,5 +988,6 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | `name`           | `false`  | Only return invites matching this `name`                                                                                                                                                                                                                                                                |
 | `email`          | `false`  | Only return invites matching this `email`                                                                                                                                                                                                                                                               |
 | `limit`  | `false`  | An integer value between 1 and 99 that will modify the page size returned |
+| `meta_data`| `false` | An object (hash) of key value pairs to filter invites containing matching metadata |
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
