@@ -550,34 +550,33 @@ curl "https://app.artsvp.com/api/v3/bookings" \
   ]
 ```
 
-Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.
-
-### HTTP Request
-
-`GET https://app.artsvp.com/api/v3/bookings`
-
-#### Filter by status:
+> Filter by status:
 
 ```shell
   curl "http://app.www.localhost:3000/api/v3/bookings?status=is_confirmed" \
   -H "Authorization: my-api_key"
 ```
 
-#### Filter by event_ids:
+> Filter by event_ids:
 
 ```shell
 curl "http://app.www.localhost:3000/api/v3/bookings?event_ids[]=eve-73bb9047-18e1-4290-b2fa-43ee1abc10af&event_ids[]=eve-0701ddd0-2e2b-446a-b6f1-1c9dcfa71092" \
   -H "Authorization: my_api_key"
 ```
 
-#### Filter by meta_data:
-
-*Encoded json: meta_data='{"art":"fair"}'*
+> Filter by meta_data. Ex. Url encoded this json: meta_data='{"art":"fair"}':
 
 ```shell
   curl "http://app.www.localhost:3000/api/v3/bookings?meta_data=%7B%22art%22%3A%22fair%22%7D" \
   -H "Authorization: my_api_key"
 ```
+
+Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v3/bookings`
+
 
 ### Parameters
 
@@ -993,27 +992,26 @@ curl "https://app.artsvp.com/api/v3/invites?user_id=123" \
   ]
 ```
 
-Return a list of all invites your Organisation owns. You can optionally scope your request with parameters.
-
-### HTTP Request
-
-`GET https://app.artsvp.com/api/v3/invites`
-
-#### Filter by status:
+> You can also filter by status:
 
 ```shell
   curl "http://app.www.localhost:3000/api/v3/invites?status=active" \
   -H "Authorization: my-api_key"
 ```
 
-#### Filter by meta_data:
-
-*Encoded json: meta_data='{"art":"fair"}'*
+> Filter by meta_data, Ex. Url encoded this json: meta_data='{"art":"fair"}'
 
 ```shell
   curl "http://app.www.localhost:3000/api/v3/invites?meta_data=%7B%22art%22%3A%22fair%22%7D" \
   -H "Authorization: my_api_key"
 ```
+
+Return a list of all invites your Organisation owns. You can optionally scope your request with parameters.
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v3/invites`
+
 
 ### Parameters
 
