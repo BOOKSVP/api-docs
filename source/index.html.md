@@ -95,7 +95,7 @@ Events typically represent a single event that you are hosting and can be used t
   "end_time": "2023-05-18T17:00:00.000+01:00",
   "location_name": "Gallery ABC",
   "location_address": "123 Artists Way",
-  "public_url": "http://artsvp.com/efa400",
+  "public_url": "https://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
   "resource_tags": ["vip", "art_fair"],
   "created_at": "2023-04-06T15:12:08.671Z",
@@ -150,7 +150,7 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
   "end_time": "2023-05-18T17:00:00.000+01:00",
   "location_name": "Gallery ABC",
   "location_address": "123 Artists Way",
-  "public_url": "http://artsvp.com/efa400",
+  "public_url": "https://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
   "resource_tags": ["vip", "art_fair"],
   "created_at": "2023-04-06T15:12:08.671Z",
@@ -223,7 +223,7 @@ Collections are a way to group events together. For example, you may want to gro
   "object": "collection",
   "code": "433ca2",
   "name": "VIP program",
-  "public_url": "http://localhost:3000/433ca2",
+  "public_url": "https://artsvp.com/433ca2",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
   "resource_tags": [],
   "created_at": "2023-04-21T09:21:51.167Z",
@@ -260,7 +260,7 @@ curl -X GET "https://app.artsvp.com/api/v3/collection/col-ab281a7f-c85e-4ecb-952
   "object": "collection",
   "code": "433ca2",
   "name": "VIP program",
-  "public_url": "http://localhost:3000/433ca2",
+  "public_url": "https://artsvp.com/433ca2",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
   "resource_tags": [],
   "created_at": "2023-04-21T09:21:51.167Z",
@@ -553,21 +553,21 @@ curl "https://app.artsvp.com/api/v3/bookings" \
 > Filter by status:
 
 ```shell
-  curl "http://app.www.localhost:3000/api/v3/bookings?status=is_confirmed" \
+  curl "https://app.artsvp.com/api/v3/bookings?status=is_confirmed" \
   -H "Authorization: my-api_key"
 ```
 
 > Filter by event_ids:
 
 ```shell
-curl "http://app.www.localhost:3000/api/v3/bookings?event_ids[]=eve-73bb9047-18e1-4290-b2fa-43ee1abc10af&event_ids[]=eve-0701ddd0-2e2b-446a-b6f1-1c9dcfa71092" \
+curl "https://app.artsvp.com/api/v3/bookings?event_ids[]=eve-73bb9047-18e1-4290-b2fa-43ee1abc10af&event_ids[]=eve-0701ddd0-2e2b-446a-b6f1-1c9dcfa71092" \
   -H "Authorization: my_api_key"
 ```
 
 > Filter by meta_data. Ex. Url encoded this json: meta_data='{"art":"fair"}':
 
 ```shell
-  curl "http://app.www.localhost:3000/api/v3/bookings?meta_data=%7B%22art%22%3A%22fair%22%7D" \
+  curl "https://app.artsvp.com/api/v3/bookings?meta_data=%7B%22art%22%3A%22fair%22%7D" \
   -H "Authorization: my_api_key"
 ```
 
@@ -995,14 +995,14 @@ curl "https://app.artsvp.com/api/v3/invites?user_id=123" \
 > You can also filter by status:
 
 ```shell
-  curl "http://app.www.localhost:3000/api/v3/invites?status=active" \
+  curl "https://app.artsvp.com/api/v3/invites?status=active" \
   -H "Authorization: my-api_key"
 ```
 
 > Filter by meta_data, Ex. Url encoded this json: meta_data='{"art":"fair"}'
 
 ```shell
-  curl "http://app.www.localhost:3000/api/v3/invites?meta_data=%7B%22art%22%3A%22fair%22%7D" \
+  curl "https://app.artsvp.com/api/v3/invites?meta_data=%7B%22art%22%3A%22fair%22%7D" \
   -H "Authorization: my_api_key"
 ```
 
