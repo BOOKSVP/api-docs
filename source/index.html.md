@@ -95,7 +95,7 @@ Events typically represent a single event that you are hosting and can be used t
   "end_time": "2023-05-18T17:00:00.000+01:00",
   "location_name": "Gallery ABC",
   "location_address": "123 Artists Way",
-  "public_url": "http://artsvp.com/efa400",
+  "public_url": "https://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
   "resource_tags": ["vip", "art_fair"],
   "created_at": "2023-04-06T15:12:08.671Z",
@@ -129,7 +129,7 @@ Events typically represent a single event that you are hosting and can be used t
 ## Retrieve an event
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767" \
+curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767" \
   -H "Authorization: my_api_key"
 ```
 
@@ -150,7 +150,7 @@ curl -X GET "https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-65
   "end_time": "2023-05-18T17:00:00.000+01:00",
   "location_name": "Gallery ABC",
   "location_address": "123 Artists Way",
-  "public_url": "http://artsvp.com/efa400",
+  "public_url": "https://artsvp.com/efa400",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
   "resource_tags": ["vip", "art_fair"],
   "created_at": "2023-04-06T15:12:08.671Z",
@@ -162,7 +162,7 @@ Retrieves the details of an event.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/events/:id`
+`GET https://app.artsvp.com/api/v3/events/:id`
 
 ### Parameters
 
@@ -173,7 +173,7 @@ Retrieves the details of an event.
 ## List all events
 
 ```shell
-curl "https://app.artsvp.com/api/v2/events" \
+curl "https://app.artsvp.com/api/v3/events" \
   -H "Authorization: my_api_key"
 ```
 
@@ -182,7 +182,7 @@ curl "https://app.artsvp.com/api/v2/events" \
 ```json
 {
   "object": "list",
-  "url": "/v2/events",
+  "url": "/v3/events",
   "data": [
     {
       "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
@@ -207,7 +207,7 @@ Return a list of all events your Organisation owns.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/events`
+`GET https://app.artsvp.com/api/v3/events`
 
 # Collections
 
@@ -223,7 +223,7 @@ Collections are a way to group events together. For example, you may want to gro
   "object": "collection",
   "code": "433ca2",
   "name": "VIP program",
-  "public_url": "http://localhost:3000/433ca2",
+  "public_url": "https://artsvp.com/433ca2",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
   "resource_tags": [],
   "created_at": "2023-04-21T09:21:51.167Z",
@@ -248,7 +248,7 @@ Collections are a way to group events together. For example, you may want to gro
 ## Retrieve a collection
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826" \
+curl -X GET "https://app.artsvp.com/api/v3/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826" \
   -H "Authorization: my_api_key"
 ```
 
@@ -260,7 +260,7 @@ curl -X GET "https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952
   "object": "collection",
   "code": "433ca2",
   "name": "VIP program",
-  "public_url": "http://localhost:3000/433ca2",
+  "public_url": "https://artsvp.com/433ca2",
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png",
   "resource_tags": [],
   "created_at": "2023-04-21T09:21:51.167Z",
@@ -272,7 +272,7 @@ Retrieves the details of a collection.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/collections/:id`
+`GET https://app.artsvp.com/api/v3/collections/:id`
 
 ### Parameters
 
@@ -283,7 +283,7 @@ Retrieves the details of a collection.
 ## List all collections
 
 ```shell
-curl "https://app.artsvp.com/api/v2/collections" \
+curl "https://app.artsvp.com/api/v3/collections" \
   -H "Authorization: my_api_key"
 ```
 
@@ -292,7 +292,7 @@ curl "https://app.artsvp.com/api/v2/collections" \
 ```json
 {
   "object": "list",
-  "url": "/v2/collections",
+  "url": "/v3/collections",
   "data": [
     {
         "id": "col-ab281a7f-c85e-4ecb-952c-b17f9e181826",
@@ -317,7 +317,7 @@ Return a list of all collections your Organisation owns.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/collections`
+`GET https://app.artsvp.com/api/v3/collections`
 
 # Bookings
 
@@ -335,8 +335,8 @@ Each booking has a `status` field which denotes where the booking is within the 
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "size": 5,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -390,7 +390,7 @@ Each booking has a `status` field which denotes where the booking is within the 
 ## Retrieve a booking
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
+curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
   -H "Authorization: my_api_key"
 ```
 
@@ -402,8 +402,8 @@ curl -X GET "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "size": 5,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -433,18 +433,18 @@ Retrieves the details of a booking.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/bookings/:id`
+`GET https://app.artsvp.com/api/v3/bookings/:id`
 
 ### Parameters
 
-| Parameter | Required   | Description                       |
-| --------- | ---------- | --------------------------------- |
-| `id`      | **`true`** | The ID of the booking to retrieve |
+| Parameter  | Required    | Description                       |
+| ---------- | ----------- | --------------------------------- |
+| `id`       | **`true`**  | The ID of the booking to retrieve |
 
 ## Update a booking
 
 ```shell
-curl -X PATCH "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
+curl -X PATCH "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f" \
   -H "Authorization: my_api_key"
   -d external_id=test123
 ```
@@ -457,8 +457,8 @@ curl -X PATCH "https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e
   "object": "booking",
   "reference": "C922-4EBA-1F8C",
   "status": "is_confirmed",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "size": 5,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -488,7 +488,7 @@ Updates a booking for certain whitelisted attributes.
 
 ### HTTP Request
 
-`PATCH https://app.artsvp.com/api/v2/bookings/:id`
+`PATCH https://app.artsvp.com/api/v3/bookings/:id`
 
 ### Parameters
 
@@ -502,7 +502,7 @@ Updates a booking for certain whitelisted attributes.
 ## List all bookings
 
 ```shell
-curl "https://app.artsvp.com/api/v2/bookings" \
+curl "https://app.artsvp.com/api/v3/bookings" \
   -H "Authorization: my_api_key"
   -d external_id="abc123"
 ```
@@ -512,7 +512,7 @@ curl "https://app.artsvp.com/api/v2/bookings" \
 ```json
 {
   "object": "list",
-  "url": "/v2/bookings",
+  "url": "/v3/bookings",
   "has_more": true,
   "last_booking_id": "boo-833995e0-f3a0-4112-be05-8a240d33aeda",
   "data": [
@@ -521,8 +521,8 @@ curl "https://app.artsvp.com/api/v2/bookings" \
       "object": "booking",
       "reference": "C922-4EBA-1F8C",
       "status": "is_confirmed",
-      "name": "Mike",
-      "email": "mike@artsvp.com",
+      "name": "Guest",
+      "email": "guest@artsvp.com",
       "size": 5,
       "start_time_utc": "2022-01-01T13:00:00.000Z",
       "start_time_local": "2022-01-01T13:00:00.000+00:00",
@@ -550,11 +550,33 @@ curl "https://app.artsvp.com/api/v2/bookings" \
   ]
 ```
 
+> Filter by status:
+
+```shell
+  curl "https://app.artsvp.com/api/v3/bookings?status=is_confirmed" \
+  -H "Authorization: my-api_key"
+```
+
+> Filter by event_ids:
+
+```shell
+curl "https://app.artsvp.com/api/v3/bookings?event_ids[]=eve-73bb9047-18e1-4290-b2fa-43ee1abc10af&event_ids[]=eve-0701ddd0-2e2b-446a-b6f1-1c9dcfa71092" \
+  -H "Authorization: my_api_key"
+```
+
+> Filter by meta_data. Ex. Url encoded this json: meta_data='{"art":"fair"}':
+
+```shell
+  curl "https://app.artsvp.com/api/v3/bookings?meta_data=%7B%22art%22%3A%22fair%22%7D" \
+  -H "Authorization: my_api_key"
+```
+
 Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/bookings`
+`GET https://app.artsvp.com/api/v3/bookings`
+
 
 ### Parameters
 
@@ -568,6 +590,9 @@ Return a list of all bookings your Organisation owns. You can optionally scope y
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 | `limit`  | `false`  | An integer value between 1 and 99 that will modify the page size returned |
+| `status`   | `false` | The booking status. Prefixed with `is_`, can be `pending`, `waitlist`, `confirmed`, `cancelled`, `rejected`, `expired`, `interested` |
+| `event_ids`| `false` | An array of public_ids of events to filter bookings on. IDs begin with `eve-` |
+| `meta_data`| `false` | An object (hash) of key value pairs to filter bookings containing matching metadata. Url encoded. |
 
 # Invites
 
@@ -586,8 +611,8 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
   "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "object": "invite",
   "code": "372abb",
-  "name": "Mike",
-  "email": "mike@artsvp.com",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
   "golden": false,
   "register_interest": false,
   "url": "https://invite.artsvp.com/372abb",
@@ -639,7 +664,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 ## Create an invite
 
 ```shell
-curl -X POST "https://app.artsvp.com/api/v2/invites" \
+curl -X POST "https://app.artsvp.com/api/v3/invites" \
   -H "Authorization: my_api_key"
   -d name="Lucy Green"
   -d email="lucy@example.com"
@@ -687,7 +712,7 @@ Use a **filter** to prevent duplicate invites from being created. If you attempt
 
 ### HTTP Request
 
-`POST https://app.artsvp.com/api/v2/invites`
+`POST https://app.artsvp.com/api/v3/invites`
 
 ### Parameters
 
@@ -709,7 +734,7 @@ Use a **filter** to prevent duplicate invites from being created. If you attempt
 ## Retrieve an invite
 
 ```shell
-curl -X GET "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
+curl -X GET "https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
 ```
 
@@ -754,7 +779,7 @@ Retrieves the details of an invite. Supply invite id from either an invite creat
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/invites/:id`
+`GET https://app.artsvp.com/api/v3/invites/:id`
 
 ### Parameters
 
@@ -765,7 +790,7 @@ Retrieves the details of an invite. Supply invite id from either an invite creat
 ## Update an invite
 
 ```shell
-curl -X PATCH "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
+curl -X PATCH "https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
   -d total_count=10
 ```
@@ -806,7 +831,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 
 ### HTTP Request
 
-`PATCH https://app.artsvp.com/api/v2/invites/:id`
+`PATCH https://app.artsvp.com/api/v3/invites/:id`
 
 ### Parameters
 
@@ -822,7 +847,7 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 ## Delete an invite
 
 ```shell
-curl -X DELETE "https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
+curl -X DELETE "https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0" \
   -H "Authorization: my_api_key"
 ```
 
@@ -836,12 +861,12 @@ Deletes the invite.
 
 ### HTTP Request
 
-`DELETE https://app.artsvp.com/api/v2/invites/:id`
+`DELETE https://app.artsvp.com/api/v3/invites/:id`
 
 ## Batch create invites
 
 ```shell
-curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
+curl -X POST "https://app.artsvp.com/api/v3/invites/batch" \
   -H "Authorization: my_api_key"
   -d name="Lucy Green"
   -d email="lucy@example.com"
@@ -853,14 +878,14 @@ curl -X POST "https://app.artsvp.com/api/v2/invites/batch" \
 ```json
 {
   "object": "batch",
-  "url": "/v2/invites/batch",
+  "url": "/v3/invites/batch",
   "data": [
     {
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
-      "name": "Mike",
-      "email": "mike@artsvp.com",
+      "name": "Guest",
+      "email": "guest@artsvp.com",
       "golden": false,
       "register_interest": false,
       "url": "https://invite.artsvp.com/372abb",
@@ -896,7 +921,7 @@ Create multiple invites with a single API call
 
 ### HTTP Request
 
-`POST https://app.artsvp.com/api/v2/invites/batch`
+`POST https://app.artsvp.com/api/v3/invites/batch`
 
 ### Parameters
 
@@ -920,7 +945,7 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 ## List all invites
 
 ```shell
-curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
+curl "https://app.artsvp.com/api/v3/invites?user_id=123" \
   -H "Authorization: my_api_key"
   -d resource_id="3f10ed"
 ```
@@ -930,7 +955,7 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
 ```json
 {
   "object": "list",
-  "url": "/v2/invites",
+  "url": "/v3/invites",
   "has_more": true,
   "last_invite_id": "inv-833995e0-f3a0-4112-be05-8a240d33aeda",
   "data": [
@@ -938,8 +963,8 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
       "id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
       "object": "invite",
       "code": "372abb",
-      "name": "Mike",
-      "email": "mike@artsvp.com",
+      "name": "Guest",
+      "email": "guest@artsvp.com",
       "golden": false,
       "register_interest": false,
       "url": "https://invite.artsvp.com/372abb",
@@ -967,11 +992,26 @@ curl "https://app.artsvp.com/api/v2/invites?user_id=123" \
   ]
 ```
 
+> You can also filter by status:
+
+```shell
+  curl "https://app.artsvp.com/api/v3/invites?status=active" \
+  -H "Authorization: my-api_key"
+```
+
+> Filter by meta_data, Ex. Url encoded this json: meta_data='{"art":"fair"}'
+
+```shell
+  curl "https://app.artsvp.com/api/v3/invites?meta_data=%7B%22art%22%3A%22fair%22%7D" \
+  -H "Authorization: my_api_key"
+```
+
 Return a list of all invites your Organisation owns. You can optionally scope your request with parameters.
 
 ### HTTP Request
 
-`GET https://app.artsvp.com/api/v2/invites`
+`GET https://app.artsvp.com/api/v3/invites`
+
 
 ### Parameters
 
@@ -985,5 +1025,8 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | `name`           | `false`  | Only return invites matching this `name`                                                                                                                                                                                                                                                                |
 | `email`          | `false`  | Only return invites matching this `email`                                                                                                                                                                                                                                                               |
 | `limit`  | `false`  | An integer value between 1 and 99 that will modify the page size returned |
+| `meta_data`| `false` | An object (hash) of key value pairs to filter invites containing matching metadata |
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
+| `status`   | `false` | The invite status. Can be `active` or `declined` |
+
