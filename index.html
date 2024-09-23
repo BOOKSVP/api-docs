@@ -470,7 +470,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18T17:00:00.000+01:00"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"location_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gallery ABC"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"location_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Artists Way"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://artsvp.com/efa400"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/efa400"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"art_fair"</span><span class="p">],</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-04-06T15:12:08.671Z"</span><span class="p">,</span><span class="w">
@@ -575,7 +575,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>Timestamp when the event was updated</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-an-event'>Retrieve an event</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767"</span> <span class="se">\</span>
+<h2 id='retrieve-an-event'>Retrieve an event</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <blockquote>
@@ -595,7 +595,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18T17:00:00.000+01:00"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"location_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gallery ABC"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"location_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Artists Way"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://artsvp.com/efa400"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/efa400"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"art_fair"</span><span class="p">],</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-04-06T15:12:08.671Z"</span><span class="p">,</span><span class="w">
@@ -604,7 +604,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </span></code></pre></div>
 <p>Retrieves the details of an event.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/events/:id</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/events/:id</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
@@ -619,7 +619,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>The id of the event to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-events'>List all events</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v2/events"</span> <span class="se">\</span>
+<h2 id='list-all-events'>List all events</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v3/events"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <blockquote>
@@ -627,7 +627,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/events"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v3/events"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eve-c60d5868-c4cf-4b55-83f2-6578a5173767"</span><span class="p">,</span><span class="w">
@@ -649,7 +649,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </span></code></pre></div>
 <p>Return a list of all events your Organisation owns.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/events</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/events</code></p>
 <h1 id='collections'>Collections</h1>
 <p>Collections are a way to group events together. For example, you may want to group all events for a particular Art Fair together.</p>
 <h2 id='the-collection-object'>The collection object</h2>
@@ -661,7 +661,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"433ca2"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIP program"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:3000/433ca2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/433ca2"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-04-21T09:21:51.167Z"</span><span class="p">,</span><span class="w">
@@ -721,7 +721,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>Timestamp when the collection was updated</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-a-collection'>Retrieve a collection</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826"</span> <span class="se">\</span>
+<h2 id='retrieve-a-collection'>Retrieve a collection</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v3/collection/col-ab281a7f-c85e-4ecb-952c-b17f9e181826"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <blockquote>
@@ -732,7 +732,7 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"433ca2"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIP program"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:3000/433ca2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"public_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.com/433ca2"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/5e52e75e-163f-4754-bad4-7d63d6bc508f.png"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-04-21T09:21:51.167Z"</span><span class="p">,</span><span class="w">
@@ -741,7 +741,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </span></code></pre></div>
 <p>Retrieves the details of a collection.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/collections/:id</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/collections/:id</code></p>
 <h3 id='parameters-2'>Parameters</h3>
 <table><thead>
 <tr>
@@ -756,7 +756,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>The id of the collection to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-collections'>List all collections</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v2/collections"</span> <span class="se">\</span>
+<h2 id='list-all-collections'>List all collections</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v3/collections"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <blockquote>
@@ -764,7 +764,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/collections"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v3/collections"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"col-ab281a7f-c85e-4ecb-952c-b17f9e181826"</span><span class="p">,</span><span class="w">
@@ -786,7 +786,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </span></code></pre></div>
 <p>Return a list of all collections your Organisation owns.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/collections</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/collections</code></p>
 <h1 id='bookings'>Bookings</h1>
 <p>Bookings are unique records that belong to an <code>Event</code>. They hold important information such as the <code>name</code> and <code>email</code> of the person making the booking and and other specifics needed for the events such as the booking <code>size</code>, <code>start_time</code> etc.</p>
 
@@ -800,8 +800,8 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guest"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest@artsvp.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
@@ -930,7 +930,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>Timestamp when the booking was updated</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-a-booking'>Retrieve a booking</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
+<h2 id='retrieve-a-booking'>Retrieve a booking</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <blockquote>
@@ -941,8 +941,8 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guest"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest@artsvp.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
@@ -969,7 +969,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </span></code></pre></div>
 <p>Retrieves the details of a booking.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/bookings/:id</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/bookings/:id</code></p>
 <h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
@@ -984,7 +984,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>The ID of the booking to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-booking'>Update a booking</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
+<h2 id='update-a-booking'>Update a booking</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">external_id</span><span class="o">=</span>test123
 </code></pre></div>
@@ -996,8 +996,8 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guest"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest@artsvp.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
@@ -1024,7 +1024,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </span></code></pre></div>
 <p>Updates a booking for certain whitelisted attributes.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>PATCH https://app.artsvp.com/api/v2/bookings/:id</code></p>
+<p><code>PATCH https://app.artsvp.com/api/v3/bookings/:id</code></p>
 <h3 id='parameters-4'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1054,7 +1054,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>External ID assigned to the booking</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-bookings'>List all bookings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v2/bookings"</span> <span class="se">\</span>
+<h2 id='list-all-bookings'>List all bookings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v3/bookings"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">external_id</span><span class="o">=</span><span class="s2">"abc123"</span>
 </code></pre></div>
@@ -1063,7 +1063,7 @@ You must replace <code>my_api_key</code> with your personal API key.
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/bookings"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v3/bookings"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"last_booking_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boo-833995e0-f3a0-4112-be05-8a240d33aeda"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1072,8 +1072,8 @@ You must replace <code>my_api_key</code> with your personal API key.
       </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C922-4EBA-1F8C"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_confirmed"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guest"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest@artsvp.com"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nl">"start_time_utc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"start_time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T13:00:00.000+00:00"</span><span class="p">,</span><span class="w">
@@ -1100,9 +1100,27 @@ You must replace <code>my_api_key</code> with your personal API key.
     </span><span class="err">...</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
+<blockquote>
+<p>Filter by status:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://app.artsvp.com/api/v3/bookings?status=is_confirmed"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my-api_key"</span>
+</code></pre></div>
+<blockquote>
+<p>Filter by event_ids:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v3/bookings?event_ids[]=eve-73bb9047-18e1-4290-b2fa-43ee1abc10af&amp;event_ids[]=eve-0701ddd0-2e2b-446a-b6f1-1c9dcfa71092"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+</code></pre></div>
+<blockquote>
+<p>Filter by meta_data. Ex. Url encoded this json: meta_data=&#39;{&quot;art&quot;:&quot;fair&quot;}&#39;:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://app.artsvp.com/api/v3/bookings?meta_data=%7B%22art%22%3A%22fair%22%7D"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+</code></pre></div>
 <p>Return a list of all bookings your Organisation owns. You can optionally scope your request with parameters.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/bookings</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/bookings</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1151,6 +1169,21 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td><code>false</code></td>
 <td>An integer value between 1 and 99 that will modify the page size returned</td>
 </tr>
+<tr>
+<td><code>status</code></td>
+<td><code>false</code></td>
+<td>The booking status. Prefixed with <code>is_</code>, can be <code>pending</code>, <code>waitlist</code>, <code>confirmed</code>, <code>cancelled</code>, <code>rejected</code>, <code>expired</code>, <code>interested</code></td>
+</tr>
+<tr>
+<td><code>event_ids</code></td>
+<td><code>false</code></td>
+<td>An array of public_ids of events to filter bookings on. IDs begin with <code>eve-</code></td>
+</tr>
+<tr>
+<td><code>meta_data</code></td>
+<td><code>false</code></td>
+<td>An object (hash) of key value pairs to filter bookings containing matching metadata. Url encoded.</td>
+</tr>
 </tbody></table>
 <h1 id='invites'>Invites</h1>
 <p>Invites exist as a vehicle for a user to create a <code>booking</code>. They can be used simply as a unique invite link or be pre-configured with information to define the booking flow or lock the booking to a particular user (name and email). You also have control over the number of times an Invite can be used (number of bookings created).</p>
@@ -1166,8 +1199,8 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invite"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guest"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest@artsvp.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
@@ -1286,7 +1319,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <td>Timestamp when the invte was updated</td>
 </tr>
 </tbody></table>
-<h2 id='create-an-invite'>Create an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites"</span> <span class="se">\</span>
+<h2 id='create-an-invite'>Create an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v3/invites"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"Lucy Green"</span>
   <span class="nt">-d</span> <span class="nv">email</span><span class="o">=</span><span class="s2">"lucy@example.com"</span>
@@ -1330,7 +1363,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 
 <p>Use a <strong>filter</strong> to prevent duplicate invites from being created. If you attempt to create an invite using a filter, an new invite will only be created if an invite does not already exist with a matching filter. For example, if you filter by email and the email field is <code>email@example.com</code>, a new invite will only be created if an invite does not exist with that email.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
-<p><code>POST https://app.artsvp.com/api/v2/invites</code></p>
+<p><code>POST https://app.artsvp.com/api/v3/invites</code></p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1400,7 +1433,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <td>Filter the creation of the invite to a variable to avoid duplicate invites. Available filters: <code>name</code>, <code>email</code>, <code>external_id</code></td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-an-invite'>Retrieve an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
+<h2 id='retrieve-an-invite'>Retrieve an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <blockquote>
@@ -1441,7 +1474,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 </span></code></pre></div>
 <p>Retrieves the details of an invite. Supply invite id from either an invite creation request or the invite list. This endpoint provides more detail than the list view by including the associated bookings.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/invites/:id</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/invites/:id</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1456,7 +1489,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <td>The code of the invite to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='update-an-invite'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
+<h2 id='update-an-invite'>Update an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">total_count</span><span class="o">=</span>10
 </code></pre></div>
@@ -1493,7 +1526,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 </span></code></pre></div>
 <p>Updates an invite for certain whitelisted attributes. If the invite has already been used, the associated bookings will also show with the updated invite information.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>PATCH https://app.artsvp.com/api/v2/invites/:id</code></p>
+<p><code>PATCH https://app.artsvp.com/api/v3/invites/:id</code></p>
 <h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1533,7 +1566,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <td>Meta Data assigned to the booking</td>
 </tr>
 </tbody></table>
-<h2 id='delete-an-invite'>Delete an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://app.artsvp.com/api/v2/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
+<h2 id='delete-an-invite'>Delete an invite</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://app.artsvp.com/api/v3/invites/inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
 </code></pre></div>
 <blockquote>
@@ -1543,8 +1576,8 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 </code></pre></div>
 <p>Deletes the invite.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
-<p><code>DELETE https://app.artsvp.com/api/v2/invites/:id</code></p>
-<h2 id='batch-create-invites'>Batch create invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v2/invites/batch"</span> <span class="se">\</span>
+<p><code>DELETE https://app.artsvp.com/api/v3/invites/:id</code></p>
+<h2 id='batch-create-invites'>Batch create invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://app.artsvp.com/api/v3/invites/batch"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"Lucy Green"</span>
   <span class="nt">-d</span> <span class="nv">email</span><span class="o">=</span><span class="s2">"lucy@example.com"</span>
@@ -1555,14 +1588,14 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"batch"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/invites/batch"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v3/invites/batch"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invite"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guest"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest@artsvp.com"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
@@ -1595,7 +1628,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 </span></code></pre></div>
 <p>Create multiple invites with a single API call</p>
 <h3 id='http-request-12'>HTTP Request</h3>
-<p><code>POST https://app.artsvp.com/api/v2/invites/batch</code></p>
+<p><code>POST https://app.artsvp.com/api/v3/invites/batch</code></p>
 <h3 id='parameters-9'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1659,7 +1692,7 @@ Matching booking data (name, email, meta_data etc..) will be absorbed by the boo
 <aside class="notice">
 The resource is determined by the resource_tags. If `resource_type` or `resource_id` parameters are passed the batch will fail.
 </aside>
-<h2 id='list-all-invites'>List all invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v2/invites?user_id=123"</span> <span class="se">\</span>
+<h2 id='list-all-invites'>List all invites</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.artsvp.com/api/v3/invites?user_id=123"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
   <span class="nt">-d</span> <span class="nv">resource_id</span><span class="o">=</span><span class="s2">"3f10ed"</span>
 </code></pre></div>
@@ -1668,7 +1701,7 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/invites"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v3/invites"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"last_invite_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv-833995e0-f3a0-4112-be05-8a240d33aeda"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1676,8 +1709,8 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invite"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"372abb"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mike@artsvp.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guest"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"guest@artsvp.com"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"golden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"register_interest"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://invite.artsvp.com/372abb"</span><span class="p">,</span><span class="w">
@@ -1704,9 +1737,21 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
     </span><span class="err">...</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
+<blockquote>
+<p>You can also filter by status:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://app.artsvp.com/api/v3/invites?status=active"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my-api_key"</span>
+</code></pre></div>
+<blockquote>
+<p>Filter by meta_data, Ex. Url encoded this json: meta_data=&#39;{&quot;art&quot;:&quot;fair&quot;}&#39;</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://app.artsvp.com/api/v3/invites?meta_data=%7B%22art%22%3A%22fair%22%7D"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
+</code></pre></div>
 <p>Return a list of all invites your Organisation owns. You can optionally scope your request with parameters.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
-<p><code>GET https://app.artsvp.com/api/v2/invites</code></p>
+<p><code>GET https://app.artsvp.com/api/v3/invites</code></p>
 <h3 id='parameters-10'>Parameters</h3>
 <table><thead>
 <tr>
@@ -1756,6 +1801,11 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <td>An integer value between 1 and 99 that will modify the page size returned</td>
 </tr>
 <tr>
+<td><code>meta_data</code></td>
+<td><code>false</code></td>
+<td>An object (hash) of key value pairs to filter invites containing matching metadata</td>
+</tr>
+<tr>
 <td><code>starting_after</code></td>
 <td><code>false</code></td>
 <td>A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with <code>obj_foo</code>, your subsequent call can include <code>starting_after=obj_foo</code> in order to fetch the next page of the list.</td>
@@ -1764,6 +1814,11 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <td><code>ending_before</code></td>
 <td><code>false</code></td>
 <td>A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with <code>obj_bar</code>, your subsequent call can include <code>ending_before=obj_bar</code> in order to fetch the previous page of the list.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>false</code></td>
+<td>The invite status. Can be <code>active</code> or <code>declined</code></td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
