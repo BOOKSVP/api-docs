@@ -812,6 +812,8 @@ Updates an invite for certain whitelisted attributes. If the invite has already 
 
 | Parameter           | Required | Description                                                                                                                                              |
 | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`              | `false`  | The `name` of the invite                                                                                                                     |
+| `email`             | `false`  | The `email` of the invite                                                                                                                    |
 | `tags`              | `false`  | Any tags passed here will overwrite the existing tags                                                                                                    |
 | `max_bookings`       | `false`  | The max number of times the invite can be used to make a booking, if provided 0, the invite becomes limitless. If no value is provided, max_booking defaults to 1. |
 | `golden`            | `false`  | If set as true, the invite will be created as a golden invite, if set to false, the golden functionality will be removed for the invite                  |
