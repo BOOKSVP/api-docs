@@ -1037,21 +1037,21 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | `status`   | `false` | The invite status. Can be `active` or `declined` |
 
 # Webhooks
-Webhook endpoints can be configured for key webhook event notifications via the [organisation developer page](https://app.artsvp.com/settings/developer). Here you will find the ability to add and modify webhook endpoints for your organisation, in addition to monitoring activity for said endpoints. These are useful when monitoring key resource events such as _Booking_ creation or _Event_ publishing.
+Webhook endpoints can be configured to receive notifications for key events via the [organisation developer page](https://app.artsvp.com/settings/developer). This interface allows you to add, modify, and monitor webhook endpoints for your organisation. Webhooks are particularly valuable for tracking important resource events like booking confirmations or event publications in real-time.
 
 ## The webhook endpoint
 
 > The webhook endpoint
 
-The webhook endpoint UX consists of key parts for any traditional webhook endpoint. These include the URL that recieves the webhook event notifications. A signing secret for additional security. An API version that will dictate the data format provided. A status to control whether or not the endpoint is active or inactive, and an option set to select which event notifications you wish to recieve at that endpoint.
+The webhook endpoint configuration includes several standard components: a destination URL that receives webhook event notifications, a signing secret for enhanced security, an API version selector that determines the data format, a status toggle to set the endpoint as active or inactive, and event type options that let you choose which notifications to receive at this endpoint.
 
 ## Response requirements & Retry policy
 
 > Reponse requirements & Retry policy
 
-Any configured webhook endpoint is _must return a successful 200_ response upon event notification. If anything but a 200 response is returned ARTSVP will register that as a failed attempt at sending that event notification. ARTSVP will then attempt to retry that same event notification up to 9 additional times, exponentially spaced out over time for a total of 10 attempts per a single event notification. If ARTSVP recieves 10 failed attempts across 10 different event notifications, a total of 100 failed attempts, in a row we will move the endpoint into an _Error_ status.
+Your webhook endpoint **must return a successful 200 response** when receiving an event notification. Any other response code will be logged as a failed delivery attempt. When a delivery fails, ARTSVP will retry the same notification 9 additional times at exponentially increasing time intervals, for a total of 10 attempts per event notification. If we encounter 10 consecutive failed event notifications (100 failed attempts total), your endpoint will be automatically moved to an _Error_ status.
 
-When an endpoint moves into an _Error_ status ARTSVP will no longer attempt to send event notifications to that endpoint. We will continue to record event notifications during that time, and upon request to support@artsvp.com we can release those event notifications after moving the status from _Error_ to _Active_. *As a note, if the endpoint status is moved to _Inactive_ ARTSVP _will not_ record event notifications for that endpoint.
+When an endpoint is in _Error_ status, ARTSVP stops sending event notifications but continues recording them. Contact support@artsvp.com to release these stored notifications after you've fixed your endpoint and we've changed its status back to _Active_. Note that if you manually set an endpoint to _Inactive_, ARTSVP will not record or store any event notifications for that endpoint.
 
 ## The outbound webhook event object
 
@@ -1069,4 +1069,4 @@ When an endpoint moves into an _Error_ status ARTSVP will no longer attempt to s
 }
 ```
 
-The outbound webhook event will take the form to the right for its structure and be provided in json format to the webhook endpoint. Each outbound webhook event includes what version of data it is providing as well as the event type. The event types provided in V3 include [booking.created, booking.confirmed, booking.updated, booking.cancelled, event.created, event.updated, event.cancelled, event.published]. Based on the event type, the data will match the according resource structure and can be found in this documentation in it's respective section. The data will also include previous attributes for the resource as needed.
+The outbound webhook event will be delivered in JSON format to your webhook endpoint, following the structure shown on the right. Each webhook event includes the API version and event type. V3 supports the following event types: `booking.created`, `booking.confirmed`, `booking.updated`, `booking.cancelled`, `event.created`, `event.updated`, `event.cancelled`, and `event.published`. The `data` field will contain the resource in the format documented in its respective section. Where applicable, the `data` will also include `previous_attributes` to show what changed in the event.
