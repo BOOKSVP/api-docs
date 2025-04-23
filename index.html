@@ -1853,20 +1853,16 @@ The resource is determined by the resource_tags. If `resource_type` or `resource
 <h1 id='webhooks'>Webhooks</h1>
 <p>Webhook endpoints can be configured to receive notifications for key events via the <a href="https://app.artsvp.com/settings/developer">organisation developer page</a>. This interface allows you to add, modify, and monitor webhook endpoints for your organisation. Webhooks are particularly valuable for tracking important resource events like booking confirmations or event publications in real-time.</p>
 <h2 id='the-webhook-endpoint'>The webhook endpoint</h2>
-<blockquote>
-<p>The webhook endpoint</p>
-</blockquote>
-
 <p>The webhook endpoint configuration includes several standard components: a destination URL that receives webhook event notifications, a signing secret for enhanced security, an API version selector that determines the data format, a status toggle to set the endpoint as active or inactive, and event type options that let you choose which notifications to receive at this endpoint.</p>
 <h2 id='response-requirements-amp-retry-policy'>Response requirements &amp; Retry policy</h2>
-<blockquote>
-<p>Reponse requirements &amp; Retry policy</p>
-</blockquote>
-
 <p>Your webhook endpoint <strong>must return a successful 200 response</strong> when receiving an event notification. Any other response code will be logged as a failed delivery attempt. When a delivery fails, ARTSVP will retry the same notification 9 additional times at exponentially increasing time intervals, for a total of 10 attempts per event notification. If we encounter 10 consecutive failed event notifications (100 failed attempts total), your endpoint will be automatically moved to an <em>Error</em> status.</p>
 
 <p>When an endpoint is in <em>Error</em> status, ARTSVP stops sending event notifications but continues recording them. Contact support@artsvp.com to release these stored notifications after you&#39;ve fixed your endpoint and we&#39;ve changed its status back to <em>Active</em>. Note that if you manually set an endpoint to <em>Inactive</em>, ARTSVP will not record or store any event notifications for that endpoint.</p>
-<h2 id='the-outbound-webhook-event-object'>The outbound webhook event object</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='the-outbound-webhook-event-object'>The outbound webhook event object</h2>
+<blockquote>
+<p>The outbound webhook event object</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owe-cdcaf11d-0086-43ea-9eb0-39d3c434f508"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webhook_event"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.event"</span><span class="p">,</span><span class="w">
