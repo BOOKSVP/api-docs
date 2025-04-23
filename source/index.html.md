@@ -1053,35 +1053,19 @@ Any configured webhook endpoint is _must return a successful 200_ response upon 
 
 When an endpoint moves into an _Error_ status ARTSVP will no longer attempt to send event notifications to that endpoint. We will continue to record event notifications during that time, and upon request to support@artsvp.com we can release those event notifications after moving the status from _Error_ to _Active_. *As a note, if the endpoint status is moved to _Inactive_ ARTSVP _will not_ record event notifications for that endpoint.
 
-## Retrieve an event
-
-```shell
-curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767" \
-  -H "Authorization: my_api_key"
-```
-
-> The above command returns JSON structured like this:
+## The outbound webhook event object
 
 ```json
 {
-  "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
-  "object": "event",
-  "code": "efa400",
-  "name": "Summer Party",
-  "reference": "Summer Party (VIP 1)",
-  "description": "A summer meet and greet for our VIP guests",
-  "time_zone": "Europe/London",
-  "start_date": "2023-05-18",
-  "start_time": "2023-05-18T10:00:00.000+01:00",
-  "end_date": "2023-05-18",
-  "end_time": "2023-05-18T17:00:00.000+01:00",
-  "location_name": "Gallery ABC",
-  "location_address": "123 Artists Way",
-  "public_url": "https://artsvp.com/efa400",
-  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
-  "resource_tags": ["vip", "art_fair"],
-  "created_at": "2023-04-06T15:12:08.671Z",
-  "updated_at": "2023-05-15T11:34:48.746Z"
+  "id": "owe-cdcaf11d-0086-43ea-9eb0-39d3c434f508",
+  "object": "webhook_event",
+  "event_type": "example.event",
+  "api_version": "v3",
+  "organisation": "demo",
+  "data": {
+    ...,
+    "previous_attributes" { if available }
+  }
 }
 ```
 
