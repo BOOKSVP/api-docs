@@ -1043,7 +1043,15 @@ Webhook endpoints can be configured for key webhook event notifications via the 
 
 > The webhook endpoint
 
-The webhook endpoint UX will consist of key parts of any traditional webhook endpoint. These include the URL that recieves the webhook event notifications. A signing secret for additional security. An API version that will dictate the data format provided
+The webhook endpoint UX consists of key parts for any traditional webhook endpoint. These include the URL that recieves the webhook event notifications. A signing secret for additional security. An API version that will dictate the data format provided. A status to control whether or not the endpoint is active or inactive, and an option set to select which event notifications you wish to recieve at that endpoint.
+
+## Response requirements & Retry policy
+
+> Reponse requirements & Retry policy
+
+Any configured webhook endpoint is _must return a successful 200_ response upon event notification. If anything but a 200 response is returned ARTSVP will register that as a failed attempt at sending that event notification. ARTSVP will then attempt to retry that same event notification up to 9 additional times, exponentially spaced out over time for a total of 10 attempts per a single event notification. If ARTSVP recieves 10 failed attempts across 10 different event notifications, a total of 100 failed attempts, in a row we will move the endpoint into an _Error_ status.
+
+When an endpoint moves into an _Error_ status ARTSVP will no longer attempt to send event notifications to that endpoint. We will continue to record event notifications during that time, and upon request to support@artsvp.com we can release those event notifications after moving the status from _Error_ to _Active_. *As a note, if the endpoint status is moved to _Inactive_ ARTSVP _will not_ record event notifications for that endpoint.
 
 ## Retrieve an event
 
