@@ -1035,3 +1035,139 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 | `status`   | `false` | The invite status. Can be `active` or `declined` |
+
+# Webhooks
+Webhook endpoints can be configured for key webhook event notifications via the [organisation developer page](https://app.artsvp.com/settings/developer). Here you will have the ability to add and modify webhook endpoints for your organisation, in addition to monitoring activity.
+
+## The event object
+
+> The event object
+
+```json
+{
+  "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+  "object": "event",
+  "code": "efa400",
+  "name": "Summer Party",
+  "reference": "Summer Party (VIP 1)",
+  "description": "A summer meet and greet for our VIP guests",
+  "time_zone": "Europe/London",
+  "start_date": "2023-05-18",
+  "start_time": "2023-05-18T10:00:00.000+01:00",
+  "end_date": "2023-05-18",
+  "end_time": "2023-05-18T17:00:00.000+01:00",
+  "location_name": "Gallery ABC",
+  "location_address": "123 Artists Way",
+  "public_url": "https://artsvp.com/efa400",
+  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
+  "resource_tags": ["vip", "art_fair"],
+  "created_at": "2023-04-06T15:12:08.671Z",
+  "updated_at": "2023-05-15T11:34:48.746Z"
+}
+```
+
+### Attributes
+
+| Attribute       | Type      | Description                                      |
+| --------------- | --------- | ------------------------------------------------ |
+| `id`            | string    | Unique identifier for the object.                |
+| `object`        | string    | String representing the object’s type            |
+| `code`          | string    | A unique reference for the event used in the URL |
+| `name`          | string    | Public facing event name                         |
+| `reference`     | string    | Internal event reference                         |
+| `description`   | string    | Internal event description (Developer use only)  |
+| `timezone`      | string    | The time zone the event is taking place in       |
+| `start_date`    | string    | The date the event starts                        |
+| `start_time`    | string    | The time the event starts                        |
+| `end_date`      | string    | The date the event ends                          |
+| `end_time`      | string    | The time the event ends                          |
+| `location_name`      | string    | The name of the location the event is being held at   |
+| `location_address`      | string    | The address of the location the event is being held at          |
+| `public_url`    | string    | The public URL for the event                     |
+| `banner_image`  | string    | The banner image for the event                   |
+| `resource_tags` | array     | Internal tags assigned to the event              |
+| `created_at`    | timestamp | Timestamp when the event was created           |
+| `updated_at`    | timestamp | Timestamp when the event was updated           |
+
+## Retrieve an event
+
+```shell
+curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+  "object": "event",
+  "code": "efa400",
+  "name": "Summer Party",
+  "reference": "Summer Party (VIP 1)",
+  "description": "A summer meet and greet for our VIP guests",
+  "time_zone": "Europe/London",
+  "start_date": "2023-05-18",
+  "start_time": "2023-05-18T10:00:00.000+01:00",
+  "end_date": "2023-05-18",
+  "end_time": "2023-05-18T17:00:00.000+01:00",
+  "location_name": "Gallery ABC",
+  "location_address": "123 Artists Way",
+  "public_url": "https://artsvp.com/efa400",
+  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
+  "resource_tags": ["vip", "art_fair"],
+  "created_at": "2023-04-06T15:12:08.671Z",
+  "updated_at": "2023-05-15T11:34:48.746Z"
+}
+```
+
+Retrieves the details of an event.
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v3/events/:id`
+
+### Parameters
+
+| Parameter | Required   | Description                     |
+| --------- | ---------- | ------------------------------- |
+| `id`      | **`true`** | The id of the event to retrieve |
+
+## List all events
+
+```shell
+curl "https://app.artsvp.com/api/v3/events" \
+  -H "Authorization: my_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "object": "list",
+  "url": "/v3/events",
+  "data": [
+    {
+      "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+      "object": "event",
+      "code": "efa400",
+      "name": "Summer Party",
+      ...
+    },
+    {
+      "id": "eve-c60d5868-c4cf-4b55-83f2-6578a8263751",
+      "object": "event",
+      "code": "gh7823",
+      "name": "Winter Party",
+      ...
+    },
+    ...
+  ]
+}
+```
+
+Return a list of all events your Organisation owns.
+
+### HTTP Request
+
+`GET https://app.artsvp.com/api/v3/events`
