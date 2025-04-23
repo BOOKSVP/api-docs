@@ -1041,19 +1041,17 @@ Webhook endpoints can be configured to receive notifications for key events via 
 
 ## The webhook endpoint
 
-> The webhook endpoint
-
 The webhook endpoint configuration includes several standard components: a destination URL that receives webhook event notifications, a signing secret for enhanced security, an API version selector that determines the data format, a status toggle to set the endpoint as active or inactive, and event type options that let you choose which notifications to receive at this endpoint.
 
 ## Response requirements & Retry policy
-
-> Reponse requirements & Retry policy
 
 Your webhook endpoint **must return a successful 200 response** when receiving an event notification. Any other response code will be logged as a failed delivery attempt. When a delivery fails, ARTSVP will retry the same notification 9 additional times at exponentially increasing time intervals, for a total of 10 attempts per event notification. If we encounter 10 consecutive failed event notifications (100 failed attempts total), your endpoint will be automatically moved to an _Error_ status.
 
 When an endpoint is in _Error_ status, ARTSVP stops sending event notifications but continues recording them. Contact support@artsvp.com to release these stored notifications after you've fixed your endpoint and we've changed its status back to _Active_. Note that if you manually set an endpoint to _Inactive_, ARTSVP will not record or store any event notifications for that endpoint.
 
 ## The outbound webhook event object
+
+> The outbound webhook event object
 
 ```json
 {
