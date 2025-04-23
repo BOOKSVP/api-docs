@@ -50,6 +50,10 @@ Your API key is used as your bearer token and has complete access to your accoun
 You must replace <code>my_api_key</code> with your personal API key.
 </aside>
 
+# Versioning
+
+The ARTSVP API is primarily operating on version 3 (V3). This version brought additional endpoints and improved security via rate limiting and speed improvements via pagination. The documentation below is exclusively in reference to V3. Version 2 (V2) is still available and will stay available until the next version release.
+
 # Rate Limiting
 
 We limit API requests to **1,000 requests every 15 minutes**. In the future, we expect to offer "high volume" rate limit plans for businesses that need more throughput.
@@ -1031,4 +1035,3 @@ Return a list of all invites your Organisation owns. You can optionally scope yo
 | `starting_after` | `false`  | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.     |
 | `ending_before`  | `false`  | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list. |
 | `status`   | `false` | The invite status. Can be `active` or `declined` |
-
