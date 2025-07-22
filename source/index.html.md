@@ -445,6 +445,106 @@ Retrieves the details of a booking.
 | ---------- | ----------- | --------------------------------- |
 | `id`       | **`true`**  | The ID of the booking to retrieve |
 
+
+## Create a booking
+
+```shell
+curl -X POST "https://app.artsvp.com/api/v3/bookings" \
+  -H "Authorization: my_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "booking": {
+      "name": "Guest",
+      "email": "guest@artsvp.com",
+      "start_time": "2022-01-01T13:00:00Z",
+      "size": 5,
+      "event_id": "836d76",
+      "invite_id": "db8e29",
+      "booking_products_attributes": [
+        {
+          "product_id": "prod-123",
+          "size": 1
+        }
+      ]
+    },
+    "tags": ["vip", "new_user"],
+    "external_id": "test123",
+    "meta_data": {
+      "custom_key": "custom_value"
+    }
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
+  "object": "booking",
+  "reference": "C922-4EBA-1F8C",
+  "status": "is_confirmed",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
+  "size": 5,
+  "start_time_utc": "2022-01-01T13:00:00.000Z",
+  "start_time_local": "2022-01-01T13:00:00.000+00:00",
+  "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
+  "event_id": "836d76",
+  "event_name": "Summer Fair",
+  "event_reference": "Summer Fair - VIP 1",
+  "event_time_zone": "Europe/London",
+  "invite_id": "db8e29",
+  "event": {
+    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "object": "event",
+    "code": "efa400",
+    "name": "Summer Party",
+    ...
+  },
+  "tags": [],
+  "resource_tags": ["vip", "new_user"],
+  "meta_data": {},
+  "external_id": "test123",
+  "created_at": "2021-10-21T15:22:35.758Z",
+  "updated_at": "2021-10-21T15:33:13.889Z"
+}
+```
+
+Updates a booking for certain whitelisted attributes.
+
+### HTTP Request
+
+`POST https://app.artsvp.com/api/v3/bookings`
+
+### Parameters
+
+| Parameter                              | Required | Description                                                                                          |
+| -------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
+| `booking[name]`                        | `true`   | Name of the primary guest                                                                            |
+| `booking[email]`                       | `true`   | Email of the primary guest                                                                           |
+| `booking[start_time]`                  | `true`   | Start time of the booking (e.g., ISO8601 string)                                                     |
+| `booking[event_id]`                    | `true`   | ID of the event the booking is for                                                                   |
+| `booking[booking_products_attributes]` | `true`   | List of product objects; each with `product_id` (required), and optionally `size`, `ref_price`, etc. |
+| `meta_data`                            | `false`  | JSON string of meta data assigned to the booking                                                     |
+| `external_id`                          | `false`  | External ID assigned to the booking                                                                  |
+| `booking[invite_id]`                   | `false`  | ID of an invite (if booking via invite)                                                              |
+| `booking[booking_link_id]`             | `false`  | ID of the booking link (if booking via booking link)                                                 |
+| `booking[waiting_list]`                | `false`  | Add to waiting list instead of confirming immediately (default: `false`)                             |
+| `booking[kind]`                        | `false`  | Booking kind; one of `walkin`, `ticket_sale`, or defaults to `custom`                                |
+| `booking[created_by]`                  | `false`  | Who created the booking; either `guest` (default) or `account`                                       |
+| `booking[agree_to_mailing_list]`       | `false`  | Whether the guest agrees to join the mailing list                                                    |
+| `booking[mailing_list_id]`             | `false`  | ID of the mailing list                                                                               |
+| `booking[terms_of_service]`            | `false`  | Whether guest agreed to terms of service                                                             |
+| `booking[size]`                        | `false`  | Size (number of guests, etc.)                                                                        |
+| `booking[custom_fields]`               | `false`  | Key-value pairs to merge into booking meta data                                                      |
+| `tags`                                 | `false`  | Array of tags to assign to the booking (as string values)                                            |
+| `portal-tags`                          | `false`  | Array of portal tags to assign (as string references)                                                |
+| `claim_gift_aid`                       | `false`  | `"1"` to claim gift aid; adds `"gift_aid": true` to meta data                                        |
+| `booking[terminal_id]`                 | `false`  | Terminal ID used if payment is being processed on a terminal                                         |
+| `booking[terminal_label]`              | `false`  | Terminal label if applicable                                                                         |
+| `booking[space_id]`                    | `false`  | Space ID if booking is linked to a space                                                             |
+
+
 ## Update a booking
 
 ```shell
