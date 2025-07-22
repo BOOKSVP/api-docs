@@ -449,8 +449,8 @@ Retrieves the details of a booking.
 ## Create a booking
 
 ```shell
-curl -X POST "https://app.artsvp.com/api/v3/bookings" \
-  -H "Authorization: my_api_key" \
+curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
+  -H "Authorization: 6t8Bwm5Cer2mCsC3LqQiaykYgiGmpM5kY4msvTuBx4JteYowpi8G3ZVnkTo5GmQf" \
   -H "Content-Type: application/json" \
   -d '{
     "booking": {
@@ -460,12 +460,13 @@ curl -X POST "https://app.artsvp.com/api/v3/bookings" \
       "size": 5,
       "event_id": "836d76",
       "invite_id": "db8e29",
-      "booking_products_attributes": [
-        {
-          "product_id": "prod-123",
-          "size": 1
+      "booking_products_attributes" : {
+        "0" : {
+        "product_id" : "15747", 
+        "ref_price" : "1.00", 
+        "size" : "1"
         }
-      ]
+      },
     },
     "tags": ["vip", "new_user"],
     "external_id": "test123",
