@@ -480,34 +480,49 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
 
 ```json
 {
-  "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
+  "id": "boo-4a8c72a2-94dd-4dbd-a11e-0e99a940f4a6",
   "object": "booking",
-  "reference": "C922-4EBA-1F8C",
+  "reference": "6310-DA99-7E01",
   "status": "is_confirmed",
   "name": "Guest",
   "email": "guest@artsvp.com",
-  "size": 5,
+  "size": 0,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
-  "start_time_local": "2022-01-01T13:00:00.000+00:00",
-  "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
-  "event_id": "836d76",
-  "event_name": "Summer Fair",
-  "event_reference": "Summer Fair - VIP 1",
-  "event_time_zone": "Europe/London",
-  "invite_id": "db8e29",
+  "start_time_local": "2022-01-01T08:00:00.000-05:00",
+  "url": "https://app.artsvp.com/bookings/fey2lglsdyvqemevkj9nm1hwb4mlvwbv",
   "event": {
-    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
     "object": "event",
-    "code": "efa400",
-    "name": "Summer Party",
-    ...
+    "code": "d43a64",
+    "name": "Swiss Cheese",
+    "reference": "",
+    "description": "",
+    "time_zone": "America/New_York",
+    "start_date": "2025-08-31",
+    "start_time": "2025-08-31T10:00:00.000-04:00",
+    "end_date": "2025-08-31",
+    "end_time": "2025-08-31T13:00:00.000-04:00",
+    "location_name": "477 Broadway",
+    "location_address": "477 St. New York, Ny",
+    "public_url": "https://app.artsvp.com/d43a64",
+    "banner_image": null,
+    "resource_tags": [],
+    "created_at": "2025-04-11T11:51:22.248Z",
+    "updated_at": "2025-07-15T09:32:54.465Z"
   },
-  "tags": [],
-  "resource_tags": ["vip", "new_user"],
-  "meta_data": {},
-  "external_id": "test123",
-  "created_at": "2021-10-21T15:22:35.758Z",
-  "updated_at": "2021-10-21T15:33:13.889Z"
+  "guests": [],
+  "tags": [
+    "vip",
+    "new_user"
+  ],
+  "event_resource_tags": [],
+  "agree_to_mailing_list": false,
+  "meta_data": {
+    "custom_key": "custom_value"
+  },
+  "external_id": null,
+  "created_at": "2025-07-22T15:32:29.357Z",
+  "updated_at": "2025-07-22T15:32:29.357Z"
 }
 ```
 
