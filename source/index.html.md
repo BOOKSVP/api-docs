@@ -458,15 +458,15 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
       "email": "guest@artsvp.com",
       "start_time": "2022-01-01T13:00:00Z",
       "size": 5,
-      "event_id": "836d76",
+      "event_id": "10699",
       "invite_id": "db8e29",
-      "booking_products_attributes" : {
-        "0" : {
-        "product_id" : "15747", 
-        "ref_price" : "1.00", 
-        "size" : "1"
+      "booking_products_attributes": [
+        {
+          "product_id": "15747", 
+          "ref_price": "1.00", 
+          "size": "1"
         }
-      },
+      ]
     },
     "tags": ["vip", "new_user"],
     "external_id": "test123",
