@@ -86,24 +86,52 @@ Events typically represent a single event that you are hosting and can be used t
 
 ```json
 {
-  "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+  "id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
   "object": "event",
-  "code": "efa400",
-  "name": "Summer Party",
-  "reference": "Summer Party (VIP 1)",
-  "description": "A summer meet and greet for our VIP guests",
-  "time_zone": "Europe/London",
-  "start_date": "2023-05-18",
-  "start_time": "2023-05-18T10:00:00.000+01:00",
-  "end_date": "2023-05-18",
-  "end_time": "2023-05-18T17:00:00.000+01:00",
-  "location_name": "Gallery ABC",
-  "location_address": "123 Artists Way",
-  "public_url": "https://artsvp.com/efa400",
-  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
-  "resource_tags": ["vip", "art_fair"],
-  "created_at": "2023-04-06T15:12:08.671Z",
-  "updated_at": "2023-05-15T11:34:48.746Z"
+  "code": "d43a64",
+  "name": "Swiss Cheese",
+  "reference": "",
+  "description": "",
+  "time_zone": "America/New_York",
+  "start_date": "2025-08-31",
+  "start_time": "2025-08-31T10:00:00.000-04:00",
+  "end_date": "2025-08-31",
+  "end_time": "2025-08-31T13:00:00.000-04:00",
+  "products": [
+    {
+      "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "object": "product",
+      "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+      "name": "Number of people",
+      "price_cents": 100,
+      "stripe_id": null,
+      "restricted": true,
+      "active": true,
+      "min_size": 1,
+      "max_size": null,
+      "set_quantity": 0,
+      "description": "",
+      "restricted_size": 1,
+      "layout": "input",
+      "kind": "ticket",
+      "quantity": null,
+      "order": null,
+      "archived_at": null,
+      "multiple_entry": false,
+      "tax_enabled": false,
+      "tax_rate": "0.0",
+      "tax_type": "Tax",
+      "created_at": "2025-04-11T11:51:22.385Z",
+      "updated_at": "2025-07-21T13:34:08.025Z"
+    }
+  ],
+  "location_name": "477 Broadway",
+  "location_address": "477 St. New York, Ny",
+  "public_url": "httphttps://app.artsvp.com/d43a64",
+  "banner_image": null,
+  "resource_tags": [],
+  "created_at": "2025-04-11T11:51:22.248Z",
+  "updated_at": "2025-07-15T09:32:54.465Z"
 }
 ```
 
@@ -122,6 +150,7 @@ Events typically represent a single event that you are hosting and can be used t
 | `start_time`    | string    | The time the event starts                        |
 | `end_date`      | string    | The date the event ends                          |
 | `end_time`      | string    | The time the event ends                          |
+| `products`      | array     | Tickets and extras created with a booking        |
 | `location_name`      | string    | The name of the location the event is being held at   |
 | `location_address`      | string    | The address of the location the event is being held at          |
 | `public_url`    | string    | The public URL for the event                     |
@@ -152,6 +181,34 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
   "start_time": "2023-05-18T10:00:00.000+01:00",
   "end_date": "2023-05-18",
   "end_time": "2023-05-18T17:00:00.000+01:00",
+  "products": [
+    {
+      "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "object": "product",
+      "event_id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",,
+      "name": "Entry Pass",
+      "price_cents": 100,
+      "stripe_id": null,
+      "restricted": true,
+      "active": true,
+      "min_size": 1,
+      "max_size": null,
+      "set_quantity": 0,
+      "description": "",
+      "restricted_size": 1,
+      "layout": "input",
+      "kind": "ticket",
+      "quantity": null,
+      "order": null,
+      "archived_at": null,
+      "multiple_entry": false,
+      "tax_enabled": false,
+      "tax_rate": "0.0",
+      "tax_type": "Tax",
+      "created_at": "2025-04-11T11:51:22.385Z",
+      "updated_at": "2025-07-21T13:34:08.025Z"
+    }
+  ],
   "location_name": "Gallery ABC",
   "location_address": "123 Artists Way",
   "public_url": "https://artsvp.com/efa400",
@@ -162,7 +219,7 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
 }
 ```
 
-Retrieves the details of an event.
+Retrieves the details of an event, including tickets and extras associated with that event.
 
 ### HTTP Request
 
@@ -345,21 +402,53 @@ Each booking has a `status` field which denotes where the booking is within the 
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
   "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
-  "event_id": "836d76",
   "event_name": "Summer Fair",
   "event_reference": "Summer Fair - VIP 1",
   "event_time_zone": "Europe/London",
-  "invite_id": "db8e29",
+  "invite_id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "event": {
-    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
     "object": "event",
-    "code": "efa400",
-    "name": "Summer Party",
-    ...
+    "code": "d43a64",
+    "name": "Swiss Cheese",
+    "reference": "",
+    "description": "",
+    "time_zone": "America/New_York",
+    "start_date": "2025-08-31",
+    "start_time": "2025-08-31T10:00:00.000-04:00",
+    "end_date": "2025-08-31",
+    "end_time": "2025-08-31T13:00:00.000-04:00",
+    "products": [
+      {
+        "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+        "object": "product",
+        "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+        "name": "Number of people",
+        "price_cents": 100,
+        ...
+      }
+    ],
+    "location_name": "477 Broadway",
+    "location_address": "477 St. New York, Ny",
+    "public_url": "httphttps://app.artsvp.com/d43a64",
+    "banner_image": null,
+    "resource_tags": [],
+    "created_at": "2025-04-11T11:51:22.248Z",
+    "updated_at": "2025-07-15T09:32:54.465Z"
   },
+  "guests": [],
+  "products": [
+    {
+      "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "object": "product",
+      "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+      "name": "Number of people",
+      "price_cents": 100,
+      ...
+    }
+  ],
   "tags": [],
   "resource_tags": ["vip", "new_user"],
-  "agree_to_mailing_list": true,
   "meta_data": {},
   "external_id": "abc123",
   "created_at": "2021-10-21T15:22:35.758Z",
@@ -377,15 +466,17 @@ Each booking has a `status` field which denotes where the booking is within the 
 | `status`           | string    | The booking status. Prefixed with `is_` (e.g. `is_confirmed`) |
 | `name`             | string    | Name of the primary guest                                     |
 | `email`            | string    | Email of the primary guest                                    |
-| `size`             | integer   | Number of guests attatched to the booking (includes primary guest)                    |
+| `size`             | integer   | Number of guests attatched to the booking (includes primary guest)|
 | `start_time_utc`   | timestamp | Start time in UTC                                             |
 | `start_time_local` | timestamp | Start time in Event's Time Zone                               |
 | `url`              | string    | URL to manage the booking                                     |
-| `invite_id`        | string    | Booking's invite reference (if present)          |
-| `event`            | hash      | The event object the booking is made for                   |
+| `invite_id`        | string    | Booking's invite reference (if present)                       |
+| `event`            | hash      | The event object the booking is made for                      |
+| `guests`           | array      | The guests included on the booking.                           |
+| `products`         | array      | The tickets and extras the booking is made with               |
 | `tags`             | array     | Tags assigned to the booking                                  |
 | `resource_tags`    | array     | Tags assigned to the `Booking Resource`                       |
-| `agree_to_mailing_list`    | boolean     | Agreement to join mailing list by primary guest     |
+| `agree_to_mailing_list`| boolean     | Agreement to join mailing list by primary guest     |
 | `meta_data`        | hash      | Meta Data assigned to the booking                             |
 | `external_id`      | string    | External ID assigned to the booking                           |
 | `created_at`       | timestamp | Timestamp when the booking was created                        |
@@ -412,18 +503,69 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
   "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
-  "event_id": "836d76",
   "event_name": "Summer Fair",
   "event_reference": "Summer Fair - VIP 1",
   "event_time_zone": "Europe/London",
-  "invite_id": "db8e29",
+  "invite_id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "event": {
-    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
     "object": "event",
-    "code": "efa400",
-    "name": "Summer Party",
-    ...
+    "code": "d43a64",
+    "name": "Swiss Cheese",
+    "reference": "",
+    "description": "",
+    "time_zone": "America/New_York",
+    "start_date": "2025-08-31",
+    "start_time": "2025-08-31T10:00:00.000-04:00",
+    "end_date": "2025-08-31",
+    "end_time": "2025-08-31T13:00:00.000-04:00",
+    "products": [
+      {
+        "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+        "object": "product",
+        "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+        "name": "Number of people",
+        "price_cents": 100,
+        "stripe_id": null,
+        "restricted": true,
+        "active": true,
+        "min_size": 1,
+        "max_size": null,
+        "set_quantity": 0,
+        "description": "",
+        "restricted_size": 1,
+        "layout": "input",
+        "kind": "ticket",
+        "quantity": null,
+        "order": null,
+        "archived_at": null,
+        "multiple_entry": false,
+        "tax_enabled": false,
+        "tax_rate": "0.0",
+        "tax_type": "Tax",
+        "created_at": "2025-04-11T11:51:22.385Z",
+        "updated_at": "2025-07-21T13:34:08.025Z"
+      }
+    ],
+    "location_name": "477 Broadway",
+    "location_address": "477 St. New York, Ny",
+    "public_url": "httphttps://app.artsvp.com/d43a64",
+    "banner_image": null,
+    "resource_tags": [],
+    "created_at": "2025-04-11T11:51:22.248Z",
+    "updated_at": "2025-07-15T09:32:54.465Z"
   },
+  "guests": [],
+  "products": [
+    {
+      "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "object": "product",
+      "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+      "name": "Number of people",
+      "price_cents": 100,
+      ...
+    }
+  ],
   "tags": [],
   "resource_tags": ["vip", "new_user"],
   "meta_data": {},
@@ -457,10 +599,13 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
       "name": "Guest",
       "email": "guest@artsvp.com",
       "start_time": "2022-01-01T13:00:00Z",
-      "size": 5,
-      "event_id": "10699",
-      "invite_id": "db8e29",
-      "booking_products_attributes": [{}]
+      "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+      "booking_products_attributes" : [
+        {
+        "product_id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+        "size": 1
+        }
+      ]
     },
     "tags": ["vip", "new_user"],
     "external_id": "test123",
@@ -474,16 +619,16 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
 
 ```json
 {
-  "id": "boo-4a8c72a2-94dd-4dbd-a11e-0e99a940f4a6",
+  "id": "boo-e74bbf42-7fc5-45be-a6ea-ef20a7281f4a",
   "object": "booking",
-  "reference": "6310-DA99-7E01",
+  "reference": "1EA4-B4C0-EB99",
   "status": "is_confirmed",
-  "name": "Guest",
-  "email": "guest@artsvp.com",
-  "size": 0,
+  "name": "Guest 3333",
+  "email": "guest333@artsvp.com",
+  "size": 1,
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T08:00:00.000-05:00",
-  "url": "https://app.artsvp.com/bookings/fey2lglsdyvqemevkj9nm1hwb4mlvwbv",
+  "url": "http://demo.www.localhost:3000/bookings/u2zmr4wh716b6qcmtwh1kteux5dsdj34",
   "event": {
     "id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
     "object": "event",
@@ -496,15 +641,71 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
     "start_time": "2025-08-31T10:00:00.000-04:00",
     "end_date": "2025-08-31",
     "end_time": "2025-08-31T13:00:00.000-04:00",
+    "products": [
+      {
+        "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+        "object": "product",
+        "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+        "name": "Number of people",
+        "price_cents": 100,
+        "stripe_id": null,
+        "restricted": true,
+        "active": true,
+        "min_size": 1,
+        "max_size": null,
+        "set_quantity": 0,
+        "description": "",
+        "restricted_size": 1,
+        "layout": "input",
+        "kind": "ticket",
+        "quantity": null,
+        "order": null,
+        "archived_at": null,
+        "multiple_entry": false,
+        "tax_enabled": false,
+        "tax_rate": "0.0",
+        "tax_type": "Tax",
+        "created_at": "2025-04-11T11:51:22.385Z",
+        "updated_at": "2025-07-21T13:34:08.025Z"
+      }
+    ],
     "location_name": "477 Broadway",
     "location_address": "477 St. New York, Ny",
-    "public_url": "https://app.artsvp.com/d43a64",
+    "public_url": "httphttps://app.artsvp.com/d43a64",
     "banner_image": null,
     "resource_tags": [],
     "created_at": "2025-04-11T11:51:22.248Z",
     "updated_at": "2025-07-15T09:32:54.465Z"
   },
   "guests": [],
+  "products": [
+    {
+      "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "object": "product",
+      "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
+      "name": "Number of people",
+      "price_cents": 100,
+      "stripe_id": null,
+      "restricted": true,
+      "active": true,
+      "min_size": 1,
+      "max_size": null,
+      "set_quantity": 0,
+      "description": "",
+      "restricted_size": 1,
+      "layout": "input",
+      "kind": "ticket",
+      "quantity": null,
+      "order": null,
+      "archived_at": null,
+      "multiple_entry": false,
+      "tax_enabled": false,
+      "tax_rate": "0.0",
+      "tax_type": "Tax",
+      "created_at": "2025-04-11T11:51:22.385Z",
+      "updated_at": "2025-07-21T13:34:08.025Z"
+    }
+  ],
   "tags": [
     "vip",
     "new_user"
@@ -515,12 +716,12 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
     "custom_key": "custom_value"
   },
   "external_id": null,
-  "created_at": "2025-07-22T15:32:29.357Z",
-  "updated_at": "2025-07-22T15:32:29.357Z"
+  "created_at": "2025-07-23T14:45:34.543Z",
+  "updated_at": "2025-07-23T14:45:34.543Z"
 }
 ```
 
-Updates a booking for certain whitelisted attributes.
+Creates a booking and can be used to create paid or unpaid bookings.
 
 ### HTTP Request
 
@@ -533,26 +734,22 @@ Updates a booking for certain whitelisted attributes.
 | `booking[name]`                        | `true`   | Name of the primary guest                                                                            |
 | `booking[email]`                       | `true`   | Email of the primary guest                                                                           |
 | `booking[start_time]`                  | `true`   | Start time of the booking (e.g., ISO8601 string)                                                     |
-| `booking[event_id]`                    | `true`   | ID of the event the booking is for                                                                   |
-| `booking[booking_products_attributes]` | `true`   | List of product objects; each with `product_id` (required), and optionally `size`, `ref_price`, etc. |
+| `booking[event_id]`                    | `true`   | ID of the event the booking is for. `event_id` is a UUID.                                            |
+| `booking[booking_products_attributes]` | `true`   | List of product objects; each with `product_id` (required), and optionally `size`. Find `product_id` through the event object. `product_id` is a UUID. See [The event object](#the-event-object) for more details. |
 | `meta_data`                            | `false`  | JSON string of meta data assigned to the booking                                                     |
 | `external_id`                          | `false`  | External ID assigned to the booking                                                                  |
-| `booking[invite_id]`                   | `false`  | ID of an invite (if booking via invite)                                                              |
-| `booking[booking_link_id]`             | `false`  | ID of the booking link (if booking via booking link)                                                 |
+| `booking[invite_id]`                   | `false`  | ID of an invite (if booking via invite). `invite_id` is a UUID. Find the `invite_id` via the invite object. See [The invite object](#the-invite-object) for more details.|
 | `booking[waiting_list]`                | `false`  | Add to waiting list instead of confirming immediately (default: `false`)                             |
 | `booking[kind]`                        | `false`  | Booking kind; one of `walkin`, `ticket_sale`, or defaults to `custom`                                |
 | `booking[created_by]`                  | `false`  | Who created the booking; either `guest` (default) or `account`                                       |
 | `booking[agree_to_mailing_list]`       | `false`  | Whether the guest agrees to join the mailing list                                                    |
-| `booking[mailing_list_id]`             | `false`  | ID of the mailing list                                                                               |
 | `booking[terms_of_service]`            | `false`  | Whether guest agreed to terms of service                                                             |
 | `booking[size]`                        | `false`  | Size (number of guests, etc.)                                                                        |
 | `booking[custom_fields]`               | `false`  | Key-value pairs to merge into booking meta data                                                      |
 | `tags`                                 | `false`  | Array of tags to assign to the booking (as string values)                                            |
 | `portal-tags`                          | `false`  | Array of portal tags to assign (as string references)                                                |
 | `claim_gift_aid`                       | `false`  | `"1"` to claim gift aid; adds `"gift_aid": true` to meta data                                        |
-| `booking[terminal_id]`                 | `false`  | Terminal ID used if payment is being processed on a terminal                                         |
-| `booking[terminal_label]`              | `false`  | Terminal label if applicable                                                                         |
-| `booking[space_id]`                    | `false`  | Space ID if booking is linked to a space                                                             |
+
 
 
 ## Update a booking
