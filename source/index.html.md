@@ -97,10 +97,10 @@ Events typically represent a single event that you are hosting and can be used t
   "start_time": "2025-08-31T10:00:00.000-04:00",
   "end_date": "2025-08-31",
   "end_time": "2025-08-31T13:00:00.000-04:00",
-  "products": [
+  "tickets": [
     {
       "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-      "object": "product",
+      "object": "ticket",
       "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
       "name": "Number of people",
       "price_cents": 100,
@@ -150,7 +150,7 @@ Events typically represent a single event that you are hosting and can be used t
 | `start_time`    | string    | The time the event starts                        |
 | `end_date`      | string    | The date the event ends                          |
 | `end_time`      | string    | The time the event ends                          |
-| `products`      | array     | Tickets and extras created with a booking        |
+| `tickets`      | array     | Tickets and extras created with a booking        |
 | `location_name`      | string    | The name of the location the event is being held at   |
 | `location_address`      | string    | The address of the location the event is being held at          |
 | `public_url`    | string    | The public URL for the event                     |
@@ -181,10 +181,10 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
   "start_time": "2023-05-18T10:00:00.000+01:00",
   "end_date": "2023-05-18",
   "end_time": "2023-05-18T17:00:00.000+01:00",
-  "products": [
+  "tickets": [
     {
       "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-      "object": "product",
+      "object": "ticket",
       "event_id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
       "name": "Entry Pass",
       "price_cents": 100,
@@ -418,10 +418,10 @@ Each booking has a `status` field which denotes where the booking is within the 
     "start_time": "2025-08-31T10:00:00.000-04:00",
     "end_date": "2025-08-31",
     "end_time": "2025-08-31T13:00:00.000-04:00",
-    "products": [
+    "tickets": [
       {
         "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-        "object": "product",
+        "object": "ticket",
         "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
         "name": "Number of people",
         "price_cents": 100,
@@ -437,10 +437,10 @@ Each booking has a `status` field which denotes where the booking is within the 
     "updated_at": "2025-07-15T09:32:54.465Z"
   },
   "guests": [],
-  "products": [
+  "tickets": [
     {
       "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-      "object": "product",
+      "object": "ticket",
       "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
       "name": "Number of people",
       "price_cents": 100,
@@ -473,7 +473,7 @@ Each booking has a `status` field which denotes where the booking is within the 
 | `invite_id`        | string    | Booking's invite reference (if present)                       |
 | `event`            | hash      | The event object the booking is made for                      |
 | `guests`           | array      | The guests included on the booking.                           |
-| `products`         | array      | The tickets and extras the booking is made with               |
+| `tickets`         | array      | The tickets and extras the booking is made with               |
 | `tags`             | array     | Tags assigned to the booking                                  |
 | `resource_tags`    | array     | Tags assigned to the `Booking Resource`                       |
 | `agree_to_mailing_list`| boolean     | Agreement to join mailing list by primary guest     |
@@ -519,10 +519,10 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
     "start_time": "2025-08-31T10:00:00.000-04:00",
     "end_date": "2025-08-31",
     "end_time": "2025-08-31T13:00:00.000-04:00",
-    "products": [
+    "tickets": [
       {
         "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-        "object": "product",
+        "object": "ticket",
         "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
         "name": "Number of people",
         "price_cents": 100,
@@ -556,10 +556,10 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
     "updated_at": "2025-07-15T09:32:54.465Z"
   },
   "guests": [],
-  "products": [
+  "tickets": [
     {
       "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-      "object": "product",
+      "object": "ticket",
       "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
       "name": "Number of people",
       "price_cents": 100,
@@ -600,10 +600,10 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
       "email": "guest@artsvp.com",
       "start_time": "2022-01-01T13:00:00Z",
       "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
-      "booking_products_attributes" : [
+      "tickets" : [
         {
-        "product_id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-        "size": 1
+        "ticket_id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+        "quantity": 1
         }
       ]
     },
@@ -641,10 +641,10 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
     "start_time": "2025-08-31T10:00:00.000-04:00",
     "end_date": "2025-08-31",
     "end_time": "2025-08-31T13:00:00.000-04:00",
-    "products": [
+    "tickets": [
       {
         "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-        "object": "product",
+        "object": "ticket",
         "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
         "name": "Number of people",
         "price_cents": 100,
@@ -678,10 +678,10 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
     "updated_at": "2025-07-15T09:32:54.465Z"
   },
   "guests": [],
-  "products": [
+  "tickets": [
     {
       "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-      "object": "product",
+      "object": "tickets",
       "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
       "name": "Number of people",
       "price_cents": 100,
