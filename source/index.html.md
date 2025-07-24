@@ -185,7 +185,7 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
     {
       "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
       "object": "product",
-      "event_id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",,
+      "event_id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
       "name": "Entry Pass",
       "price_cents": 100,
       "stripe_id": null,
