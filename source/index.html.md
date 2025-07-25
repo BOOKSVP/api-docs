@@ -735,7 +735,7 @@ Creates a booking and can be used to create paid or unpaid bookings.
 | `booking[email]`                       | `true`   | Email of the primary guest                                                                           |
 | `booking[start_time]`                  | `true`   | Start time of the booking (e.g., ISO8601 string)                                                     |
 | `booking[event_id]`                    | `true`   | ID of the event the booking is for. `event_id` is a UUID.                                            |
-| `booking[booking_products_attributes]` | `true`   | List of product objects; each with `product_id` (required), and optionally `size`. Find `product_id` through the event object. `product_id` is a UUID. See [The event object](#the-event-object) for more details. |
+| `booking[tickets]` | `true`   | List of product objects; each with `product_id` (required), and optionally `size`. Find `product_id` through the event object. `product_id` is a UUID. See [The event object](#the-event-object) for more details. |
 | `meta_data`                            | `false`  | JSON string of meta data assigned to the booking                                                     |
 | `external_id`                          | `false`  | External ID assigned to the booking                                                                  |
 | `booking[invite_id]`                   | `false`  | ID of an invite (if booking via invite). `invite_id` is a UUID. Find the `invite_id` via the invite object. See [The invite object](#the-invite-object) for more details.|
