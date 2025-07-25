@@ -681,7 +681,7 @@ curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
   "tickets": [
     {
       "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
-      "object": "tickets",
+      "object": "ticket",
       "event_id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
       "name": "Number of people",
       "price_cents": 100,
