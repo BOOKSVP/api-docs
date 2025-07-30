@@ -549,7 +549,7 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
     ],
     "location_name": "477 Broadway",
     "location_address": "477 St. New York, Ny",
-    "public_url": "httphttps://app.artsvp.com/d43a64",
+    "public_url": "https://app.artsvp.com/d43a64",
     "banner_image": null,
     "resource_tags": [],
     "created_at": "2025-04-11T11:51:22.248Z",
