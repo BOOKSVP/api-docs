@@ -591,7 +591,7 @@ Retrieves the details of a booking.
 ## Create a booking
 
 ```shell
-curl -X POST "http://app.www.localhost:3000/api/v3/bookings" \
+curl -X POST "https://app.artsvp.com/api/v3/bookings" \
   -H "Authorization: 6t8Bwm5Cer2mCsC3LqQiaykYgiGmpM5kY4msvTuBx4JteYowpi8G3ZVnkTo5GmQf" \
   -H "Content-Type: application/json" \
   -d '{
