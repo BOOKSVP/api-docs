@@ -570,110 +570,83 @@ Retrieves the details of a booking.
 
 ```shell
 curl -X POST "http://app.artsvp.com/api/v3/bookings" \
-  -H "Authorization: ZhEG1DEDtFNnjWytbK6LQP8BKW7Xw8SwQ41Zvu443y68CQk6AxrSsDzjkjT4MZjE" \
+  -H "Authorization: my_api_key" \
   -H "Content-Type: application/json" \
   -d '{
-    "booking": {
-      "name": "Guest",
-      "email": "guest@artsvp.com",
-      "size": 3,
-      "start_time": "2025-08-02 13:00",
-      "event_id": "eve-4f26a311-c4e1-460f-b306-43d2af072e2f",
-      "tickets" : [
-        {
-        "ticket_id": "tik-82cd9c46-4e90-4e2f-8e05-643ea4fe30dc",
-        "quantity": 3
-        }
-      ]
-    },
+    "name": "Guest",
+    "email": "guest@artsvp.com",
+    "size": 3,
+    "start_time": "2025-08-02 13:00",
+    "event_id": "eve-869a5361-4a24-43f8-9891-982f3495902d",
+    "tickets" : [
+      {
+      "ticket_id": "tik-8d417129-36e0-44e2-ae60-d9eff5c92ae6",
+      "quantity": 3
+      }
+    ],
+    "extras" : [
+      {
+      "extra_id": "extra-e3830baf-80ac-4e16-a3f4-6f9e7f46f495",
+      "quantity": 3
+      }
+    ],
     "meta_data": {
       "custom_key": "custom_value",
       "qr_code": "1234567890,1234567890,1234567890"
     }
-  }' 
+  }'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": "boo-493b1bc8-e130-4ff3-96bb-944c85f6b83a",
+  "id": "boo-2829d0c6-5177-4b83-8da2-ecb4ab30ad29",
   "object": "booking",
-  "reference": "4707-46C9-4032",
-  "status": "is_pending",
-  "name": "Dan",
-  "email": "dot@artsvp.com",
-  "size": 3,
+  "reference": "E7C1-D185-BBBB",
+  "status": "is_confirmed",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
+  "size": 0,
   "start_time_utc": "2025-08-02T13:00:00.000Z",
   "start_time_local": "2025-08-02T14:00:00.000+01:00",
-  "url": "http://demo.www.localhost:3000/bookings/mcxualjmad19fzyiqgn8gvath3rsdubs",
+  "url": "https://app.artsvp.com/bookings/ywuu2ju8csxphpamhjt3n4cucvunw5tf",
   "event": {
-    "id": "eve-4f26a311-c4e1-460f-b306-43d2af072e2f",
+    "id": "eve-869a5361-4a24-43f8-9891-982f3495902d",
     "object": "event",
-    "code": "05336e",
-    "name": "Heavy Duty Leather Knife",
+    "code": "9b442d",
+    "name": "Awesome Event",
     "reference": null,
     "description": "",
     "time_zone": "Europe/London",
-    "start_date": "2025-08-08",
-    "start_time": "2025-08-08T10:00:00.000+01:00",
-    "end_date": "2025-08-08",
-    "end_time": "2025-08-08T17:00:00.000+01:00",
+    "start_date": "2025-08-11",
+    "start_time": "2025-08-11T10:00:00.000+01:00",
+    "end_date": "2025-08-11",
+    "end_time": "2025-08-11T17:00:00.000+01:00",
     "tickets": [
       {
-        "id": "tik-82cd9c46-4e90-4e2f-8e05-643ea4fe30dc",
+        "id": "tik-8d417129-36e0-44e2-ae60-d9eff5c92ae6",
         "name": "Ticket",
-        "price_in_cents": 100
+        "price_in_cents": 2000
+      }
+    ],
+    "extras": [
+      {
+        "id": "extra-e3830baf-80ac-4e16-a3f4-6f9e7f46f495",
+        "name": "Extra",
+        "price_in_cents": 1000
       }
     ],
     "location_name": "College House",
-    "location_address": "45994 Shaunda Lakes, Kohlerborough, SD 94188-4462",
-    "public_url": "http://demo.localtest.me:3000/05336e",
+    "location_address": "Suite 923 39157 Turcotte Pines, Jakubowskifurt, PA 77317",
+    "public_url": "https://app.artsvp.com/9b442d",
     "banner_image": null,
     "resource_tags": [],
-    "created_at": "2025-08-01T11:04:24.479Z",
-    "updated_at": "2025-08-01T11:04:24.715Z"
+    "created_at": "2025-08-04T11:51:34.714Z",
+    "updated_at": "2025-08-04T11:51:34.895Z"
   },
-  "guests": [
-    {
-      "id": "gue-6828b76a-5dc7-4c71-8091-e1bd0cfa9b53",
-      "object": "guest",
-      "name": "Dan",
-      "email": "dot@artsvp.com",
-      "lead": true
-    },
-    {
-      "id": "gue-aca88a17-2507-4e0b-afd2-0be4bf88c7b2",
-      "object": "guest",
-      "name": "Guest 2",
-      "email": null,
-      "lead": false
-    },
-    {
-      "id": "gue-087249eb-bdf4-4f48-91b1-3fae988e9b22",
-      "object": "guest",
-      "name": "Guest 3",
-      "email": null,
-      "lead": false
-    },
-    {
-      "id": "gue-4f9e155e-74eb-4630-a0cf-7eea4c4eb132",
-      "object": "guest",
-      "name": "Guest 3",
-      "email": null,
-      "lead": false
-    }
-  ],
-  "tickets": [
-    {
-      "id": "tik-ed66778e-94bb-443a-b94a-744c2972c918",
-      "price_in_cents": {
-        "cents": 100,
-        "currency_iso": "GBP"
-      },
-      "quantity": 3
-    }
-  ],
+  "guests": [],
+  "tickets": [],
   "tags": [],
   "event_resource_tags": [],
   "agree_to_mailing_list": false,
@@ -682,8 +655,8 @@ curl -X POST "http://app.artsvp.com/api/v3/bookings" \
     "qr_code": "1234567890,1234567890,1234567890"
   },
   "external_id": null,
-  "created_at": "2025-08-01T15:45:03.288Z",
-  "updated_at": "2025-08-01T15:45:03.288Z"
+  "created_at": "2025-08-04T12:19:48.573Z",
+  "updated_at": "2025-08-04T12:19:48.573Z"
 }
 ```
 
@@ -697,13 +670,14 @@ Creates a booking and can be used to create paid or unpaid bookings.
 
 | Parameter                              | Required | Description                                                                                          |
 | -------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
-| `booking[name]`                        | `true`   | Name of the primary guest                                                                            |
-| `booking[email]`                       | `true`   | Email of the primary guest                                                                           |
-| `booking[start_time]`                  | `true`   | Start time of the booking (e.g., YYYY-MM-DD HH:MM ex: "2025-08-02 13:00" string)                                                     |
-| `booking[event_id]`                    | `true`   | ID of the event the booking is for. `event_id` is a UUID.                                            |
-| `booking[tickets]` | `true`   | List of product objects; each with `product_id` (required), and optionally `size`. Find `product_id` through the event object. `product_id` is a UUID. See [The event object](#the-event-object) for more details. |
-| `meta_data`                            | `false`  | JSON string of meta data assigned to the booking. QR codes should be comma separated string          |
-| `booking[size]`                        | `false`  | Size (number of guests, etc.)                                                                        |
+| `name`                        | `true`   | Name of the primary guest                                                                            |
+| `email`                       | `false`   | Email of the primary guest                                                                           |
+| `start_time`                  | `true`   | Start time of the booking (e.g., YYYY-MM-DD HH:MM ex: "2025-08-02 13:00" string)                       |
+| `event_id`                    | `true`   | ID of the event the booking is for. `event_id` is a UUID.                                            |
+| `tickets` | `false`   | List of product objects; each with `ticket_id` (required), and optionally `quantity`. Find `ticket_id` through the event object. `ticket_id` is a UUID with `tik` prefix. See [The event object](#the-event-object) for more details. |
+| `extras` | `false`   | List of product objects; each with `extra_id` (required), and optionally `quantity`. Find `extra_id` through the event object. `extra_id` is a UUID with `extra` prefix. See [The event object](#the-event-object) for more details. |
+| `meta_data`                    | `false`  | JSON string of meta data assigned to the booking. QR codes should be comma separated string, must match booking size.   |
+| `size`                        | `true`  | Size (number of guests, etc.) Will be overwritten by ticket size if not matching                        |
 | `claim_gift_aid`                       | `false`  | `"1"` to claim gift aid; adds `"gift_aid": true` to meta data                                        |
 
 
