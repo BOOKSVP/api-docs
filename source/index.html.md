@@ -499,9 +499,9 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
         "price_in_cents": 100
       }
     ],
-    "location_name": "College House",
-    "location_address": "45994 Shaunda Lakes, Kohlerborough, SD 94188-4462",
-    "public_url": "http://app.artsvp.com/05336e",
+    "location_name": "477 Broadway",
+    "location_address": "477 St. New York, Ny",
+    "public_url": "https://app.artsvp.com/d43a64",
     "banner_image": null,
     "resource_tags": [],
     "created_at": "2025-08-01T11:04:24.479Z",
