@@ -86,24 +86,38 @@ Events typically represent a single event that you are hosting and can be used t
 
 ```json
 {
-  "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+  "id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
   "object": "event",
-  "code": "efa400",
-  "name": "Summer Party",
-  "reference": "Summer Party (VIP 1)",
-  "description": "A summer meet and greet for our VIP guests",
-  "time_zone": "Europe/London",
-  "start_date": "2023-05-18",
-  "start_time": "2023-05-18T10:00:00.000+01:00",
-  "end_date": "2023-05-18",
-  "end_time": "2023-05-18T17:00:00.000+01:00",
-  "location_name": "Gallery ABC",
-  "location_address": "123 Artists Way",
-  "public_url": "https://artsvp.com/efa400",
-  "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
-  "resource_tags": ["vip", "art_fair"],
-  "created_at": "2023-04-06T15:12:08.671Z",
-  "updated_at": "2023-05-15T11:34:48.746Z"
+  "code": "d43a64",
+  "name": "Swiss Cheese",
+  "reference": "",
+  "description": "",
+  "time_zone": "America/New_York",
+  "start_date": "2025-08-31",
+  "start_time": "2025-08-31T10:00:00.000-04:00",
+  "end_date": "2025-08-31",
+  "end_time": "2025-08-31T13:00:00.000-04:00",
+  "tickets": [
+    {
+      "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "name": "Number of people",
+      "price_in_cents": 100,
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "name": "Cool Extra",
+      "price_in_cents": 1000,
+    }
+  ],
+  "location_name": "477 Broadway",
+  "location_address": "477 St. New York, Ny",
+  "public_url": "https://app.artsvp.com/d43a64",
+  "banner_image": null,
+  "resource_tags": [],
+  "created_at": "2025-04-11T11:51:22.248Z",
+  "updated_at": "2025-07-15T09:32:54.465Z"
 }
 ```
 
@@ -122,6 +136,8 @@ Events typically represent a single event that you are hosting and can be used t
 | `start_time`    | string    | The time the event starts                        |
 | `end_date`      | string    | The date the event ends                          |
 | `end_time`      | string    | The time the event ends                          |
+| `tickets`       | array     | Tickets created with a booking                  |
+| `extras`        | array     | Extras created with a booking                   |
 | `location_name`      | string    | The name of the location the event is being held at   |
 | `location_address`      | string    | The address of the location the event is being held at          |
 | `public_url`    | string    | The public URL for the event                     |
@@ -152,6 +168,20 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
   "start_time": "2023-05-18T10:00:00.000+01:00",
   "end_date": "2023-05-18",
   "end_time": "2023-05-18T17:00:00.000+01:00",
+  "tickets": [
+    {
+      "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "name": "Number of people",
+      "price_in_cents": 100,
+    }
+  ],
+  "extras": [
+    {
+      "id": "extra-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+      "name": "Cool Extra",
+      "price_in_cents": 1000,
+    }
+  ],
   "location_name": "Gallery ABC",
   "location_address": "123 Artists Way",
   "public_url": "https://artsvp.com/efa400",
@@ -162,7 +192,7 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
 }
 ```
 
-Retrieves the details of an event.
+Retrieves the details of an event, including tickets and extras associated with that event.
 
 ### HTTP Request
 
@@ -345,21 +375,57 @@ Each booking has a `status` field which denotes where the booking is within the 
   "start_time_utc": "2022-01-01T13:00:00.000Z",
   "start_time_local": "2022-01-01T13:00:00.000+00:00",
   "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
-  "event_id": "836d76",
   "event_name": "Summer Fair",
   "event_reference": "Summer Fair - VIP 1",
   "event_time_zone": "Europe/London",
-  "invite_id": "db8e29",
+  "invite_id": "inv-b48ed250-8ebb-448e-a7a0-940d9fcf5dc0",
   "event": {
-    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "id": "eve-b891bf58-2534-425c-bfa4-f601a7c7d5c1",
     "object": "event",
-    "code": "efa400",
-    "name": "Summer Party",
-    ...
+    "code": "d43a64",
+    "name": "Swiss Cheese",
+    "reference": "",
+    "description": "",
+    "time_zone": "America/New_York",
+    "start_date": "2025-08-31",
+    "start_time": "2025-08-31T10:00:00.000-04:00",
+    "end_date": "2025-08-31",
+    "end_time": "2025-08-31T13:00:00.000-04:00",
+    "tickets": [
+      {
+        "id": "tik-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+        "name": "Senior Day",
+        "price_in_cents": 1000,
+      }
+    ],
+    "extras": [
+      {
+        "id": "extra-4bd84e3c-5fed-48bd-947d-6ef3061600bd",
+        "name": "Cool Extra",
+        "price_in_cents": 500,
+      }
+    ],
+    "location_name": "477 Broadway",
+    "location_address": "477 St. New York, Ny",
+    "public_url": "https://app.artsvp.com/d43a64",
+    "banner_image": null,
+    "resource_tags": [],
+    "created_at": "2025-04-11T11:51:22.248Z",
+    "updated_at": "2025-07-15T09:32:54.465Z"
   },
+  "guests": [],
+  "tickets": [
+    {
+      "id": "tik-90ef5503-30dc-496e-88d0-26cb0409cc7f",
+      "price_in_cents": {
+        "cents": 100,
+        "currency_iso": "GBP"
+      },
+      "quantity": 3
+    }
+  ],
   "tags": [],
   "resource_tags": ["vip", "new_user"],
-  "agree_to_mailing_list": true,
   "meta_data": {},
   "external_id": "abc123",
   "created_at": "2021-10-21T15:22:35.758Z",
@@ -377,15 +443,17 @@ Each booking has a `status` field which denotes where the booking is within the 
 | `status`           | string    | The booking status. Prefixed with `is_` (e.g. `is_confirmed`) |
 | `name`             | string    | Name of the primary guest                                     |
 | `email`            | string    | Email of the primary guest                                    |
-| `size`             | integer   | Number of guests attatched to the booking (includes primary guest)                    |
+| `size`             | integer   | Number of guests attatched to the booking (includes primary guest)|
 | `start_time_utc`   | timestamp | Start time in UTC                                             |
 | `start_time_local` | timestamp | Start time in Event's Time Zone                               |
 | `url`              | string    | URL to manage the booking                                     |
-| `invite_id`        | string    | Booking's invite reference (if present)          |
-| `event`            | hash      | The event object the booking is made for                   |
+| `invite_id`        | string    | Booking's invite reference (if present)                       |
+| `event`            | hash      | The event object the booking is made for                      |
+| `guests`           | array      | The guests included on the booking.                           |
+| `tickets`         | array      | The tickets and extras the booking is made with               |
 | `tags`             | array     | Tags assigned to the booking                                  |
 | `resource_tags`    | array     | Tags assigned to the `Booking Resource`                       |
-| `agree_to_mailing_list`    | boolean     | Agreement to join mailing list by primary guest     |
+| `agree_to_mailing_list`| boolean     | Agreement to join mailing list by primary guest     |
 | `meta_data`        | hash      | Meta Data assigned to the booking                             |
 | `external_id`      | string    | External ID assigned to the booking                           |
 | `created_at`       | timestamp | Timestamp when the booking was created                        |
@@ -404,32 +472,84 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
 {
   "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
   "object": "booking",
-  "reference": "C922-4EBA-1F8C",
-  "status": "is_confirmed",
-  "name": "Guest",
+  "reference": "3F95-4D16-EAA9",
+  "status": "is_expired",
+  "name": "dave",
   "email": "guest@artsvp.com",
-  "size": 5,
-  "start_time_utc": "2022-01-01T13:00:00.000Z",
-  "start_time_local": "2022-01-01T13:00:00.000+00:00",
-  "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
-  "event_id": "836d76",
-  "event_name": "Summer Fair",
-  "event_reference": "Summer Fair - VIP 1",
-  "event_time_zone": "Europe/London",
-  "invite_id": "db8e29",
+  "size": 3,
+  "start_time_utc": "2025-08-02T13:00:00.000Z",
+  "start_time_local": "2025-08-02T14:00:00.000+01:00",
+  "url": "https://app.artsvp.com/bookings/cqg26ckbqaxf7wywpbcqp8xbucffjbqt",
   "event": {
-    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "id": "eve-4f26a311-c4e1-460f-b306-43d2af072e2f",
     "object": "event",
-    "code": "efa400",
-    "name": "Summer Party",
-    ...
+    "code": "05336e",
+    "name": "Heavy Duty Leather Knife",
+    "reference": null,
+    "description": "",
+    "time_zone": "Europe/London",
+    "start_date": "2025-08-08",
+    "start_time": "2025-08-08T10:00:00.000+01:00",
+    "end_date": "2025-08-08",
+    "end_time": "2025-08-08T17:00:00.000+01:00",
+    "tickets": [
+      {
+        "id": "tik-82cd9c46-4e90-4e2f-8e05-643ea4fe30dc",
+        "name": "Ticket",
+        "price_in_cents": 100
+      }
+    ],
+    "location_name": "477 Broadway",
+    "location_address": "477 St. New York, Ny",
+    "public_url": "https://app.artsvp.com/d43a64",
+    "banner_image": null,
+    "resource_tags": [],
+    "created_at": "2025-08-01T11:04:24.479Z",
+    "updated_at": "2025-08-01T11:04:24.715Z"
   },
+  "guests": [
+    {
+      "id": "gue-888165ed-7af2-4ee0-9d8a-ac68dadb6534",
+      "object": "guest",
+      "name": "dave",
+      "email": "guest@artsvp.com",
+      "lead": true
+    },
+    {
+      "id": "gue-e4f7f5f5-bbb8-4a9f-b742-71427f962b84",
+      "object": "guest",
+      "name": "Guest 2",
+      "email": null,
+      "lead": false
+    },
+    {
+      "id": "gue-cf0d0b5a-ba45-498a-ad09-3a5907f969b0",
+      "object": "guest",
+      "name": "Guest 3",
+      "email": null,
+      "lead": false
+    }
+  ],
+  "tickets": [
+    {
+      "id": "tik-90ef5503-30dc-496e-88d0-26cb0409cc7f",
+      "price_in_cents": {
+        "cents": 100,
+        "currency_iso": "GBP"
+      },
+      "quantity": 3
+    }
+  ],
   "tags": [],
-  "resource_tags": ["vip", "new_user"],
-  "meta_data": {},
-  "external_id": "abc123",
-  "created_at": "2021-10-21T15:22:35.758Z",
-  "updated_at": "2021-10-21T15:33:13.889Z"
+  "event_resource_tags": [],
+  "agree_to_mailing_list": false,
+  "meta_data": {
+    "qr_code": "1234567890,1234567890,1234567890",
+    "custom_key": "custom_value"
+  },
+  "external_id": null,
+  "created_at": "2025-08-01T15:34:10.476Z",
+  "updated_at": "2025-08-01T15:34:11.062Z"
 }
 ```
 
@@ -445,6 +565,123 @@ Retrieves the details of a booking.
 | ---------- | ----------- | --------------------------------- |
 | `id`       | **`true`**  | The ID of the booking to retrieve |
 
+
+## Create a booking
+
+```shell
+curl -X POST "http://app.artsvp.com/api/v3/bookings" \
+  -H "Authorization: my_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Guest",
+    "email": "guest@artsvp.com",
+    "size": 3,
+    "start_time": "2025-08-02 13:00",
+    "event_id": "eve-869a5361-4a24-43f8-9891-982f3495902d",
+    "tickets" : [
+      {
+      "ticket_id": "tik-8d417129-36e0-44e2-ae60-d9eff5c92ae6",
+      "quantity": 3
+      }
+    ],
+    "extras" : [
+      {
+      "extra_id": "extra-e3830baf-80ac-4e16-a3f4-6f9e7f46f495",
+      "quantity": 3
+      }
+    ],
+    "meta_data": {
+      "custom_key": "custom_value",
+      "qr_code": "1234567890,1234567890,1234567890"
+    }
+  }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "boo-2829d0c6-5177-4b83-8da2-ecb4ab30ad29",
+  "object": "booking",
+  "reference": "E7C1-D185-BBBB",
+  "status": "is_confirmed",
+  "name": "Guest",
+  "email": "guest@artsvp.com",
+  "size": 0,
+  "start_time_utc": "2025-08-02T13:00:00.000Z",
+  "start_time_local": "2025-08-02T14:00:00.000+01:00",
+  "url": "https://app.artsvp.com/bookings/ywuu2ju8csxphpamhjt3n4cucvunw5tf",
+  "event": {
+    "id": "eve-869a5361-4a24-43f8-9891-982f3495902d",
+    "object": "event",
+    "code": "9b442d",
+    "name": "Awesome Event",
+    "reference": null,
+    "description": "",
+    "time_zone": "Europe/London",
+    "start_date": "2025-08-11",
+    "start_time": "2025-08-11T10:00:00.000+01:00",
+    "end_date": "2025-08-11",
+    "end_time": "2025-08-11T17:00:00.000+01:00",
+    "tickets": [
+      {
+        "id": "tik-8d417129-36e0-44e2-ae60-d9eff5c92ae6",
+        "name": "Ticket",
+        "price_in_cents": 2000
+      }
+    ],
+    "extras": [
+      {
+        "id": "extra-e3830baf-80ac-4e16-a3f4-6f9e7f46f495",
+        "name": "Extra",
+        "price_in_cents": 1000
+      }
+    ],
+    "location_name": "College House",
+    "location_address": "Suite 923 39157 Turcotte Pines, Jakubowskifurt, PA 77317",
+    "public_url": "https://app.artsvp.com/9b442d",
+    "banner_image": null,
+    "resource_tags": [],
+    "created_at": "2025-08-04T11:51:34.714Z",
+    "updated_at": "2025-08-04T11:51:34.895Z"
+  },
+  "guests": [],
+  "tickets": [],
+  "tags": [],
+  "event_resource_tags": [],
+  "agree_to_mailing_list": false,
+  "meta_data": {
+    "custom_key": "custom_value",
+    "qr_code": "1234567890,1234567890,1234567890"
+  },
+  "external_id": null,
+  "created_at": "2025-08-04T12:19:48.573Z",
+  "updated_at": "2025-08-04T12:19:48.573Z"
+}
+```
+
+Creates a booking and can be used to create paid or unpaid bookings.
+
+### HTTP Request
+
+`POST https://app.artsvp.com/api/v3/bookings`
+
+### Parameters
+
+| Parameter                              | Required | Description                                                                                          |
+| -------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
+| `name`                        | `true`   | Name of the primary guest                                                                            |
+| `email`                       | `false`   | Email of the primary guest                                                                           |
+| `start_time`                  | `true`   | Start time of the booking (e.g., YYYY-MM-DD HH:MM ex: "2025-08-02 13:00" string)                       |
+| `event_id`                    | `true`   | ID of the event the booking is for. `event_id` is a UUID.                                            |
+| `tickets` | `false`   | List of product objects; each with `ticket_id` (required), and optionally `quantity`. Find `ticket_id` through the event object. `ticket_id` is a UUID with `tik` prefix. See [The event object](#the-event-object) for more details. |
+| `extras` | `false`   | List of product objects; each with `extra_id` (required), and optionally `quantity`. Find `extra_id` through the event object. `extra_id` is a UUID with `extra` prefix. See [The event object](#the-event-object) for more details. |
+| `meta_data`                    | `false`  | JSON string of meta data assigned to the booking. QR codes should be comma separated string, must match booking size.   |
+| `size`                        | `true`  | Size (number of guests, etc.) Will be overwritten by ticket size if not matching                        |
+| `claim_gift_aid`                       | `false`  | `"1"` to claim gift aid; adds `"gift_aid": true` to meta data                                        |
+
+
+
 ## Update a booking
 
 ```shell
@@ -457,34 +694,73 @@ curl -X PATCH "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e
 
 ```json
 {
-  "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
+  "id": "boo-493b1bc8-e130-4ff3-96bb-944c85f6b83a",
   "object": "booking",
-  "reference": "C922-4EBA-1F8C",
-  "status": "is_confirmed",
-  "name": "Guest",
-  "email": "guest@artsvp.com",
-  "size": 5,
-  "start_time_utc": "2022-01-01T13:00:00.000Z",
-  "start_time_local": "2022-01-01T13:00:00.000+00:00",
-  "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
-  "event_id": "836d76",
-  "event_name": "Summer Fair",
-  "event_reference": "Summer Fair - VIP 1",
-  "event_time_zone": "Europe/London",
-  "invite_id": "db8e29",
+  "reference": "4707-46C9-4032",
+  "status": "is_pending",
+  "name": "Dan",
+  "email": "dot@artsvp.com",
+  "size": 3,
+  "start_time_utc": "2025-08-02T13:00:00.000Z",
+  "start_time_local": "2025-08-02T14:00:00.000+01:00",
+  "url": "http://demo.www.localhost:3000/bookings/mcxualjmad19fzyiqgn8gvath3rsdubs",
   "event": {
-    "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+    "id": "eve-4f26a311-c4e1-460f-b306-43d2af072e2f",
     "object": "event",
-    "code": "efa400",
-    "name": "Summer Party",
-    ...
+    "code": "05336e",
+    "name": "Heavy Duty Leather Knife",
+    "reference": null,
+    "description": "",
+    "time_zone": "Europe/London",
+    "start_date": "2025-08-08",
+    "start_time": "2025-08-08T10:00:00.000+01:00",
+    "end_date": "2025-08-08",
+    "end_time": "2025-08-08T17:00:00.000+01:00",
+    "tickets": [
+      {
+        "id": "tik-82cd9c46-4e90-4e2f-8e05-643ea4fe30dc",
+        "name": "Ticket",
+        "price_in_cents": 100
+      }
+    ],
+    "location_name": "College House",
+    "location_address": "45994 Shaunda Lakes, Kohlerborough, SD 94188-4462",
+    "public_url": "http://demo.localtest.me:3000/05336e",
+    "banner_image": null,
+    "resource_tags": [],
+    "created_at": "2025-08-01T11:04:24.479Z",
+    "updated_at": "2025-08-01T11:04:24.715Z"
   },
+  "guests": [
+    {
+      "id": "gue-6828b76a-5dc7-4c71-8091-e1bd0cfa9b53",
+      "object": "guest",
+      "name": "Dan",
+      "email": "dot@artsvp.com",
+      "lead": true
+    },
+    ...
+  ],
+  "tickets": [
+    {
+      "id": "tik-ed66778e-94bb-443a-b94a-744c2972c918",
+      "price_in_cents": {
+        "cents": 100,
+        "currency_iso": "GBP"
+      },
+      "quantity": 3
+    }
+  ],
   "tags": [],
-  "resource_tags": ["vip", "new_user"],
-  "meta_data": {},
+  "event_resource_tags": [],
+  "agree_to_mailing_list": false,
+  "meta_data": {
+    "custom_key": "custom_value",
+    "qr_code": "1234567890,1234567890,1234567890"
+  },
   "external_id": "test123",
-  "created_at": "2021-10-21T15:22:35.758Z",
-  "updated_at": "2021-10-21T15:33:13.889Z"
+  "created_at": "2025-08-01T15:45:03.288Z",
+  "updated_at": "2025-08-01T15:45:03.288Z"
 }
 ```
 
@@ -521,34 +797,73 @@ curl "https://app.artsvp.com/api/v3/bookings" \
   "last_booking_id": "boo-833995e0-f3a0-4112-be05-8a240d33aeda",
   "data": [
     {
-      "id": "boo-46d60ac0-bd1a-4e11-a3e2-0394e872887f",
+      "id": "boo-493b1bc8-e130-4ff3-96bb-944c85f6b83a",
       "object": "booking",
-      "reference": "C922-4EBA-1F8C",
-      "status": "is_confirmed",
-      "name": "Guest",
-      "email": "guest@artsvp.com",
-      "size": 5,
-      "start_time_utc": "2022-01-01T13:00:00.000Z",
-      "start_time_local": "2022-01-01T13:00:00.000+00:00",
-      "url": "https://artsvp.com/bookings/jwhfoiwhef9w8f9we79w8f79we87wef",
-      "event_id": "836d76",
-      "event_name": "Summer Fair",
-      "event_reference": "Summer Fair - VIP 1",
-      "event_time_zone": "Europe/London",
-      "invite_id": "db8e29",
+      "reference": "4707-46C9-4032",
+      "status": "is_pending",
+      "name": "Dan",
+      "email": "dot@artsvp.com",
+      "size": 3,
+      "start_time_utc": "2025-08-02T13:00:00.000Z",
+      "start_time_local": "2025-08-02T14:00:00.000+01:00",
+      "url": "http://demo.www.localhost:3000/bookings/mcxualjmad19fzyiqgn8gvath3rsdubs",
       "event": {
-        "id": "eve-c60d5868-c4cf-4b55-83f2-6578a5173767",
+        "id": "eve-4f26a311-c4e1-460f-b306-43d2af072e2f",
         "object": "event",
-        "code": "efa400",
-        "name": "Summer Party",
-        ...
+        "code": "05336e",
+        "name": "Heavy Duty Leather Knife",
+        "reference": null,
+        "description": "",
+        "time_zone": "Europe/London",
+        "start_date": "2025-08-08",
+        "start_time": "2025-08-08T10:00:00.000+01:00",
+        "end_date": "2025-08-08",
+        "end_time": "2025-08-08T17:00:00.000+01:00",
+        "tickets": [
+          {
+            "id": "tik-82cd9c46-4e90-4e2f-8e05-643ea4fe30dc",
+            "name": "Ticket",
+            "price_in_cents": 100
+          }
+        ],
+        "location_name": "College House",
+        "location_address": "45994 Shaunda Lakes, Kohlerborough, SD 94188-4462",
+        "public_url": "http://demo.localtest.me:3000/05336e",
+        "banner_image": null,
+        "resource_tags": [],
+        "created_at": "2025-08-01T11:04:24.479Z",
+        "updated_at": "2025-08-01T11:04:24.715Z"
       },
+      "guests": [
+        {
+          "id": "gue-6828b76a-5dc7-4c71-8091-e1bd0cfa9b53",
+          "object": "guest",
+          "name": "Dan",
+          "email": "dot@artsvp.com",
+          "lead": true
+        },
+        ...
+      ],
+      "tickets": [
+        {
+          "id": "tik-ed66778e-94bb-443a-b94a-744c2972c918",
+          "price_in_cents": {
+            "cents": 100,
+            "currency_iso": "GBP"
+          },
+          "quantity": 3
+        }
+      ],
       "tags": [],
-      "resource_tags": ["vip", "new_user"],
-      "meta_data": {},
-      "external_id": "abc123",
-      "created_at": "2021-10-21T15:22:35.758Z",
-      "updated_at": "2021-10-21T15:33:13.889Z"
+      "event_resource_tags": [],
+      "agree_to_mailing_list": false,
+      "meta_data": {
+        "custom_key": "custom_value",
+        "qr_code": "1234567890,1234567890,1234567890"
+      },
+      "external_id": "test123",
+      "created_at": "2025-08-01T15:45:03.288Z",
+      "updated_at": "2025-08-01T15:45:03.288Z"
     },
     ...
   ]
