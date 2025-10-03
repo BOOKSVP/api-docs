@@ -513,21 +513,24 @@ curl -X GET "https://app.artsvp.com/api/v3/bookings/boo-46d60ac0-bd1a-4e11-a3e2-
       "object": "guest",
       "name": "dave",
       "email": "guest@artsvp.com",
-      "lead": true
+      "lead": true,
+      "wallet_pass_url": "https://app.artsvp.com/pass?ref=gue-83c70644-1a2a-46e8-8851-38ad75823d15&type=event_ticket"
     },
     {
       "id": "gue-e4f7f5f5-bbb8-4a9f-b742-71427f962b84",
       "object": "guest",
       "name": "Guest 2",
       "email": null,
-      "lead": false
+      "lead": false,
+      "wallet_pass_url": "https://app.artsvp.com/pass?ref=gue-83c70644-1a2a-46e8-8851-38ad75823d15&type=event_ticket"
     },
     {
       "id": "gue-cf0d0b5a-ba45-498a-ad09-3a5907f969b0",
       "object": "guest",
       "name": "Guest 3",
       "email": null,
-      "lead": false
+      "lead": false,
+      "wallet_pass_url": "https://app.artsvp.com/pass?ref=gue-83c70644-1a2a-46e8-8851-38ad75823d15&type=event_ticket"
     }
   ],
   "tickets": [
