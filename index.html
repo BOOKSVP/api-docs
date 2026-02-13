@@ -510,7 +510,23 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-04-11T11:51:22.248Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-07-15T09:32:54.465Z"</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-07-15T09:32:54.465Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"available_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">362</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">648</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"slot_capacities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"2025-08-31 10:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2025-08-31 11:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2025-08-31 12:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='attributes'>Attributes</h3>
 <table><thead>
@@ -620,6 +636,21 @@ You must replace <code>my_api_key</code> with your personal API key.
 <td>timestamp</td>
 <td>Timestamp when the event was updated</td>
 </tr>
+<tr>
+<td><code>available_capacity</code></td>
+<td>integer</td>
+<td>The total number of available spots across all time slots</td>
+</tr>
+<tr>
+<td><code>total_capacity</code></td>
+<td>integer</td>
+<td>The total capacity across all time slots</td>
+</tr>
+<tr>
+<td><code>slot_capacities</code></td>
+<td>object</td>
+<td>A breakdown of available and total capacity per time slot. Each key is a slot datetime string, and the value is an object with <code>available</code> and <code>capacity</code> integers</td>
+</tr>
 </tbody></table>
 <h2 id='retrieve-an-event'>Retrieve an event</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="s2">"https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-6578a5173767"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: my_api_key"</span>
@@ -659,7 +690,39 @@ You must replace <code>my_api_key</code> with your personal API key.
   </span><span class="nl">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"resource_tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"vip"</span><span class="p">,</span><span class="w"> </span><span class="s2">"art_fair"</span><span class="p">],</span><span class="w">
   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-04-06T15:12:08.671Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-15T11:34:48.746Z"</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-15T11:34:48.746Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"available_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"slot_capacities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"2023-05-18 10:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2023-05-18 11:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2023-05-18 12:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2023-05-18 13:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2023-05-18 14:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2023-05-18 15:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"2023-05-18 16:00 +00:00"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Retrieves the details of an event, including tickets and extras associated with that event.</p>
