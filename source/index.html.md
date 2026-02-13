@@ -117,7 +117,23 @@ Events typically represent a single event that you are hosting and can be used t
   "banner_image": null,
   "resource_tags": [],
   "created_at": "2025-04-11T11:51:22.248Z",
-  "updated_at": "2025-07-15T09:32:54.465Z"
+  "updated_at": "2025-07-15T09:32:54.465Z",
+  "available_capacity": 362,
+  "total_capacity": 648,
+  "slot_capacities": {
+    "2025-08-31 10:00 +00:00": {
+      "available": 9,
+      "capacity": 12
+    },
+    "2025-08-31 11:00 +00:00": {
+      "available": 7,
+      "capacity": 12
+    },
+    "2025-08-31 12:00 +00:00": {
+      "available": 6,
+      "capacity": 12
+    }
+  }
 }
 ```
 
@@ -145,6 +161,9 @@ Events typically represent a single event that you are hosting and can be used t
 | `resource_tags` | array     | Internal tags assigned to the event              |
 | `created_at`    | timestamp | Timestamp when the event was created           |
 | `updated_at`    | timestamp | Timestamp when the event was updated           |
+| `available_capacity` | integer | The total number of available spots across all time slots |
+| `total_capacity`     | integer | The total capacity across all time slots       |
+| `slot_capacities`    | object  | A breakdown of available and total capacity per time slot. Each key is a slot datetime string, and the value is an object with `available` and `capacity` integers |
 
 ## Retrieve an event
 
@@ -188,7 +207,39 @@ curl -X GET "https://app.artsvp.com/api/v3/events/eve-c60d5868-c4cf-4b55-83f2-65
   "banner_image": "https://artsvp.s3.eu-west-2.amazonaws.com/uploads/banners/xxxxx.jpeg",
   "resource_tags": ["vip", "art_fair"],
   "created_at": "2023-04-06T15:12:08.671Z",
-  "updated_at": "2023-05-15T11:34:48.746Z"
+  "updated_at": "2023-05-15T11:34:48.746Z",
+  "available_capacity": 42,
+  "total_capacity": 60,
+  "slot_capacities": {
+    "2023-05-18 10:00 +00:00": {
+      "available": 5,
+      "capacity": 10
+    },
+    "2023-05-18 11:00 +00:00": {
+      "available": 8,
+      "capacity": 10
+    },
+    "2023-05-18 12:00 +00:00": {
+      "available": 7,
+      "capacity": 10
+    },
+    "2023-05-18 13:00 +00:00": {
+      "available": 6,
+      "capacity": 10
+    },
+    "2023-05-18 14:00 +00:00": {
+      "available": 9,
+      "capacity": 10
+    },
+    "2023-05-18 15:00 +00:00": {
+      "available": 3,
+      "capacity": 10
+    },
+    "2023-05-18 16:00 +00:00": {
+      "available": 4,
+      "capacity": 10
+    }
+  }
 }
 ```
 
